@@ -33,7 +33,7 @@ const VehicleCard = ({ image, nameKey, descKey, price, category, onBook, delay =
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay }}
-      className="card-fleet"
+      className="card-fleet group"
     >
       {/* Image */}
       <div className="relative h-56 overflow-hidden">
