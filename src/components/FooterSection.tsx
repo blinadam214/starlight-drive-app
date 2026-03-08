@@ -1,0 +1,79 @@
+import { useLanguage } from "@/contexts/LanguageContext";
+import { MessageCircle, MapPin, Instagram, Mail } from "lucide-react";
+
+const FooterSection = () => {
+  const { t } = useLanguage();
+
+  return (
+    <footer className="border-t border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* Brand */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-lg gradient-neon flex items-center justify-center">
+                <span className="text-background font-bold text-sm">B</span>
+              </div>
+              <span className="font-bold text-lg text-foreground">
+                B-LINE <span className="text-primary">26</span>
+              </span>
+            </div>
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mb-6">
+              {t("footer.tagline")}
+            </p>
+            <a
+              href="https://wa.me/212600000000"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-neon inline-flex items-center gap-2 !px-6 !py-3 text-sm"
+            >
+              <MessageCircle className="w-4 h-4" />
+              {t("footer.whatsapp")}
+            </a>
+          </div>
+
+          {/* Links */}
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">{t("footer.links")}</h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li><a href="#fleet" className="hover:text-primary transition-colors">{t("nav.fleet")}</a></li>
+              <li><a href="#concept" className="hover:text-primary transition-colors">{t("nav.concept")}</a></li>
+              <li><a href="#booking" className="hover:text-primary transition-colors">{t("nav.booking")}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t("footer.legal")}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t("footer.privacy")}</a></li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">{t("footer.contact")}</h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+                Marrakech, Maroc
+              </li>
+              <li className="flex items-center gap-2">
+                <MessageCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                +212 6XX XXX XXX
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail className="w-4 h-4 text-primary flex-shrink-0" />
+                contact@bline26.ma
+              </li>
+              <li className="flex items-center gap-2">
+                <Instagram className="w-4 h-4 text-primary flex-shrink-0" />
+                @bline26
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-border mt-12 pt-8 text-center text-xs text-muted-foreground">
+          © {new Date().getFullYear()} B-LINE 26. {t("footer.rights")}
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default FooterSection;
