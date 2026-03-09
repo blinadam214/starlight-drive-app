@@ -47,6 +47,7 @@ const FleetSection = () => {
               <VehicleCard
                 key={v.id}
                 image={v.image}
+                video={v.video || undefined}
                 nameKey={v.nameKey}
                 descKey={v.descKey}
                 price={v.price}
