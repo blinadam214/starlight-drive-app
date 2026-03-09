@@ -773,49 +773,6 @@ const AdminDashboard: React.FC = () => {
           </main>
         </div>
       </div>
-
-      <style jsx>{`
-        .calendar-dark .rbc-calendar {
-          background-color: transparent;
-          color: white;
-        }
-        .calendar-dark .rbc-header {
-          background-color: #1f2937;
-          border-color: #374151;
-          color: #d1d5db;
-        }
-        .calendar-dark .rbc-month-view,
-        .calendar-dark .rbc-time-view {
-          border-color: #374151;
-        }
-        .calendar-dark .rbc-day-bg {
-          background-color: transparent;
-        }
-        .calendar-dark .rbc-day-bg + .rbc-day-bg {
-          border-left-color: #374151;
-        }
-        .calendar-dark .rbc-time-slot {
-          border-color: #374151;
-        }
-        .calendar-dark .rbc-today {
-          background-color: rgba(139, 92, 246, 0.1);
-        }
-        .calendar-dark .rbc-off-range-bg {
-          background-color: #111827;
-        }
-        .calendar-dark .rbc-toolbar button {
-          background-color: #374151;
-          border-color: #4b5563;
-          color: #d1d5db;
-        }
-        .calendar-dark .rbc-toolbar button:hover {
-          background-color: #4b5563;
-        }
-        .calendar-dark .rbc-toolbar button.rbc-active {
-          background-color: #8b5cf6;
-          border-color: #8b5cf6;
-        }
-      `}</style>
     </SidebarProvider>
   );
 };
