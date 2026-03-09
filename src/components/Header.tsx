@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { Menu, X, Globe, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logoB26 from "@/assets/logo-b26.png";
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
