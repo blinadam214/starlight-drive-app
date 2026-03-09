@@ -1,6 +1,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { MessageCircle, MapPin, Instagram, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import logoB26 from "@/assets/logo-b26.png";
 
 const FooterSection = () => {
   const { t } = useLanguage();
@@ -11,13 +12,8 @@ const FooterSection = () => {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg gradient-neon flex items-center justify-center">
-                <span className="text-background font-bold text-sm">B</span>
-              </div>
-              <span className="font-bold text-lg text-foreground">
-                B-LINE <span className="text-primary">26</span>
-              </span>
+            <div className="mb-4">
+              <img src={logoB26} alt="B26 Location de voiture Marrakech" className="h-16 w-auto object-contain" />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mb-6">
               {t("footer.tagline")}
