@@ -132,8 +132,26 @@ export default function AdminLogin() {
               />
 
               <Button type="submit" disabled={submitting} className="btn-neon w-full">
-                {submitting ? "Vérification…" : "Accéder au Centre de Contrôle"}
+                {submitting 
+                  ? "Vérification…" 
+                  : isSignupMode 
+                    ? "Créer le compte admin"
+                    : "Accéder au Centre de Contrôle"
+                }
               </Button>
+
+              <div className="text-center">
+                <button
+                  type="button"
+                  onClick={() => setIsSignupMode(!isSignupMode)}
+                  className="text-xs text-[hsl(var(--neon-cyan))] hover:underline"
+                >
+                  {isSignupMode 
+                    ? "← Retour à la connexion"
+                    : "Créer un compte admin →"
+                  }
+                </button>
+              </div>
 
               {user && !isAdmin && (
                 <div className="rounded-lg border border-[hsl(var(--neon-gold)/0.25)] bg-[hsl(var(--neon-gold)/0.08)] p-3">
