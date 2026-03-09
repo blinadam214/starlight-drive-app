@@ -31,13 +31,8 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg gradient-neon flex items-center justify-center">
-              <span className="text-background font-bold text-sm">B</span>
-            </div>
-            <span className="font-bold text-lg tracking-tight text-foreground">
-              B-LINE <span className="text-primary">26</span>
-            </span>
+          <a href="#" className="flex items-center group">
+            <img src={logoB26} alt="B26 Location de voiture Marrakech" className="h-12 lg:h-14 w-auto object-contain" />
           </a>
 
           {/* Desktop Nav */}
