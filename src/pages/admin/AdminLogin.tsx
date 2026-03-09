@@ -11,6 +11,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 
+const ADMIN_EMAIL_ALLOWLIST = new Set(["adam@bline26.com", "blinadam2@gmail.com"]);
+
 const schema = z.object({
   email: z.string().email("Email invalide"),
   password: z.string().min(8, "Mot de passe requis"),
@@ -38,7 +40,7 @@ export default function AdminLogin() {
 
   useEffect(() => {
     if (state.reason === "access_denied") {
-      toast.error("Accès refusé", { description: "Ce centre est réservé à l'administrateur." });
+      toast.error("Accès refusé", { description: "Ce centre est réservé à l’administrateur." });
     }
   }, [state.reason]);
 
@@ -52,25 +54,28 @@ export default function AdminLogin() {
     setSubmitting(true);
     try {
       if (isSignupMode) {
-        // Mode inscription
+        if (!ADMIN_EMAIL_ALLOWLIST.has(values.email)) {
+          toast.error("Inscription bloquée", {
+            description: "Seuls les emails administrateurs autorisés peuvent créer un compte ici.",
+          });
+          return;
+        }
+
         const { error } = await supabase.auth.signUp({
           email: values.email,
           password: values.password,
         });
-        
+
         if (error) {
           toast.error("Inscription impossible", { description: error.message });
           return;
         }
-        
-        toast.success("Compte créé !", { 
-          description: "Vous pouvez maintenant vous connecter." 
-        });
+
+        toast.success("Compte créé", { description: "Connecte-toi maintenant avec tes identifiants." });
         setIsSignupMode(false);
         return;
       }
 
-      // Mode connexion
       const { error } = await signInWithPassword(values.email, values.password);
       if (error) {
         toast.error("Connexion impossible", { description: error });
@@ -80,7 +85,7 @@ export default function AdminLogin() {
       const ok = await refreshAdmin();
       if (!ok) {
         await signOut();
-        toast.error("Accès refusé", { description: "Votre compte n'a pas le rôle ADMIN." });
+        toast.error("Accès refusé", { description: "Votre compte n’a pas le rôle ADMIN." });
         return;
       }
 
@@ -92,7 +97,6 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 starlight-dots opacity-60" />
       <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-[hsl(var(--neon-cyan)/0.06)] blur-[110px]" />
       <div className="absolute -bottom-28 -right-24 h-96 w-96 rounded-full bg-[hsl(var(--neon-gold)/0.05)] blur-[120px]" />
@@ -102,10 +106,7 @@ export default function AdminLogin() {
           <div className="mb-7">
             <h1 className="font-syne text-3xl font-extrabold tracking-tight">Centre de Contrôle</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              {isSignupMode 
-                ? "Créer un compte administrateur."
-                : "Accès strictement réservé à l'administrateur."
-              }
+              {isSignupMode ? "Créer un compte administrateur (emails autorisés uniquement)." : "Accès réservé à l’administrateur."}
             </p>
           </div>
 
@@ -118,13 +119,7 @@ export default function AdminLogin() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input
-                        {...field}
-                        type="email"
-                        autoComplete="email"
-                        placeholder={isSignupMode ? "blinadam2@gmail.com" : "adam@bline26.com"}
-                        className="glass"
-                      />
+                      <Input {...field} type="email" autoComplete="email" placeholder="" className="glass" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -138,13 +133,7 @@ export default function AdminLogin() {
                   <FormItem>
                     <FormLabel>Mot de passe</FormLabel>
                     <FormControl>
-                      <Input
-                        {...field}
-                        type="password"
-                        autoComplete="current-password"
-                        placeholder="••••••••"
-                        className="glass"
-                      />
+                      <Input {...field} type="password" autoComplete="current-password" placeholder="••••••••" className="glass" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -152,51 +141,28 @@ export default function AdminLogin() {
               />
 
               <Button type="submit" disabled={submitting} className="btn-neon w-full">
-                {submitting 
-                  ? "Vérification…" 
-                  : isSignupMode 
-                    ? "Créer le compte admin"
-                    : "Accéder au Centre de Contrôle"
-                }
+                {submitting ? "Vérification…" : isSignupMode ? "Créer le compte" : "Accéder au Centre de Contrôle"}
               </Button>
 
               <div className="text-center">
                 <button
                   type="button"
-                  onClick={() => setIsSignupMode(!isSignupMode)}
+                  onClick={() => setIsSignupMode((v) => !v)}
                   className="text-xs text-[hsl(var(--neon-cyan))] hover:underline"
                 >
-                  {isSignupMode 
-                    ? "← Retour à la connexion"
-                    : "Créer un compte admin →"
-                  }
+                  {isSignupMode ? "← Retour à la connexion" : "Créer un compte admin →"}
                 </button>
               </div>
 
-              {user && !isAdmin && (
-                <div className="rounded-lg border border-[hsl(var(--neon-gold)/0.25)] bg-[hsl(var(--neon-gold)/0.08)] p-3">
-                  <p className="text-xs font-semibold text-[hsl(var(--neon-gold))]">Accès refusé</p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Votre session a été fermée automatiquement.
-                  </p>
-                </div>
-              )}
-
               {state.reason === "login_required" && (
-                <p className="text-xs text-muted-foreground">
-                  Vous devez vous connecter pour accéder au dashboard.
-                </p>
+                <p className="text-xs text-muted-foreground">Vous devez vous connecter pour accéder au dashboard.</p>
               )}
             </form>
           </Form>
 
           <div className="mt-8 text-xs text-muted-foreground">
-            <p className="font-semibold tracking-wide">Instructions</p>
-            <p className="mt-1">
-              1. Cliquez "Créer un compte admin" <br/>
-              2. Utilisez : <strong>blinadam2@gmail.com</strong> <br/>
-              3. Mot de passe : <strong>Fatiha123</strong>
-            </p>
+            <p className="font-semibold tracking-wide">Sécurité</p>
+            <p className="mt-1">Aucune donnée n’est chargée tant que le rôle ADMIN n’est pas confirmé.</p>
           </div>
         </div>
       </div>

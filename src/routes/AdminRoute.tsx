@@ -13,10 +13,22 @@ function AdminGateLoading() {
 }
 
 export function AdminRoute({ children }: { children: React.ReactNode }) {
-  const { user, loading, isAdmin, adminLoading } = useAuth();
+  const { user, loading, isAdmin, adminLoading, refreshAdmin } = useAuth();
   const location = useLocation();
+  const [checkedAdmin, setCheckedAdmin] = React.useState(false);
 
-  if (loading || adminLoading) return <AdminGateLoading />;
+  React.useEffect(() => {
+    if (loading) return;
+    if (!user) return;
+
+    // If role was updated while the session stayed the same, re-check once.
+    if (!isAdmin && !adminLoading && !checkedAdmin) {
+      setCheckedAdmin(true);
+      void refreshAdmin();
+    }
+  }, [loading, user, isAdmin, adminLoading, checkedAdmin, refreshAdmin]);
+
+  if (loading || adminLoading || (user && !isAdmin && !checkedAdmin)) return <AdminGateLoading />;
 
   if (!user) {
     return <Navigate to="/admin/login" replace state={{ from: location.pathname, reason: "login_required" }} />;
