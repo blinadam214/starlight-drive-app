@@ -1,9 +1,12 @@
+import { useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { Calendar, Sparkles } from "lucide-react";
 
 interface VehicleCardProps {
   image: string;
+  /** URL vers un fichier vidéo (.mp4 / .webm) — laisser vide pour désactiver le hover video */
+  video?: string;
   nameKey: string;
   descKey: string;
   price: number;
@@ -12,8 +15,10 @@ interface VehicleCardProps {
   delay?: number;
 }
 
-const VehicleCard = ({ image, nameKey, descKey, price, category, onBook, delay = 0 }: VehicleCardProps) => {
+const VehicleCard = ({ image, video, nameKey, descKey, price, category, onBook, delay = 0 }: VehicleCardProps) => {
   const { t } = useLanguage();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   const categoryStyles = {
     starlight: "from-neon-cyan/20 to-neon-violet/20 text-primary",
@@ -27,6 +32,21 @@ const VehicleCard = ({ image, nameKey, descKey, price, category, onBook, delay =
     adrenaline: t("cat.adrenaline"),
   };
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -34,16 +54,42 @@ const VehicleCard = ({ image, nameKey, descKey, price, category, onBook, delay =
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay }}
       className="card-fleet group"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* Image */}
+      {/* Conteneur média avec hover zoom */}
       <div className="relative h-56 overflow-hidden">
-        <img
-          src={image}
-          alt={t(nameKey)}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+        <div className="w-full h-full transition-transform duration-700 group-hover:scale-110">
+          {/* Image poster (visible par défaut, fade out au hover) */}
+          <img
+            src={image}
+            alt={t(nameKey)}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+              isHovered && video ? "opacity-0" : "opacity-100"
+            }`}
+            loading="lazy"
+          />
+
+          {/* Vidéo (fade in au hover) */}
+          {video && (
+            <video
+              ref={videoRef}
+              src={video}
+              muted
+              playsInline
+              loop
+              preload="metadata"
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                isHovered ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          )}
+        </div>
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent pointer-events-none" />
+
+        {/* Badge catégorie */}
         <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${categoryStyles[category]} backdrop-blur-sm border border-border/30`}>
           <span className="flex items-center gap-1.5">
             {category === "starlight" && <Sparkles className="w-3 h-3" />}
