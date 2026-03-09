@@ -27,6 +27,10 @@ export default function AdminLogin() {
 
   const { user, isAdmin, signInWithPassword, signOut, refreshAdmin } = useAuth();
   const [submitting, setSubmitting] = useState(false);
+  const [isSignupMode, setIsSignupMode] = useState(false);
+
+  const { user, isAdmin, signInWithPassword, signOut, refreshAdmin } = useAuth();
+  const [submitting, setSubmitting] = useState(false);
 
   const defaultEmail = useMemo(() => "", []);
 
