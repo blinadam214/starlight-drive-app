@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { Calendar, Sparkles } from "lucide-react";
+import { Calendar, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface VehicleCardProps {
-  image: string;
+  images: string[];
   /** URL vers un fichier vidéo (.mp4 / .webm) — laisser vide pour désactiver le hover video */
   video?: string;
   nameKey: string;
@@ -15,10 +15,13 @@ interface VehicleCardProps {
   delay?: number;
 }
 
-const VehicleCard = ({ image, video, nameKey, descKey, price, category, onBook, delay = 0 }: VehicleCardProps) => {
+const VehicleCard = ({ images, video, nameKey, descKey, price, category, onBook, delay = 0 }: VehicleCardProps) => {
   const { t } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const hasMultipleImages = images.length > 1;
 
   const categoryStyles = {
     starlight: "from-neon-cyan/20 to-neon-violet/20 text-primary",
@@ -47,6 +50,16 @@ const VehicleCard = ({ image, video, nameKey, descKey, price, category, onBook, 
     }
   };
 
+  const goToPrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const goToNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -60,15 +73,18 @@ const VehicleCard = ({ image, video, nameKey, descKey, price, category, onBook, 
       {/* Conteneur média avec hover zoom */}
       <div className="relative h-56 overflow-hidden">
         <div className="w-full h-full transition-transform duration-700 group-hover:scale-110">
-          {/* Image poster (visible par défaut, fade out au hover) */}
-          <img
-            src={image}
-            alt={t(nameKey)}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-              isHovered && video ? "opacity-0" : "opacity-100"
-            }`}
-            loading="lazy"
-          />
+          {/* Images carousel */}
+          {images.map((img, idx) => (
+            <img
+              key={idx}
+              src={img}
+              alt={`${t(nameKey)} ${idx + 1}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                idx === currentIndex && !(isHovered && video) ? "opacity-100" : "opacity-0"
+              }`}
+              loading="lazy"
+            />
+          ))}
 
           {/* Vidéo (fade in au hover) */}
           {video && (
@@ -88,6 +104,40 @@ const VehicleCard = ({ image, video, nameKey, descKey, price, category, onBook, 
 
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent pointer-events-none" />
+
+        {/* Flèches de navigation (visibles uniquement s'il y a plusieurs images et pas de vidéo en lecture) */}
+        {hasMultipleImages && !(isHovered && video) && (
+          <>
+            <button
+              onClick={goToPrev}
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-background/60 backdrop-blur-sm border border-border/30 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-background/80"
+              aria-label="Image précédente"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={goToNext}
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-background/60 backdrop-blur-sm border border-border/30 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-background/80"
+              aria-label="Image suivante"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+
+            {/* Indicateurs de position (dots) */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
+              {images.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
+                  className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                    idx === currentIndex ? "bg-primary w-3" : "bg-foreground/40"
+                  }`}
+                  aria-label={`Image ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
 
         {/* Badge catégorie */}
         <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${categoryStyles[category]} backdrop-blur-sm border border-border/30`}>

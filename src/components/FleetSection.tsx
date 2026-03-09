@@ -46,7 +46,7 @@ const FleetSection = () => {
             {vehicles.map((v, i) => (
               <VehicleCard
                 key={v.id}
-                image={v.image}
+                images={v.images}
                 video={v.video || undefined}
                 nameKey={v.nameKey}
                 descKey={v.descKey}
