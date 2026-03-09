@@ -1,5 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { MessageCircle, MapPin, Instagram, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const FooterSection = () => {
   const { t } = useLanguage();
@@ -39,6 +40,11 @@ const FooterSection = () => {
               <li><a href="#fleet" className="hover:text-primary transition-colors">{t("nav.fleet")}</a></li>
               <li><a href="#concept" className="hover:text-primary transition-colors">{t("nav.concept")}</a></li>
               <li><a href="#booking" className="hover:text-primary transition-colors">{t("nav.booking")}</a></li>
+              <li>
+                <Link to="/admin" className="hover:text-primary transition-colors">
+                  Dashboard
+                </Link>
+              </li>
               <li><a href="#" className="hover:text-primary transition-colors">{t("footer.legal")}</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">{t("footer.privacy")}</a></li>
             </ul>
