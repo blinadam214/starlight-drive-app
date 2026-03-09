@@ -41,6 +41,59 @@ export type Database = {
         }
         Relationships: []
       }
+      reservations: {
+        Row: {
+          created_at: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string | null
+          end_date: string
+          id: string
+          notes: string | null
+          start_date: string
+          status: Database["public"]["Enums"]["reservation_status"]
+          total_amount: number
+          updated_at: string
+          vehicle_id: string
+        }
+        Insert: {
+          created_at?: string
+          customer_email: string
+          customer_name: string
+          customer_phone?: string | null
+          end_date: string
+          id?: string
+          notes?: string | null
+          start_date: string
+          status?: Database["public"]["Enums"]["reservation_status"]
+          total_amount: number
+          updated_at?: string
+          vehicle_id: string
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          customer_phone?: string | null
+          end_date?: string
+          id?: string
+          notes?: string | null
+          start_date?: string
+          status?: Database["public"]["Enums"]["reservation_status"]
+          total_amount?: number
+          updated_at?: string
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reservations_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -62,12 +115,53 @@ export type Database = {
         }
         Relationships: []
       }
+      vehicles: {
+        Row: {
+          created_at: string
+          daily_rate: number
+          description: string | null
+          id: string
+          image_url: string | null
+          is_available: boolean
+          name: string
+          type: Database["public"]["Enums"]["vehicle_type"]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          daily_rate: number
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_available?: boolean
+          name: string
+          type: Database["public"]["Enums"]["vehicle_type"]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          daily_rate?: number
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_available?: boolean
+          name?: string
+          type?: Database["public"]["Enums"]["vehicle_type"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
       bootstrap_user: { Args: never; Returns: undefined }
+      calculate_monthly_revenue: {
+        Args: { _month: number; _year: number }
+        Returns: number
+      }
+      get_active_reservations_count: { Args: never; Returns: number }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -78,6 +172,13 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
+      reservation_status:
+        | "pending"
+        | "confirmed"
+        | "active"
+        | "completed"
+        | "cancelled"
+      vehicle_type: "car" | "motorcycle"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -206,6 +307,14 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      reservation_status: [
+        "pending",
+        "confirmed",
+        "active",
+        "completed",
+        "cancelled",
+      ],
+      vehicle_type: ["car", "motorcycle"],
     },
   },
 } as const
