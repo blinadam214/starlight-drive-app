@@ -45,18 +45,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const refreshAdmin = useCallback(async () => {
-    if (!session?.user) {
-      setIsAdmin(false);
-      return false;
-    }
-
     setAdminLoading(true);
     try {
+      const {
+        data: { session: currentSession },
+      } = await supabase.auth.getSession();
+
+      const effectiveUser = currentSession?.user ?? null;
+
+      if (!effectiveUser) {
+        setIsAdmin(false);
+        return false;
+      }
+
       // Ensure profile + baseline role exist (server-side guarded)
       await supabase.rpc("bootstrap_user");
 
       const { data, error } = await supabase.rpc("has_role", {
-        _user_id: session.user.id,
+        _user_id: effectiveUser.id,
         _role: "admin",
       });
 
@@ -71,7 +77,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } finally {
       setAdminLoading(false);
     }
-  }, [session?.user]);
+  }, []);
 
   useEffect(() => {
     void refreshAdmin();
