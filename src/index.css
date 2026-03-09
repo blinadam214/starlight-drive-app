@@ -52,6 +52,7 @@
     --glass-bg: 220 20% 10%;
     --glass-border: 220 15% 22%;
     --surface-elevated: 220 18% 12%;
+  }
 }
 
 @layer base {
