@@ -1,422 +1,823 @@
-import { useMemo } from "react";
-import { toast } from "sonner";
-import { Menu, LogOut, Search } from "lucide-react";
-
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
+import { format, parse, startOfWeek, getDay, addDays, eachDayOfInterval, isSameDay, differenceInDays } from 'date-fns';
+import { fr } from 'date-fns/locale';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { useAuth } from "@/contexts/AuthContext";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Sidebar, SidebarContent, SidebarHeader, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useToast } from "@/components/ui/use-toast";
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
+import { Car, Bike, Calendar as CalendarIcon, TrendingUp, DollarSign, Users, Menu, LogOut, Plus, Search, Bell } from 'lucide-react';
 
-function LogoMark() {
-  return (
-    <svg viewBox="0 0 320 100" className="w-40" aria-label="B-LINE 26">
-      <g transform="translate(10, 20)">
-        <path
-          d="M15,60 L20,35 A25,25 0 1,1 60,35 L65,60"
-          fill="none"
-          stroke="hsl(var(--neon-gold))"
-          strokeWidth="3"
-        />
-        <path
-          d="M40,12 L42,19 L49,21 L42,23 L40,30 L38,23 L31,21 L38,19 Z"
-          fill="hsl(var(--neon-cyan))"
-        />
-        <path
-          d="M28,48 L52,48 L48,38 L32,38 Z"
-          fill="none"
-          stroke="hsl(var(--neon-gold))"
-          strokeWidth="2"
-        />
-        <line x1="22" y1="54" x2="58" y2="54" stroke="hsl(var(--neon-gold))" strokeWidth="2" />
-      </g>
-      <text
-        x="95"
-        y="58"
-        fontFamily="Syne, ui-sans-serif, system-ui"
-        fontWeight="800"
-        fontSize="34"
-        fill="hsl(var(--foreground))"
-        letterSpacing="1"
-      >
-        B-LINE
-      </text>
-    </svg>
-  );
+// Configuration du localisateur français
+const locales = {
+  'fr': fr,
+};
+
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales,
+});
+
+// Types
+interface Vehicle {
+  id: string;
+  name: string;
+  type: 'car' | 'motorcycle';
+  daily_rate: number;
+  is_available: boolean;
+  image_url: string | null;
+  description: string | null;
 }
 
-function SidebarContent({ onLogout }: { onLogout: () => void }) {
-  return (
-    <div className="h-full flex flex-col">
-      <div className="h-24 flex items-center justify-center border-b border-[hsl(var(--foreground)/0.06)]">
-        <LogoMark />
-      </div>
-
-      <nav className="flex-1 overflow-y-auto py-6 flex flex-col gap-2 px-4 admin-scroll">
-        <a
-          href="#"
-          className="flex items-center gap-3 px-4 py-3 bg-[hsl(var(--foreground)/0.04)] rounded-lg border border-[hsl(var(--neon-gold)/0.30)] text-[hsl(var(--neon-gold))] font-bold text-sm"
-        >
-          <span className="grid place-items-center h-5 w-5">⧉</span>
-          Vue d'ensemble
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 px-4 py-3 hover:bg-[hsl(var(--foreground)/0.04)] rounded-lg text-muted-foreground hover:text-foreground transition-colors font-bold text-sm"
-        >
-          <span className="grid place-items-center h-5 w-5">▦</span>
-          Réservations
-          <span className="ml-auto bg-[hsl(var(--neon-cyan))] text-[hsl(var(--background))] text-[10px] px-2 py-0.5 rounded-full font-black">
-            2
-          </span>
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 px-4 py-3 hover:bg-[hsl(var(--foreground)/0.04)] rounded-lg text-muted-foreground hover:text-foreground transition-colors font-bold text-sm"
-        >
-          <span className="grid place-items-center h-5 w-5">➔</span>
-          Flotte 26
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 px-4 py-3 hover:bg-[hsl(var(--foreground)/0.04)] rounded-lg text-muted-foreground hover:text-foreground transition-colors font-bold text-sm"
-        >
-          <span className="grid place-items-center h-5 w-5">⌁</span>
-          Fast-Track (Dossiers)
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 px-4 py-3 hover:bg-[hsl(var(--foreground)/0.04)] rounded-lg text-muted-foreground hover:text-foreground transition-colors font-bold text-sm"
-        >
-          <span className="grid place-items-center h-5 w-5">☺</span>
-          Clients
-        </a>
-      </nav>
-
-      <div className="p-4 border-t border-[hsl(var(--foreground)/0.06)]">
-        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[hsl(var(--foreground)/0.04)] border border-[hsl(var(--foreground)/0.10)]">
-          <div className="w-8 h-8 rounded bg-[hsl(var(--neon-gold))] flex items-center justify-center text-[hsl(var(--background))] font-black text-xs">
-            AB
-          </div>
-          <div className="min-w-0">
-            <p className="text-xs font-bold text-foreground truncate">Adam Blin</p>
-            <p className="text-[10px] text-[hsl(var(--neon-gold))] uppercase tracking-widest">Directeur</p>
-          </div>
-          <button
-            onClick={onLogout}
-            className="ml-auto inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <LogOut className="h-4 w-4" />
-            Déco
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+interface Reservation {
+  id: string;
+  vehicle_id: string;
+  customer_name: string;
+  customer_email: string;
+  customer_phone: string | null;
+  start_date: string;
+  end_date: string;
+  status: 'pending' | 'confirmed' | 'active' | 'completed' | 'cancelled';
+  total_amount: number;
+  notes: string | null;
+  created_at: string;
+  vehicles?: {
+    name: string;
+    type: string;
+  };
 }
 
-function KpiCard({
-  title,
-  value,
-  subtitle,
-  accent,
-}: {
+interface CalendarEvent {
+  id: string;
   title: string;
-  value: string;
-  subtitle?: string;
-  accent: "gold" | "cyan" | "violet" | "neutral";
-}) {
-  const accentStyle =
-    accent === "gold"
-      ? "border-[hsl(var(--neon-gold)/0.22)] hover:shadow-[0_0_20px_hsl(var(--neon-gold)/0.10)]"
-      : accent === "cyan"
-        ? "border-[hsl(var(--neon-cyan)/0.22)] hover:shadow-[0_0_24px_hsl(var(--neon-cyan)/0.14)]"
-        : accent === "violet"
-          ? "border-[hsl(var(--neon-violet)/0.28)] hover:shadow-[0_0_22px_hsl(var(--neon-violet)/0.14)]"
-          : "border-[hsl(var(--foreground)/0.10)]";
-
-  const labelColor =
-    accent === "gold"
-      ? "text-[hsl(var(--neon-gold))]"
-      : accent === "cyan"
-        ? "text-[hsl(var(--neon-cyan))]"
-        : accent === "violet"
-          ? "text-[hsl(var(--neon-violet))]"
-          : "text-muted-foreground";
-
-  return (
-    <div
-      className={`glass-panel p-6 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 ${accentStyle}`}
-    >
-      <h3 className="text-muted-foreground text-xs font-bold uppercase tracking-widest mb-1">{title}</h3>
-      <p className={`font-syne text-3xl font-extrabold tracking-tight ${labelColor}`}>{value}</p>
-      {subtitle ? <p className="mt-2 text-xs text-muted-foreground font-bold uppercase tracking-widest">{subtitle}</p> : null}
-    </div>
-  );
+  start: Date;
+  end: Date;
+  resource: {
+    reservation: Reservation;
+    vehicle: Vehicle;
+  };
 }
 
-export default function AdminDashboard() {
-  const { signOut } = useAuth();
+interface KPIData {
+  activeReservations: number;
+  monthlyRevenue: number;
+  totalRevenue: number;
+}
 
-  const nowLabel = useMemo(() => {
-    const d = new Date();
-    const time = d.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
-    return `Marrakech, Aujourd'hui ${time}`;
-  }, []);
+// Logo SVG Component
+const LogoMark = () => (
+  <div className="flex items-center space-x-2">
+    <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-cyan-500 rounded-lg flex items-center justify-center">
+      <span className="text-white font-bold text-sm">B</span>
+    </div>
+    <span className="font-bold text-lg bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
+      B-LINE 26
+    </span>
+  </div>
+);
 
-  const logout = async () => {
-    await signOut();
-    toast.success("Déconnecté");
+// Sidebar Component
+interface SidebarNavProps {
+  onLogout: () => void;
+}
+
+const SidebarNav: React.FC<SidebarNavProps> = ({ onLogout }) => (
+  <div className="flex flex-col h-full bg-gray-950 border-r border-gray-800">
+    <div className="p-6 border-b border-gray-800">
+      <LogoMark />
+    </div>
+    
+    <nav className="flex-1 p-4">
+      <div className="space-y-2">
+        <Button variant="ghost" className="w-full justify-start text-violet-300 hover:text-violet-100 hover:bg-violet-900/20">
+          <TrendingUp className="w-5 h-5 mr-3" />
+          Dashboard
+        </Button>
+        <Button variant="ghost" className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800">
+          <CalendarIcon className="w-5 h-5 mr-3" />
+          Calendrier
+        </Button>
+        <Button variant="ghost" className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800">
+          <Users className="w-5 h-5 mr-3" />
+          Réservations
+        </Button>
+        <Button variant="ghost" className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800">
+          <Car className="w-5 h-5 mr-3" />
+          Flotte
+        </Button>
+      </div>
+    </nav>
+
+    <div className="p-4 border-t border-gray-800">
+      <Button onClick={onLogout} variant="ghost" className="w-full justify-start text-red-300 hover:text-red-100 hover:bg-red-900/20">
+        <LogOut className="w-5 h-5 mr-3" />
+        Déconnexion
+      </Button>
+    </div>
+  </div>
+);
+
+// KPI Card Component
+interface KPICardProps {
+  title: string;
+  value: string | number;
+  subtitle?: string;
+  accent: 'violet' | 'cyan' | 'green';
+  icon: React.ElementType;
+}
+
+const KPICard: React.FC<KPICardProps> = ({ title, value, subtitle, accent, icon: Icon }) => {
+  const accentColors = {
+    violet: 'from-violet-600 to-violet-400',
+    cyan: 'from-cyan-600 to-cyan-400', 
+    green: 'from-emerald-600 to-emerald-400'
   };
 
   return (
-    <div className="min-h-screen flex bg-[hsl(var(--background))] text-foreground antialiased overflow-hidden">
-      {/* Desktop Sidebar */}
-      <aside className="w-64 flex-shrink-0 glass-panel border-r border-[hsl(var(--foreground)/0.06)] flex-col hidden md:flex z-20">
-        <SidebarContent onLogout={logout} />
-      </aside>
-
-      {/* Mobile Sidebar */}
-      <div className="md:hidden fixed left-4 top-5 z-30">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" className="glass border-[hsl(var(--foreground)/0.10)]">
-              <Menu className="h-4 w-4" />
-              Menu
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="p-0 glass-panel border-[hsl(var(--foreground)/0.06)] w-[320px]">
-            <SidebarContent onLogout={logout} />
-          </SheetContent>
-        </Sheet>
-      </div>
-
-      {/* Main */}
-      <main className="flex-1 flex flex-col relative h-screen overflow-hidden">
-        {/* Background glows */}
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[hsl(var(--neon-cyan)/0.06)] blur-[110px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[hsl(var(--neon-gold)/0.06)] blur-[120px] rounded-full pointer-events-none" />
-
-        <header className="h-24 glass-panel border-b border-[hsl(var(--foreground)/0.06)] flex items-center justify-between px-6 md:px-8 z-10 shrink-0">
-          <div className="pl-14 md:pl-0">
-            <h1 className="font-syne text-2xl font-extrabold tracking-tight">Tableau de Bord</h1>
-            <p className="text-xs text-muted-foreground font-bold uppercase tracking-widest">{nowLabel}</p>
+    <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm">
+      <CardContent className="p-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm text-gray-400 mb-1">{title}</p>
+            <p className={`text-2xl font-bold bg-gradient-to-r ${accentColors[accent]} bg-clip-text text-transparent`}>
+              {value}
+            </p>
+            {subtitle && <p className="text-xs text-gray-500 mt-1">{subtitle}</p>}
           </div>
-
-          <div className="flex items-center gap-3 md:gap-6">
-            <div className="relative hidden lg:block">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Rechercher (Client, Immat...)"
-                className="bg-[hsl(var(--card))] border border-[hsl(var(--foreground)/0.10)] text-sm rounded-md pl-10 pr-4 py-2 w-64 focus-visible:ring-0 focus:border-[hsl(var(--neon-gold)/0.6)] transition-colors text-foreground placeholder:text-muted-foreground"
-              />
-            </div>
-
-            <Button variant="ghost" onClick={logout} className="text-muted-foreground hover:text-foreground">
-              <LogOut className="h-4 w-4" />
-              <span className="hidden sm:inline">Déconnexion</span>
-            </Button>
-          </div>
-        </header>
-
-        <div className="flex-1 overflow-y-auto p-6 md:p-8 z-10 admin-scroll">
-          <div className="max-w-7xl mx-auto space-y-8">
-            {/* KPI grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <KpiCard title="Chiffre d'Affaires" value="42,500 MAD" subtitle="+12% cette sem." accent="gold" />
-              <KpiCard title="Véhicules Sortis" value="4 EN COURS" subtitle="8/12 dispo" accent="cyan" />
-              <KpiCard title="Dossiers Fast-Track" value="2 À VALIDER" subtitle="Urgent" accent="violet" />
-              <KpiCard title="Retours Prévus (Auj.)" value="1 à 18:00" accent="neutral" />
-            </div>
-
-            {/* Main grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <section className="lg:col-span-1 glass-panel rounded-xl border border-[hsl(var(--foreground)/0.10)] flex flex-col overflow-hidden">
-                <div className="p-6 border-b border-[hsl(var(--foreground)/0.06)] flex justify-between items-center">
-                  <h2 className="font-syne font-extrabold text-lg">Check-in Express</h2>
-                  <span className="text-[10px] px-2 py-0.5 rounded uppercase font-bold tracking-widest bg-[hsl(var(--neon-gold)/0.10)] text-[hsl(var(--neon-gold))] border border-[hsl(var(--neon-gold)/0.25)]">
-                    En attente
-                  </span>
-                </div>
-
-                <div className="p-6 space-y-4 flex-1">
-                  <div className="bg-[hsl(var(--card))] border border-[hsl(var(--foreground)/0.06)] rounded-lg p-4 transition-all duration-300 hover:border-[hsl(var(--neon-gold)/0.35)] hover:shadow-[0_0_18px_hsl(var(--neon-gold)/0.10)]">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-sm text-[hsl(var(--neon-gold))]">Karim B.</h3>
-                      <span className="text-[10px] text-muted-foreground font-bold">Il y a 10 min</span>
-                    </div>
-                    <p className="text-xs text-muted-foreground mb-3">
-                      Demande: <span className="text-foreground font-bold">Clio 5 Starlight</span>
-                    </p>
-                    <div className="flex gap-2 mb-4">
-                      <span className="text-[10px] border border-[hsl(var(--neon-cyan)/0.30)] text-[hsl(var(--neon-cyan))] px-2 py-1 rounded bg-[hsl(var(--neon-cyan)/0.10)] font-bold uppercase tracking-widest">
-                        Permis ✓
-                      </span>
-                      <span className="text-[10px] border border-[hsl(var(--neon-cyan)/0.30)] text-[hsl(var(--neon-cyan))] px-2 py-1 rounded bg-[hsl(var(--neon-cyan)/0.10)] font-bold uppercase tracking-widest">
-                        Passeport ✓
-                      </span>
-                    </div>
-                    <button className="w-full bg-[hsl(var(--neon-gold))] text-[hsl(var(--background))] text-xs font-black uppercase py-2 rounded hover:bg-[hsl(var(--foreground))] transition-colors">
-                      Générer contrat
-                    </button>
-                  </div>
-
-                  <div className="bg-[hsl(var(--card))] border border-[hsl(var(--foreground)/0.06)] rounded-lg p-4 transition-all duration-300 hover:border-[hsl(var(--neon-cyan)/0.35)] hover:shadow-[0_0_18px_hsl(var(--neon-cyan)/0.12)]">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-sm text-[hsl(var(--neon-cyan))]">Sophie T.</h3>
-                      <span className="text-[10px] text-muted-foreground font-bold">Il y a 1h</span>
-                    </div>
-                    <p className="text-xs text-muted-foreground mb-3">
-                      Demande: <span className="text-foreground font-bold">Peugeot 208 Neo</span>
-                    </p>
-                    <div className="flex gap-2 mb-4">
-                      <span className="text-[10px] border border-[hsl(var(--neon-cyan)/0.30)] text-[hsl(var(--neon-cyan))] px-2 py-1 rounded bg-[hsl(var(--neon-cyan)/0.10)] font-bold uppercase tracking-widest">
-                        Permis ✓
-                      </span>
-                      <span className="text-[10px] border border-[hsl(var(--destructive)/0.35)] text-[hsl(var(--destructive))] px-2 py-1 rounded bg-[hsl(var(--destructive)/0.12)] font-bold uppercase tracking-widest">
-                        Carte ID ✕
-                      </span>
-                    </div>
-                    <button className="w-full bg-transparent border border-[hsl(var(--foreground)/0.20)] text-foreground text-xs font-black uppercase py-2 rounded hover:bg-[hsl(var(--foreground)/0.06)] transition-colors">
-                      Relancer client
-                    </button>
-                  </div>
-                </div>
-              </section>
-
-              <section className="lg:col-span-2 glass-panel rounded-xl border border-[hsl(var(--foreground)/0.10)] overflow-hidden flex flex-col">
-                <div className="p-6 border-b border-[hsl(var(--foreground)/0.06)] flex justify-between items-center">
-                  <h2 className="font-syne font-extrabold text-lg">État de la Flotte 26</h2>
-                  <a href="#" className="text-xs font-bold text-[hsl(var(--neon-cyan))] hover:underline">
-                    Voir tout
-                  </a>
-                </div>
-
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="bg-[hsl(var(--foreground)/0.04)] text-[10px] uppercase tracking-widest text-muted-foreground border-b border-[hsl(var(--foreground)/0.06)]">
-                        <th className="p-4 font-bold">Véhicule</th>
-                        <th className="p-4 font-bold">Immatriculation</th>
-                        <th className="p-4 font-bold">Statut</th>
-                        <th className="p-4 font-bold">Client / Retour</th>
-                        <th className="p-4 font-bold text-right">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-sm">
-                      <tr className="border-b border-[hsl(var(--foreground)/0.06)] hover:bg-[hsl(var(--foreground)/0.04)] transition-colors">
-                        <td className="p-4">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded bg-[hsl(var(--card))] border border-[hsl(var(--foreground)/0.10)] flex items-center justify-center font-bold text-xs">
-                              C5
-                            </div>
-                            <div>
-                              <p className="font-bold text-foreground">Clio 5 Nightline</p>
-                              <p className="text-[10px] text-[hsl(var(--neon-gold))] uppercase font-bold tracking-widest">Starlight Ed.</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="p-4 font-mono text-xs text-muted-foreground">26-A-12345</td>
-                        <td className="p-4">
-                          <span className="text-[10px] px-2 py-1 rounded uppercase font-bold tracking-widest inline-flex items-center gap-2 bg-[hsl(var(--neon-cyan)/0.10)] text-[hsl(var(--neon-cyan))] border border-[hsl(var(--neon-cyan)/0.30)]">
-                            <span className="w-1.5 h-1.5 bg-[hsl(var(--neon-cyan))] rounded-full" /> Sortie
-                          </span>
-                        </td>
-                        <td className="p-4">
-                          <p className="text-xs font-bold">Yassine M.</p>
-                          <p className="text-[10px] text-muted-foreground">Auj. 18:00 (Aéroport)</p>
-                        </td>
-                        <td className="p-4 text-right">
-                          <button className="text-muted-foreground hover:text-foreground">•••</button>
-                        </td>
-                      </tr>
-
-                      <tr className="border-b border-[hsl(var(--foreground)/0.06)] hover:bg-[hsl(var(--foreground)/0.04)] transition-colors">
-                        <td className="p-4">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded bg-[hsl(var(--card))] border border-[hsl(var(--neon-cyan)/0.30)] flex items-center justify-center font-bold text-xs text-[hsl(var(--neon-cyan))]">
-                              208
-                            </div>
-                            <div>
-                              <p className="font-bold text-foreground">Peugeot 208 Neo</p>
-                              <p className="text-[10px] text-[hsl(var(--neon-cyan))] uppercase font-bold tracking-widest">Neon Ambiance</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="p-4 font-mono text-xs text-muted-foreground">26-B-98765</td>
-                        <td className="p-4">
-                          <span className="text-[10px] px-2 py-1 rounded uppercase font-bold tracking-widest inline-flex items-center gap-2 bg-[hsl(var(--muted))] text-muted-foreground border border-[hsl(var(--border))]">
-                            Dispo. Garage
-                          </span>
-                        </td>
-                        <td className="p-4">
-                          <p className="text-xs font-bold text-muted-foreground">-</p>
-                        </td>
-                        <td className="p-4 text-right">
-                          <button className="text-muted-foreground hover:text-foreground">•••</button>
-                        </td>
-                      </tr>
-
-                      <tr className="border-b border-[hsl(var(--foreground)/0.06)] hover:bg-[hsl(var(--foreground)/0.04)] transition-colors">
-                        <td className="p-4">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded bg-[hsl(var(--card))] border border-[hsl(var(--foreground)/0.10)] flex items-center justify-center font-bold text-xs">
-                              LOG
-                            </div>
-                            <div>
-                              <p className="font-bold text-foreground">Dacia Logan</p>
-                              <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Classic</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="p-4 font-mono text-xs text-muted-foreground">26-D-11223</td>
-                        <td className="p-4">
-                          <span className="text-[10px] px-2 py-1 rounded uppercase font-bold tracking-widest inline-flex items-center gap-2 bg-[hsl(var(--neon-violet)/0.10)] text-[hsl(var(--neon-violet))] border border-[hsl(var(--neon-violet)/0.30)]">
-                            Lavage
-                          </span>
-                        </td>
-                        <td className="p-4">
-                          <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest">Prête à 16:00</p>
-                        </td>
-                        <td className="p-4 text-right">
-                          <button className="text-muted-foreground hover:text-foreground">•••</button>
-                        </td>
-                      </tr>
-
-                      <tr className="hover:bg-[hsl(var(--foreground)/0.04)] transition-colors">
-                        <td className="p-4">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded bg-[hsl(var(--card))] border border-[hsl(var(--neon-violet)/0.30)] flex items-center justify-center font-bold text-xs text-[hsl(var(--neon-violet))]">
-                              TMX
-                            </div>
-                            <div>
-                              <p className="font-bold text-foreground">Yamaha TMAX 560</p>
-                              <p className="text-[10px] text-[hsl(var(--neon-violet))] uppercase font-bold tracking-widest">Adrénaline</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="p-4 font-mono text-xs text-muted-foreground">26-M-55667</td>
-                        <td className="p-4">
-                          <span className="text-[10px] px-2 py-1 rounded uppercase font-bold tracking-widest inline-flex items-center gap-2 bg-[hsl(var(--neon-cyan)/0.10)] text-[hsl(var(--neon-cyan))] border border-[hsl(var(--neon-cyan)/0.30)]">
-                            <span className="w-1.5 h-1.5 bg-[hsl(var(--neon-cyan))] rounded-full" /> Sortie
-                          </span>
-                        </td>
-                        <td className="p-4">
-                          <p className="text-xs font-bold">Amine K.</p>
-                          <p className="text-[10px] text-muted-foreground">Demain 10:00 (Guéliz)</p>
-                        </td>
-                        <td className="p-4 text-right">
-                          <button className="text-muted-foreground hover:text-foreground">•••</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-            </div>
+          <div className={`p-3 rounded-lg bg-gradient-to-r ${accentColors[accent]} opacity-20`}>
+            <Icon className="w-6 h-6 text-white" />
           </div>
         </div>
-      </main>
-    </div>
+      </CardContent>
+    </Card>
   );
+};
+
+// New Reservation Dialog
+interface NewReservationDialogProps {
+  vehicles: Vehicle[];
+  onReservationCreated: () => void;
 }
+
+const NewReservationDialog: React.FC<NewReservationDialogProps> = ({ vehicles, onReservationCreated }) => {
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    vehicle_id: '',
+    customer_name: '',
+    customer_email: '',
+    customer_phone: '',
+    start_date: '',
+    end_date: '',
+    notes: ''
+  });
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.vehicle_id || !formData.customer_name || !formData.customer_email || !formData.start_date || !formData.end_date) {
+      toast({ title: "Erreur", description: "Veuillez remplir tous les champs obligatoires", variant: "destructive" });
+      return;
+    }
+
+    const vehicle = vehicles.find(v => v.id === formData.vehicle_id);
+    if (!vehicle) return;
+
+    const startDate = new Date(formData.start_date);
+    const endDate = new Date(formData.end_date);
+    const days = differenceInDays(endDate, startDate) + 1;
+    const totalAmount = days * Number(vehicle.daily_rate);
+
+    setLoading(true);
+    try {
+      const { error } = await supabase
+        .from('reservations')
+        .insert({
+          vehicle_id: formData.vehicle_id,
+          customer_name: formData.customer_name,
+          customer_email: formData.customer_email,
+          customer_phone: formData.customer_phone || null,
+          start_date: formData.start_date,
+          end_date: formData.end_date,
+          total_amount: totalAmount,
+          status: 'confirmed',
+          notes: formData.notes || null
+        });
+
+      if (error) throw error;
+
+      // Simulation d'envoi d'email admin
+      console.log('📧 Email envoyé à admin@bline26.com:', {
+        subject: `Nouvelle réservation - ${formData.customer_name}`,
+        vehicle: vehicle.name,
+        dates: `${formData.start_date} au ${formData.end_date}`,
+        amount: `${totalAmount}€`
+      });
+
+      toast({ 
+        title: "Réservation créée", 
+        description: `Réservation de ${days} jour${days > 1 ? 's' : ''} confirmée pour ${totalAmount}€. Email envoyé à l'admin.`
+      });
+      
+      setFormData({
+        vehicle_id: '',
+        customer_name: '',
+        customer_email: '',
+        customer_phone: '',
+        start_date: '',
+        end_date: '',
+        notes: ''
+      });
+      setOpen(false);
+      onReservationCreated();
+    } catch (error) {
+      console.error('Erreur:', error);
+      toast({ title: "Erreur", description: "Impossible de créer la réservation", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button className="bg-gradient-to-r from-violet-600 to-violet-500 hover:from-violet-700 hover:to-violet-600">
+          <Plus className="w-4 h-4 mr-2" />
+          Nouvelle Réservation
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="bg-gray-900 border-gray-800 text-white max-w-md">
+        <DialogHeader>
+          <DialogTitle className="text-violet-300">Nouvelle Réservation</DialogTitle>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <Label htmlFor="vehicle">Véhicule *</Label>
+            <Select value={formData.vehicle_id} onValueChange={(value) => setFormData(prev => ({ ...prev, vehicle_id: value }))}>
+              <SelectTrigger className="bg-gray-800 border-gray-700">
+                <SelectValue placeholder="Choisir un véhicule" />
+              </SelectTrigger>
+              <SelectContent className="bg-gray-800 border-gray-700">
+                {vehicles.filter(v => v.is_available).map((vehicle) => (
+                  <SelectItem key={vehicle.id} value={vehicle.id}>
+                    <div className="flex items-center space-x-2">
+                      {vehicle.type === 'car' ? <Car className="w-4 h-4" /> : <Bike className="w-4 h-4" />}
+                      <span>{vehicle.name} - {vehicle.daily_rate}€/jour</span>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor="start_date">Date début *</Label>
+              <Input
+                id="start_date"
+                type="date"
+                value={formData.start_date}
+                onChange={(e) => setFormData(prev => ({ ...prev, start_date: e.target.value }))}
+                className="bg-gray-800 border-gray-700"
+              />
+            </div>
+            <div>
+              <Label htmlFor="end_date">Date fin *</Label>
+              <Input
+                id="end_date"
+                type="date"
+                value={formData.end_date}
+                onChange={(e) => setFormData(prev => ({ ...prev, end_date: e.target.value }))}
+                className="bg-gray-800 border-gray-700"
+              />
+            </div>
+          </div>
+
+          <div>
+            <Label htmlFor="customer_name">Nom du client *</Label>
+            <Input
+              id="customer_name"
+              value={formData.customer_name}
+              onChange={(e) => setFormData(prev => ({ ...prev, customer_name: e.target.value }))}
+              className="bg-gray-800 border-gray-700"
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="customer_email">Email *</Label>
+            <Input
+              id="customer_email"
+              type="email"
+              value={formData.customer_email}
+              onChange={(e) => setFormData(prev => ({ ...prev, customer_email: e.target.value }))}
+              className="bg-gray-800 border-gray-700"
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="customer_phone">Téléphone</Label>
+            <Input
+              id="customer_phone"
+              value={formData.customer_phone}
+              onChange={(e) => setFormData(prev => ({ ...prev, customer_phone: e.target.value }))}
+              className="bg-gray-800 border-gray-700"
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="notes">Notes</Label>
+            <Textarea
+              id="notes"
+              value={formData.notes}
+              onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
+              className="bg-gray-800 border-gray-700"
+              rows={3}
+            />
+          </div>
+
+          <div className="flex space-x-3 pt-4">
+            <Button type="button" variant="outline" onClick={() => setOpen(false)} className="flex-1">
+              Annuler
+            </Button>
+            <Button type="submit" disabled={loading} className="flex-1 bg-gradient-to-r from-violet-600 to-violet-500">
+              {loading ? 'Création...' : 'Créer'}
+            </Button>
+          </div>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+// Status Badge Component
+const getStatusBadge = (status: string) => {
+  const statusConfig = {
+    pending: { label: 'En attente', color: 'bg-yellow-900 text-yellow-300 border-yellow-700' },
+    confirmed: { label: 'Confirmée', color: 'bg-cyan-900 text-cyan-300 border-cyan-700' },
+    active: { label: 'En cours', color: 'bg-violet-900 text-violet-300 border-violet-700' },
+    completed: { label: 'Terminée', color: 'bg-green-900 text-green-300 border-green-700' },
+    cancelled: { label: 'Annulée', color: 'bg-red-900 text-red-300 border-red-700' }
+  };
+
+  const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.pending;
+  return (
+    <Badge className={`${config.color} text-xs px-2 py-1`}>
+      {config.label}
+    </Badge>
+  );
+};
+
+// Main Component
+const AdminDashboard: React.FC = () => {
+  const { user, signOut } = useAuth();
+  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+  const [reservations, setReservations] = useState<Reservation[]>([]);
+  const [kpiData, setKpiData] = useState<KPIData>({ activeReservations: 0, monthlyRevenue: 0, totalRevenue: 0 });
+  const [loading, setLoading] = useState(true);
+  const [currentView, setCurrentView] = useState<'dashboard' | 'calendar' | 'reservations'>('dashboard');
+  const { toast } = useToast();
+
+  const logout = useCallback(async () => {
+    await signOut();
+    toast({ title: "Déconnexion réussie", description: "À bientôt!" });
+  }, [signOut, toast]);
+
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    try {
+      // Récupérer les véhicules
+      const { data: vehiclesData, error: vehiclesError } = await supabase
+        .from('vehicles')
+        .select('*')
+        .order('name');
+      
+      if (vehiclesError) throw vehiclesError;
+      setVehicles(vehiclesData || []);
+
+      // Récupérer les réservations avec les véhicules
+      const { data: reservationsData, error: reservationsError } = await supabase
+        .from('reservations')
+        .select(`
+          *,
+          vehicles (name, type)
+        `)
+        .order('created_at', { ascending: false });
+      
+      if (reservationsError) throw reservationsError;
+      setReservations(reservationsData || []);
+
+      // KPIs
+      const currentMonth = new Date().getMonth() + 1;
+      const currentYear = new Date().getFullYear();
+      
+      const { data: monthlyData } = await supabase.rpc('calculate_monthly_revenue', { 
+        _month: currentMonth, 
+        _year: currentYear 
+      });
+      
+      const { data: activeCount } = await supabase.rpc('get_active_reservations_count');
+      
+      const totalRevenue = (reservationsData || [])
+        .filter(r => ['confirmed', 'active', 'completed'].includes(r.status))
+        .reduce((sum, r) => sum + Number(r.total_amount), 0);
+
+      setKpiData({
+        activeReservations: activeCount || 0,
+        monthlyRevenue: monthlyData || 0,
+        totalRevenue
+      });
+
+    } catch (error) {
+      console.error('Erreur lors du chargement des données:', error);
+      toast({ title: "Erreur", description: "Impossible de charger les données", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
+  }, [toast]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  // Événements pour le calendrier
+  const calendarEvents = useMemo((): CalendarEvent[] => {
+    return reservations
+      .filter(r => ['confirmed', 'active'].includes(r.status))
+      .map(reservation => {
+        const vehicle = vehicles.find(v => v.id === reservation.vehicle_id);
+        if (!vehicle) return null;
+        
+        return {
+          id: reservation.id,
+          title: `${vehicle.name} - ${reservation.customer_name}`,
+          start: new Date(reservation.start_date),
+          end: addDays(new Date(reservation.end_date), 1), // +1 jour pour l'affichage
+          resource: { reservation, vehicle }
+        };
+      })
+      .filter(Boolean) as CalendarEvent[];
+  }, [reservations, vehicles]);
+
+  // Dates bloquées par véhicule
+  const getBlockedDatesForVehicle = useCallback((vehicleId: string): Date[] => {
+    const relevantReservations = reservations.filter(r => 
+      r.vehicle_id === vehicleId && ['confirmed', 'active'].includes(r.status)
+    );
+
+    const blockedDates: Date[] = [];
+    relevantReservations.forEach(reservation => {
+      const start = new Date(reservation.start_date);
+      const end = new Date(reservation.end_date);
+      const days = eachDayOfInterval({ start, end });
+      blockedDates.push(...days);
+    });
+
+    return blockedDates;
+  }, [reservations]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-950 flex items-center justify-center">
+        <div className="text-violet-300">Chargement...</div>
+      </div>
+    );
+  }
+
+  return (
+    <SidebarProvider>
+      <div className="min-h-screen bg-gray-950 text-white">
+        {/* Desktop Layout */}
+        <div className="hidden lg:flex h-screen">
+          <div className="w-64 flex-shrink-0">
+            <SidebarNav onLogout={logout} />
+          </div>
+
+          {/* Main Content */}
+          <main className="flex-1 overflow-auto">
+            {/* Header */}
+            <header className="bg-gray-900/50 border-b border-gray-800 px-6 py-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h1 className="text-2xl font-bold text-violet-300">Dashboard B-LINE 26</h1>
+                  <p className="text-gray-400 text-sm">{format(new Date(), 'EEEE dd MMMM yyyy', { locale: fr })}</p>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="hidden sm:block">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                      <Input
+                        placeholder="Rechercher..."
+                        className="pl-10 w-64 bg-gray-800 border-gray-700 text-white"
+                      />
+                    </div>
+                  </div>
+                  <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+                    <Bell className="w-5 h-5" />
+                  </Button>
+                </div>
+              </div>
+
+              {/* View Navigation */}
+              <div className="flex space-x-4 mt-4">
+                <Button
+                  variant={currentView === 'dashboard' ? 'default' : 'ghost'}
+                  onClick={() => setCurrentView('dashboard')}
+                  className={currentView === 'dashboard' ? 'bg-gradient-to-r from-violet-600 to-violet-500' : ''}
+                >
+                  <TrendingUp className="w-4 h-4 mr-2" />
+                  Tableau de bord
+                </Button>
+                <Button
+                  variant={currentView === 'calendar' ? 'default' : 'ghost'}
+                  onClick={() => setCurrentView('calendar')}
+                  className={currentView === 'calendar' ? 'bg-gradient-to-r from-cyan-600 to-cyan-500' : ''}
+                >
+                  <CalendarIcon className="w-4 h-4 mr-2" />
+                  Calendrier
+                </Button>
+                <Button
+                  variant={currentView === 'reservations' ? 'default' : 'ghost'}
+                  onClick={() => setCurrentView('reservations')}
+                  className={currentView === 'reservations' ? 'bg-gradient-to-r from-emerald-600 to-emerald-500' : ''}
+                >
+                  <Users className="w-4 h-4 mr-2" />
+                  Réservations
+                </Button>
+              </div>
+            </header>
+
+            {/* Content */}
+            <div className="p-6">
+              {currentView === 'dashboard' && (
+                <div className="space-y-6">
+                  {/* KPIs */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <KPICard
+                      title="Réservations en cours"
+                      value={kpiData.activeReservations}
+                      subtitle="Véhicules actuellement loués"
+                      accent="violet"
+                      icon={Users}
+                    />
+                    <KPICard
+                      title="CA Mensuel"
+                      value={`${kpiData.monthlyRevenue}€`}
+                      subtitle={`${format(new Date(), 'MMMM yyyy', { locale: fr })}`}
+                      accent="cyan"
+                      icon={TrendingUp}
+                    />
+                    <KPICard
+                      title="CA Total"
+                      value={`${kpiData.totalRevenue}€`}
+                      subtitle="Chiffre d'affaires global"
+                      accent="green"
+                      icon={DollarSign}
+                    />
+                  </div>
+
+                  {/* Quick Actions */}
+                  <div className="flex justify-between items-center">
+                    <h2 className="text-xl font-semibold text-violet-300">Actions Rapides</h2>
+                    <NewReservationDialog vehicles={vehicles} onReservationCreated={fetchData} />
+                  </div>
+
+                  {/* Fleet Status */}
+                  <Card className="bg-gray-900/50 border-gray-800">
+                    <CardHeader>
+                      <CardTitle className="text-cyan-300">État de la Flotte</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {vehicles.map(vehicle => (
+                          <div key={vehicle.id} className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                            <div className="flex items-center space-x-3">
+                              {vehicle.type === 'car' ? 
+                                <Car className="w-5 h-5 text-cyan-400" /> : 
+                                <Bike className="w-5 h-5 text-violet-400" />
+                              }
+                              <div className="flex-1">
+                                <h4 className="font-medium text-white">{vehicle.name}</h4>
+                                <p className="text-sm text-gray-400">{vehicle.daily_rate}€/jour</p>
+                              </div>
+                              <div className={`w-3 h-3 rounded-full ${vehicle.is_available ? 'bg-green-400' : 'bg-red-400'}`}></div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
+
+              {currentView === 'calendar' && (
+                <div className="space-y-6">
+                  <div className="flex justify-between items-center">
+                    <h2 className="text-xl font-semibold text-cyan-300">Calendrier des Réservations</h2>
+                    <NewReservationDialog vehicles={vehicles} onReservationCreated={fetchData} />
+                  </div>
+                  
+                  <Card className="bg-gray-900/50 border-gray-800">
+                    <CardContent className="p-6">
+                      <div style={{ height: '600px' }} className="calendar-dark">
+                        <Calendar
+                          localizer={localizer}
+                          events={calendarEvents}
+                          startAccessor="start"
+                          endAccessor="end"
+                          style={{ height: '100%' }}
+                          messages={{
+                            next: "Suivant",
+                            previous: "Précédent",
+                            today: "Aujourd'hui",
+                            month: "Mois",
+                            week: "Semaine",
+                            day: "Jour"
+                          }}
+                          eventPropGetter={() => ({
+                            style: {
+                              backgroundColor: '#8B5CF6',
+                              borderColor: '#06B6D4',
+                              color: 'white'
+                            }
+                          })}
+                        />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
+
+              {currentView === 'reservations' && (
+                <div className="space-y-6">
+                  <div className="flex justify-between items-center">
+                    <h2 className="text-xl font-semibold text-emerald-300">Réservations</h2>
+                    <NewReservationDialog vehicles={vehicles} onReservationCreated={fetchData} />
+                  </div>
+
+                  <Card className="bg-gray-900/50 border-gray-800">
+                    <CardContent className="p-6">
+                      <Table>
+                        <TableHeader>
+                          <TableRow className="border-gray-700">
+                            <TableHead className="text-gray-300">Client</TableHead>
+                            <TableHead className="text-gray-300">Véhicule</TableHead>
+                            <TableHead className="text-gray-300">Dates</TableHead>
+                            <TableHead className="text-gray-300">Statut</TableHead>
+                            <TableHead className="text-gray-300">Montant</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {reservations.map(reservation => (
+                            <TableRow key={reservation.id} className="border-gray-700">
+                              <TableCell>
+                                <div>
+                                  <p className="font-medium text-white">{reservation.customer_name}</p>
+                                  <p className="text-sm text-gray-400">{reservation.customer_email}</p>
+                                </div>
+                              </TableCell>
+                              <TableCell>
+                                <div className="flex items-center space-x-2">
+                                  {reservation.vehicles?.type === 'car' ? 
+                                    <Car className="w-4 h-4 text-cyan-400" /> : 
+                                    <Bike className="w-4 h-4 text-violet-400" />
+                                  }
+                                  <span className="text-white">{reservation.vehicles?.name}</span>
+                                </div>
+                              </TableCell>
+                              <TableCell>
+                                <div className="text-sm">
+                                  <p className="text-white">{format(new Date(reservation.start_date), 'dd/MM/yyyy')}</p>
+                                  <p className="text-gray-400">au {format(new Date(reservation.end_date), 'dd/MM/yyyy')}</p>
+                                </div>
+                              </TableCell>
+                              <TableCell>
+                                {getStatusBadge(reservation.status)}
+                              </TableCell>
+                              <TableCell className="font-medium text-white">
+                                {reservation.total_amount}€
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
+            </div>
+          </main>
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="lg:hidden">
+          <header className="bg-gray-900 border-b border-gray-800 px-4 py-3">
+            <div className="flex items-center justify-between">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <Menu className="h-6 w-6" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="w-64 bg-gray-950 border-gray-800">
+                  <SidebarNav onLogout={logout} />
+                </SheetContent>
+              </Sheet>
+              <LogoMark />
+              <Button variant="ghost" size="icon" className="text-gray-400">
+                <Bell className="w-5 h-5" />
+              </Button>
+            </div>
+          </header>
+
+          <main className="p-4">
+            {/* Mobile content (same as desktop but responsive) */}
+            {currentView === 'dashboard' && (
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 gap-4">
+                  <KPICard
+                    title="Réservations en cours"
+                    value={kpiData.activeReservations}
+                    accent="violet"
+                    icon={Users}
+                  />
+                  <KPICard
+                    title="CA Mensuel"
+                    value={`${kpiData.monthlyRevenue}€`}
+                    accent="cyan"
+                    icon={TrendingUp}
+                  />
+                  <KPICard
+                    title="CA Total"
+                    value={`${kpiData.totalRevenue}€`}
+                    accent="green"
+                    icon={DollarSign}
+                  />
+                </div>
+                <NewReservationDialog vehicles={vehicles} onReservationCreated={fetchData} />
+              </div>
+            )}
+          </main>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .calendar-dark .rbc-calendar {
+          background-color: transparent;
+          color: white;
+        }
+        .calendar-dark .rbc-header {
+          background-color: #1f2937;
+          border-color: #374151;
+          color: #d1d5db;
+        }
+        .calendar-dark .rbc-month-view,
+        .calendar-dark .rbc-time-view {
+          border-color: #374151;
+        }
+        .calendar-dark .rbc-day-bg {
+          background-color: transparent;
+        }
+        .calendar-dark .rbc-day-bg + .rbc-day-bg {
+          border-left-color: #374151;
+        }
+        .calendar-dark .rbc-time-slot {
+          border-color: #374151;
+        }
+        .calendar-dark .rbc-today {
+          background-color: rgba(139, 92, 246, 0.1);
+        }
+        .calendar-dark .rbc-off-range-bg {
+          background-color: #111827;
+        }
+        .calendar-dark .rbc-toolbar button {
+          background-color: #374151;
+          border-color: #4b5563;
+          color: #d1d5db;
+        }
+        .calendar-dark .rbc-toolbar button:hover {
+          background-color: #4b5563;
+        }
+        .calendar-dark .rbc-toolbar button.rbc-active {
+          background-color: #8b5cf6;
+          border-color: #8b5cf6;
+        }
+      `}</style>
+    </SidebarProvider>
+  );
+};
+
+export default AdminDashboard;
