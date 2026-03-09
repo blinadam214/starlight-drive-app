@@ -170,3 +170,55 @@
   0%, 100% { box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.2); }
   50% { box-shadow: 0 0 40px hsl(var(--neon-cyan) / 0.4), 0 0 80px hsl(var(--neon-cyan) / 0.1); }
 }
+
+/* Calendar Dark Theme */
+.calendar-dark .rbc-calendar {
+  background-color: transparent;
+  color: white;
+}
+
+.calendar-dark .rbc-header {
+  background-color: rgb(31 41 55);
+  border-color: rgb(55 65 81);
+  color: rgb(209 213 219);
+}
+
+.calendar-dark .rbc-month-view,
+.calendar-dark .rbc-time-view {
+  border-color: rgb(55 65 81);
+}
+
+.calendar-dark .rbc-day-bg {
+  background-color: transparent;
+}
+
+.calendar-dark .rbc-day-bg + .rbc-day-bg {
+  border-left-color: rgb(55 65 81);
+}
+
+.calendar-dark .rbc-time-slot {
+  border-color: rgb(55 65 81);
+}
+
+.calendar-dark .rbc-today {
+  background-color: rgba(139, 92, 246, 0.1);
+}
+
+.calendar-dark .rbc-off-range-bg {
+  background-color: rgb(17 24 39);
+}
+
+.calendar-dark .rbc-toolbar button {
+  background-color: rgb(55 65 81);
+  border-color: rgb(75 85 99);
+  color: rgb(209 213 219);
+}
+
+.calendar-dark .rbc-toolbar button:hover {
+  background-color: rgb(75 85 99);
+}
+
+.calendar-dark .rbc-toolbar button.rbc-active {
+  background-color: rgb(139 92 246);
+  border-color: rgb(139 92 246);
+}
