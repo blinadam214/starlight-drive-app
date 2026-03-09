@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
 
 const schema = z.object({
   email: z.string().email("Email invalide"),
@@ -26,6 +27,7 @@ export default function AdminLogin() {
 
   const { user, isAdmin, signInWithPassword, signOut, refreshAdmin } = useAuth();
   const [submitting, setSubmitting] = useState(false);
+  const [isSignupMode, setIsSignupMode] = useState(false);
 
   const defaultEmail = useMemo(() => "", []);
 
@@ -36,7 +38,7 @@ export default function AdminLogin() {
 
   useEffect(() => {
     if (state.reason === "access_denied") {
-      toast.error("Accès refusé", { description: "Ce centre est réservé à l’administrateur." });
+      toast.error("Accès refusé", { description: "Ce centre est réservé à l'administrateur." });
     }
   }, [state.reason]);
 
@@ -49,6 +51,26 @@ export default function AdminLogin() {
   const onSubmit = async (values: FormValues) => {
     setSubmitting(true);
     try {
+      if (isSignupMode) {
+        // Mode inscription
+        const { error } = await supabase.auth.signUp({
+          email: values.email,
+          password: values.password,
+        });
+        
+        if (error) {
+          toast.error("Inscription impossible", { description: error.message });
+          return;
+        }
+        
+        toast.success("Compte créé !", { 
+          description: "Vous pouvez maintenant vous connecter." 
+        });
+        setIsSignupMode(false);
+        return;
+      }
+
+      // Mode connexion
       const { error } = await signInWithPassword(values.email, values.password);
       if (error) {
         toast.error("Connexion impossible", { description: error });
@@ -58,7 +80,7 @@ export default function AdminLogin() {
       const ok = await refreshAdmin();
       if (!ok) {
         await signOut();
-        toast.error("Accès refusé", { description: "Votre compte n’a pas le rôle ADMIN." });
+        toast.error("Accès refusé", { description: "Votre compte n'a pas le rôle ADMIN." });
         return;
       }
 
@@ -80,7 +102,10 @@ export default function AdminLogin() {
           <div className="mb-7">
             <h1 className="font-syne text-3xl font-extrabold tracking-tight">Centre de Contrôle</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              Accès strictement réservé à l’administrateur.
+              {isSignupMode 
+                ? "Créer un compte administrateur."
+                : "Accès strictement réservé à l'administrateur."
+              }
             </p>
           </div>
 
@@ -97,7 +122,7 @@ export default function AdminLogin() {
                         {...field}
                         type="email"
                         autoComplete="email"
-                        placeholder="adam@bline26.com"
+                        placeholder={isSignupMode ? "blinadam2@gmail.com" : "adam@bline26.com"}
                         className="glass"
                       />
                     </FormControl>
@@ -127,8 +152,26 @@ export default function AdminLogin() {
               />
 
               <Button type="submit" disabled={submitting} className="btn-neon w-full">
-                {submitting ? "Vérification…" : "Accéder au Centre de Contrôle"}
+                {submitting 
+                  ? "Vérification…" 
+                  : isSignupMode 
+                    ? "Créer le compte admin"
+                    : "Accéder au Centre de Contrôle"
+                }
               </Button>
+
+              <div className="text-center">
+                <button
+                  type="button"
+                  onClick={() => setIsSignupMode(!isSignupMode)}
+                  className="text-xs text-[hsl(var(--neon-cyan))] hover:underline"
+                >
+                  {isSignupMode 
+                    ? "← Retour à la connexion"
+                    : "Créer un compte admin →"
+                  }
+                </button>
+              </div>
 
               {user && !isAdmin && (
                 <div className="rounded-lg border border-[hsl(var(--neon-gold)/0.25)] bg-[hsl(var(--neon-gold)/0.08)] p-3">
@@ -148,9 +191,11 @@ export default function AdminLogin() {
           </Form>
 
           <div className="mt-8 text-xs text-muted-foreground">
-            <p className="font-semibold tracking-wide">Sécurité</p>
+            <p className="font-semibold tracking-wide">Instructions</p>
             <p className="mt-1">
-              Si vous n’êtes pas l’administrateur, aucune donnée n’est chargée.
+              1. Cliquez "Créer un compte admin" <br/>
+              2. Utilisez : <strong>blinadam2@gmail.com</strong> <br/>
+              3. Mot de passe : <strong>Fatiha123</strong>
             </p>
           </div>
         </div>
