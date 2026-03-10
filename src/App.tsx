@@ -42,6 +42,7 @@ const App = () => (
         </TooltipProvider>
       </LanguageProvider>
     </AuthProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 
