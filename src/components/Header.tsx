@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { Menu, X, Globe, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logoB26 from "@/assets/logo-b26.png";
 
+const LANGUAGES: { code: Language; label: string; flag: string }[] = [
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "ar", label: "العربية", flag: "🇲🇦" },
+  { code: "en", label: "English", flag: "🇬🇧" },
+  { code: "de", label: "Deutsch", flag: "🇩🇪" },
+  { code: "nl", label: "Nederlands", flag: "🇳🇱" },
+];
+
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
 
   const navLinks = [
     { href: "#fleet", label: t("nav.fleet") },
@@ -15,10 +24,18 @@ const Header = () => {
     { href: "#booking", label: t("nav.booking") },
   ];
 
-  const languages: { code: Language; label: string }[] = [
-    { code: "fr", label: "FR" },
-    { code: "en", label: "EN" },
-  ];
+  const currentLang = LANGUAGES.find((l) => l.code === language)!;
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   const scrollTo = (href: string) => {
     setMobileOpen(false);
@@ -51,33 +68,70 @@ const Header = () => {
           {/* Right side */}
           <div className="flex items-center gap-3">
             {/* Language switcher */}
-            <div className="relative">
+            <div className="relative" ref={langRef}>
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass text-sm font-medium text-foreground hover:border-primary/30 transition-all"
+                className="flex items-center gap-2 px-3 py-2 rounded-xl glass text-sm font-medium text-foreground hover:border-primary/30 transition-all duration-300 group"
               >
-                <Globe className="w-4 h-4 text-primary" />
-                {language.toUpperCase()}
+                <Globe className="w-4 h-4 text-primary transition-transform duration-300 group-hover:rotate-45" />
+                <span className="text-xs">{currentLang.flag}</span>
+                <span className="hidden sm:inline">{language.toUpperCase()}</span>
+                <motion.svg
+                  animate={{ rotate: langOpen ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="w-3 h-3 text-muted-foreground"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </motion.svg>
               </button>
+
               <AnimatePresence>
                 {langOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    className="absolute right-0 mt-2 glass-strong rounded-lg overflow-hidden min-w-[80px]"
+                    initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute right-0 rtl:right-auto rtl:left-0 mt-2 rounded-xl overflow-hidden min-w-[180px] border border-border/30"
+                    style={{
+                      background: "rgba(15, 15, 20, 0.85)",
+                      backdropFilter: "blur(20px)",
+                      WebkitBackdropFilter: "blur(20px)",
+                      boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05)",
+                    }}
                   >
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => { setLanguage(lang.code); setLangOpen(false); }}
-                        className={`block w-full px-4 py-2 text-sm text-left transition-colors ${
-                          language === lang.code ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                        }`}
-                      >
-                        {lang.label}
-                      </button>
-                    ))}
+                    <div className="py-1.5">
+                      {LANGUAGES.map((lang, i) => (
+                        <motion.button
+                          key={lang.code}
+                          initial={{ opacity: 0, x: -8 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.04 }}
+                          onClick={() => {
+                            setLanguage(lang.code);
+                            setLangOpen(false);
+                          }}
+                          className={`flex items-center gap-3 w-full px-4 py-2.5 text-sm text-left rtl:text-right transition-all duration-200 group/item ${
+                            language === lang.code
+                              ? "text-primary bg-primary/10"
+                              : "text-muted-foreground hover:text-foreground hover:bg-[hsl(var(--primary)/0.08)]"
+                          }`}
+                        >
+                          <span className="text-base">{lang.flag}</span>
+                          <span className="flex-1 font-medium">{lang.label}</span>
+                          {language === lang.code && (
+                            <motion.div
+                              layoutId="activeLang"
+                              className="w-1.5 h-1.5 rounded-full bg-primary"
+                              style={{ boxShadow: "0 0 8px hsl(var(--primary))" }}
+                            />
+                          )}
+                        </motion.button>
+                      ))}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -117,11 +171,34 @@ const Header = () => {
                 <button
                   key={link.href}
                   onClick={() => scrollTo(link.href)}
-                  className="block w-full text-left text-foreground text-lg font-medium py-2"
+                  className="block w-full text-left rtl:text-right text-foreground text-lg font-medium py-2"
                 >
                   {link.label}
                 </button>
               ))}
+
+              {/* Mobile language selector */}
+              <div className="pt-4 border-t border-border/30">
+                <div className="flex flex-wrap gap-2">
+                  {LANGUAGES.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setLanguage(lang.code);
+                      }}
+                      className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                        language === lang.code
+                          ? "bg-primary/15 text-primary border border-primary/30"
+                          : "glass text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      <span>{lang.flag}</span>
+                      <span>{lang.code.toUpperCase()}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <button
                 onClick={() => scrollTo("#booking")}
                 className="btn-neon w-full flex items-center justify-center gap-2 text-sm mt-4"
