@@ -138,6 +138,9 @@ const Header = () => {
               </AnimatePresence>
             </div>
 
+            {/* Theme Toggle */}
+            <ThemeToggle />
+
             {/* Check-in Express */}
             <button
               onClick={() => scrollTo("#booking")}
