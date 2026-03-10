@@ -3,6 +3,7 @@ import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { Menu, X, Globe, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logoB26 from "@/assets/logo-b26.png";
+import ThemeToggle from "./ThemeToggle";
 
 const LANGUAGES: { code: Language; label: string; flag: string }[] = [
   { code: "fr", label: "Français", flag: "🇫🇷" },
@@ -136,6 +137,9 @@ const Header = () => {
                 )}
               </AnimatePresence>
             </div>
+
+            {/* Theme Toggle */}
+            <ThemeToggle />
 
             {/* Check-in Express */}
             <button
