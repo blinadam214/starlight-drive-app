@@ -5,18 +5,73 @@
 @tailwind utilities;
 
 @layer base {
+  /* ═══════════════════════════════════════════
+     LIGHT MODE — Mode Jour: Clean, bright, editorial
+     ═══════════════════════════════════════════ */
   :root {
-    --background: 220 20% 6%;
+    --background: 0 0% 98%;
+    --foreground: 220 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+
+    --primary: 185 80% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 270 50% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 10% 92%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 270 50% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 10% 88%;
+    --input: 220 10% 88%;
+    --ring: 185 80% 40%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 97%;
+    --sidebar-foreground: 220 20% 10%;
+    --sidebar-primary: 185 80% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 10% 92%;
+    --sidebar-accent-foreground: 220 20% 10%;
+    --sidebar-border: 220 10% 88%;
+    --sidebar-ring: 185 80% 40%;
+
+    /* Custom design tokens — Light */
+    --neon-cyan: 185 80% 40%;
+    --neon-violet: 270 50% 55%;
+    --neon-gold: 39 45% 56%;
+    --glass-bg: 0 0% 100%;
+    --glass-border: 220 10% 80%;
+    --surface-elevated: 0 0% 100%;
+  }
+
+  /* ═══════════════════════════════════════════
+     DARK MODE — Mode Nuit: L'âme du site Starlight
+     ═══════════════════════════════════════════ */
+  .dark {
+    --background: 220 20% 4%;
     --foreground: 210 20% 95%;
 
-    --card: 220 20% 10%;
+    --card: 220 20% 8%;
     --card-foreground: 210 20% 95%;
 
-    --popover: 220 20% 10%;
+    --popover: 220 20% 8%;
     --popover-foreground: 210 20% 95%;
 
     --primary: 185 80% 55%;
-    --primary-foreground: 220 20% 6%;
+    --primary-foreground: 220 20% 4%;
 
     --secondary: 270 60% 60%;
     --secondary-foreground: 210 20% 95%;
@@ -34,18 +89,16 @@
     --input: 220 15% 18%;
     --ring: 185 80% 55%;
 
-    --radius: 0.75rem;
-
-    --sidebar-background: 220 20% 8%;
+    --sidebar-background: 220 20% 6%;
     --sidebar-foreground: 210 20% 95%;
     --sidebar-primary: 185 80% 55%;
-    --sidebar-primary-foreground: 220 20% 6%;
+    --sidebar-primary-foreground: 220 20% 4%;
     --sidebar-accent: 220 15% 15%;
     --sidebar-accent-foreground: 210 20% 95%;
     --sidebar-border: 220 15% 18%;
     --sidebar-ring: 185 80% 55%;
 
-    /* Custom design tokens */
+    /* Custom design tokens — Dark */
     --neon-cyan: 185 80% 55%;
     --neon-violet: 270 60% 60%;
     --neon-gold: 39 45% 56%;
@@ -62,6 +115,8 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    transition: background-color 500ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 400ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   html {
@@ -70,17 +125,23 @@
 }
 
 @layer components {
+  /* ── Glassmorphism ── */
   .glass {
-    @apply bg-[hsl(var(--glass-bg)/0.6)] backdrop-blur-xl border border-[hsl(var(--glass-border)/0.3)];
+    @apply backdrop-blur-xl border;
+    background: hsl(var(--glass-bg) / 0.6);
+    border-color: hsl(var(--glass-border) / 0.3);
   }
 
   .glass-strong {
-    @apply bg-[hsl(var(--glass-bg)/0.8)] backdrop-blur-2xl border border-[hsl(var(--glass-border)/0.4)];
+    @apply backdrop-blur-2xl border;
+    background: hsl(var(--glass-bg) / 0.8);
+    border-color: hsl(var(--glass-border) / 0.4);
   }
 
-  /* B-LINE 26 admin surfaces */
   .glass-panel {
-    @apply bg-[hsl(var(--foreground)/0.02)] backdrop-blur-xl border border-[hsl(var(--foreground)/0.06)];
+    @apply backdrop-blur-xl border;
+    background: hsl(var(--foreground) / 0.02);
+    border-color: hsl(var(--foreground) / 0.06);
   }
 
   .font-syne {
@@ -105,6 +166,7 @@
     background: hsl(var(--neon-gold));
   }
 
+  /* ── Neon Glows ── */
   .neon-glow-cyan {
     box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.3), 0 0 60px hsl(var(--neon-cyan) / 0.1);
   }
@@ -122,29 +184,57 @@
   }
 
   .gradient-neon {
-    @apply bg-gradient-to-r from-[hsl(var(--neon-cyan))] to-[hsl(var(--neon-violet))];
+    @apply bg-gradient-to-r;
+    --tw-gradient-from: hsl(var(--neon-cyan));
+    --tw-gradient-to: hsl(var(--neon-violet));
   }
 
   .gradient-neon-text {
-    @apply bg-gradient-to-r from-[hsl(var(--neon-cyan))] to-[hsl(var(--neon-violet))] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r bg-clip-text text-transparent;
+    --tw-gradient-from: hsl(var(--neon-cyan));
+    --tw-gradient-to: hsl(var(--neon-violet));
   }
 
   .btn-neon {
-    @apply relative overflow-hidden bg-gradient-to-r from-[hsl(var(--neon-cyan))] to-[hsl(var(--neon-violet))] text-[hsl(var(--background))] font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--neon-cyan)/0.4)] hover:scale-[1.02] active:scale-[0.98];
+    @apply relative overflow-hidden text-[hsl(var(--background))] font-semibold px-8 py-3 rounded-lg transition-all duration-300 active:scale-[0.98];
+    background: linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--neon-violet)));
+  }
+
+  .btn-neon:hover {
+    box-shadow: 0 0 30px hsl(var(--neon-cyan) / 0.4);
+    transform: scale(1.02);
   }
 
   .btn-glass {
-    @apply glass px-6 py-3 rounded-lg font-medium text-foreground transition-all duration-300 hover:bg-[hsl(var(--glass-bg)/0.8)] hover:border-[hsl(var(--neon-cyan)/0.4)] hover:shadow-[0_0_20px_hsl(var(--neon-cyan)/0.15)];
+    @apply glass px-6 py-3 rounded-lg font-medium text-foreground transition-all duration-300;
+  }
+
+  .btn-glass:hover {
+    background: hsl(var(--glass-bg) / 0.8);
+    border-color: hsl(var(--neon-cyan) / 0.4);
+    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.15);
   }
 
   .card-fleet {
-    @apply glass rounded-2xl overflow-hidden transition-all duration-500 hover:border-[hsl(var(--neon-cyan)/0.4)] hover:shadow-[0_0_40px_hsl(var(--neon-cyan)/0.1)];
+    @apply glass rounded-2xl overflow-hidden transition-all duration-500;
+  }
+
+  .card-fleet:hover {
+    border-color: hsl(var(--neon-cyan) / 0.4);
+    box-shadow: 0 0 40px hsl(var(--neon-cyan) / 0.1);
+  }
+
+  /* Dark mode: vehicle cards glow Cyan + Violet */
+  :is(.dark) .card-fleet:hover {
+    border-color: hsl(var(--neon-cyan) / 0.5);
+    box-shadow: 0 0 30px hsl(var(--neon-cyan) / 0.15), 0 0 60px hsl(var(--neon-violet) / 0.1);
   }
 
   .section-padding {
     @apply px-4 sm:px-6 lg:px-8 py-20 lg:py-28;
   }
 
+  /* ── Starlight particles (dark mode only) ── */
   .starlight-dots {
     background-image: radial-gradient(1px 1px at 20px 30px, hsl(var(--neon-cyan) / 0.4), transparent),
       radial-gradient(1px 1px at 40px 70px, hsl(var(--neon-violet) / 0.3), transparent),
@@ -153,6 +243,11 @@
       radial-gradient(1.5px 1.5px at 160px 30px, hsl(var(--neon-cyan) / 0.5), transparent);
     background-size: 200px 100px;
     animation: twinkle 4s ease-in-out infinite alternate;
+  }
+
+  /* Light mode: light shadow cards */
+  .light-shadow {
+    box-shadow: 0 4px 20px hsl(220 20% 10% / 0.08), 0 1px 3px hsl(220 20% 10% / 0.06);
   }
 }
 
