@@ -42,11 +42,11 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-5xl sm:text-6xl lg:text-8xl font-bold leading-[0.95] tracking-tight mb-6"
+            className="text-5xl sm:text-6xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-6 uppercase"
           >
-            {t("hero.title1")}
-            <br />
-            <span className="gradient-neon-text neon-text-cyan">{t("hero.title2")}</span>
+            <span className="text-foreground drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
+              {t("hero.title1")}
+            </span>
           </motion.h1>
 
           <motion.p
