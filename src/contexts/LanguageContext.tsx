@@ -25,10 +25,7 @@ export const translations: Translations = {
     fr: "Location Premium à Marrakech", en: "Premium Rental in Marrakech", ar: "تأجير فاخر في مراكش", es: "Alquiler Premium en Marrakech", it: "Noleggio Premium a Marrakech", de: "Premium-Vermietung in Marrakesch", nl: "Premium verhuur in Marrakech"
   },
   "hero.title1": {
-    fr: "Conduisez sous", en: "Drive Under", ar: "قُد تحت", es: "Conduce bajo", it: "Guida sotto", de: "Fahren Sie unter", nl: "Rijd onder"
-  },
-  "hero.title2": {
-    fr: "les étoiles", en: "the Stars", ar: "النجوم", es: "las estrellas", it: "le stelle", de: "den Sternen", nl: "de sterren"
+    fr: "MAÎTRISEZ LA NUIT.", en: "MASTER THE NIGHT.", ar: "سَيطِر على الليل.", es: "DOMINA LA NOCHE.", it: "DOMINA LA NOTTE.", de: "BEHERRSCHE DIE NACHT.", nl: "BEHEERS DE NACHT."
   },
   "hero.subtitle": {
     fr: "Découvrez nos citadines transformées avec ciel étoilé et ambiance LED. Le luxe accessible, la nuit à Marrakech.",
