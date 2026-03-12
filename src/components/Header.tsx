@@ -9,6 +9,8 @@ const LANGUAGES: { code: Language; label: string; flag: string }[] = [
   { code: "fr", label: "Français", flag: "🇫🇷" },
   { code: "ar", label: "العربية", flag: "🇲🇦" },
   { code: "en", label: "English", flag: "🇬🇧" },
+  { code: "es", label: "Español", flag: "🇪🇸" },
+  { code: "it", label: "Italiano", flag: "🇮🇹" },
   { code: "de", label: "Deutsch", flag: "🇩🇪" },
   { code: "nl", label: "Nederlands", flag: "🇳🇱" },
 ];
@@ -75,8 +77,7 @@ const Header = () => {
                 className="flex items-center gap-2 px-3 py-2 rounded-xl glass text-sm font-medium text-foreground hover:border-primary/30 transition-all duration-300 group"
               >
                 <Globe className="w-4 h-4 text-primary transition-transform duration-300 group-hover:rotate-45" />
-                <span className="text-xs">{currentLang.flag}</span>
-                <span className="hidden sm:inline">{language.toUpperCase()}</span>
+                <span className="text-base">{currentLang.flag}</span>
                 <motion.svg
                   animate={{ rotate: langOpen ? 180 : 0 }}
                   transition={{ duration: 0.2 }}
