@@ -157,8 +157,8 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, onBook,
           <div>
             <span className="text-xs text-muted-foreground">{t("fleet.from")}</span>
             <div className="flex items-baseline gap-1">
-              <span className="text-2xl font-bold text-foreground">{price}</span>
-              <span className="text-sm text-muted-foreground">MAD{t("fleet.perday")}</span>
+            <span className="text-2xl font-bold text-foreground">{price} €</span>
+              <span className="text-sm text-muted-foreground">{t("fleet.perday")}</span>
             </div>
           </div>
           <button
