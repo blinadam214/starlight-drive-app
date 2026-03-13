@@ -2,6 +2,32 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import heroImage from "@/assets/hero-starlight.jpg";
+import { useMemo } from "react";
+
+/** Wrap each character in a span with randomized animation timing */
+const NeonText = ({ text }: { text: string }) => {
+  const letters = useMemo(() => {
+    return text.split("").map((char, i) => {
+      if (char === " ") return <span key={i}>&nbsp;</span>;
+      const duration = 3 + Math.random() * 4; // 3-7s
+      const delay = Math.random() * 5; // 0-5s offset
+      return (
+        <span
+          key={i}
+          className="neon-letter"
+          style={{
+            "--neon-duration": `${duration}s`,
+            "--neon-delay": `${delay}s`,
+          } as React.CSSProperties}
+        >
+          {char}
+        </span>
+      );
+    });
+  }, [text]);
+
+  return <>{letters}</>;
+};
 
 const HeroSection = () => {
   const { t } = useLanguage();
@@ -12,7 +38,7 @@ const HeroSection = () => {
       <div className="absolute inset-0">
         <img
           src={heroImage}
-          alt="B-LINE 26 Starlight car in Marrakech"
+          alt="Lumina Majorelle Starlight car"
           className="w-full h-full object-cover"
           loading="eager"
         />
@@ -41,17 +67,25 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-5xl sm:text-6xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-6 uppercase font-serif"
+            className="text-5xl sm:text-6xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-4 uppercase font-serif text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]"
           >
-            <span className="text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-              {t("hero.title1")}
-            </span>
+            {t("hero.title1")}
           </motion.h1>
+
+          {/* Neon slogan with per-letter flicker */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="text-2xl sm:text-3xl lg:text-5xl font-light tracking-[0.08em] mb-8 font-serif"
+          >
+            <NeonText text={t("hero.slogan")} />
+          </motion.p>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.25 }}
             className="text-lg sm:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed font-sans"
           >
             {t("hero.subtitle")}
@@ -60,7 +94,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.35 }}
             className="flex flex-col sm:flex-row gap-4"
           >
             <a href="#fleet" className="btn-neon text-center text-base font-sans">
