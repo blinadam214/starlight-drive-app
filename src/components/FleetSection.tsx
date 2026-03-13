@@ -13,11 +13,11 @@ import yamahaTracer from "@/assets/yamaha-tracer.jpg";
 // 📹 Pour ajouter vos vidéos, remplacez les valeurs `video` par l'URL de vos fichiers .mp4 ou .webm
 // 🖼️ Pour ajouter plusieurs images, ajoutez-les dans le tableau `images`
 const vehicles = [
-  { id: "clio", images: [heroStarlight], video: "https://res.cloudinary.com/dwaj4ea6b/video/upload/clio_5_1_ko3qas.mp4", nameKey: "vehicle.clio.name", descKey: "vehicle.clio.desc", price: 350, category: "starlight" as const },
-  { id: "208", images: [peugeot208], video: "", nameKey: "vehicle.208.name", descKey: "vehicle.208.desc", price: 380, category: "starlight" as const },
-  { id: "logan", images: [daciaLogan], video: "", nameKey: "vehicle.logan.name", descKey: "vehicle.logan.desc", price: 200, category: "essential" as const },
-  { id: "tmax", images: [yamahaTmax], video: "", nameKey: "vehicle.tmax.name", descKey: "vehicle.tmax.desc", price: 450, category: "adrenaline" as const },
-  { id: "tracer", images: [yamahaTracer], video: "", nameKey: "vehicle.tracer.name", descKey: "vehicle.tracer.desc", price: 500, category: "adrenaline" as const },
+  { id: "clio", images: [heroStarlight], video: "https://res.cloudinary.com/dwaj4ea6b/video/upload/clio_5_1_ko3qas.mp4", nameKey: "vehicle.clio.name", descKey: "vehicle.clio.desc", price: 35, category: "starlight" as const },
+  { id: "208", images: [peugeot208], video: "", nameKey: "vehicle.208.name", descKey: "vehicle.208.desc", price: 38, category: "starlight" as const },
+  { id: "logan", images: [daciaLogan], video: "", nameKey: "vehicle.logan.name", descKey: "vehicle.logan.desc", price: 25, category: "essential" as const },
+  { id: "tmax", images: [yamahaTmax], video: "", nameKey: "vehicle.tmax.name", descKey: "vehicle.tmax.desc", price: 80, category: "adrenaline" as const },
+  { id: "tracer", images: [yamahaTracer], video: "", nameKey: "vehicle.tracer.name", descKey: "vehicle.tracer.desc", price: 90, category: "adrenaline" as const },
 ];
 
 const FleetSection = () => {
@@ -38,7 +38,7 @@ const FleetSection = () => {
             <span className="inline-block px-4 py-1.5 rounded-full glass text-xs font-semibold tracking-wider uppercase text-primary mb-4">
               {t("fleet.badge")}
             </span>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4">{t("fleet.title")}</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 font-serif">{t("fleet.title")}</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("fleet.subtitle")}</p>
           </motion.div>
 

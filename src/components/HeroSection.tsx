@@ -1,6 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { ChevronDown, Sparkles } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import heroImage from "@/assets/hero-starlight.jpg";
 
 const HeroSection = () => {
@@ -16,8 +16,8 @@ const HeroSection = () => {
           className="w-full h-full object-cover"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/70 to-transparent" />
       </div>
 
       {/* Starlight particles */}
@@ -32,8 +32,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6 }}
             className="mb-6"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-primary">
-              <Sparkles className="w-4 h-4" />
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-primary font-sans">
               {t("hero.tagline")}
             </span>
           </motion.div>
@@ -42,9 +41,9 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-5xl sm:text-6xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-6 uppercase"
+            className="text-5xl sm:text-6xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-6 uppercase font-serif"
           >
-            <span className="text-foreground drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
+            <span className="text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
               {t("hero.title1")}
             </span>
           </motion.h1>
@@ -53,7 +52,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-lg sm:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed"
+            className="text-lg sm:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed font-sans"
           >
             {t("hero.subtitle")}
           </motion.p>
@@ -64,10 +63,10 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <a href="#fleet" className="btn-neon text-center text-base">
+            <a href="#fleet" className="btn-neon text-center text-base font-sans">
               {t("hero.cta")}
             </a>
-            <a href="#booking" className="btn-glass text-center text-base">
+            <a href="#booking" className="btn-glass text-center text-base font-sans">
               {t("hero.cta2")}
             </a>
           </motion.div>

@@ -23,7 +23,7 @@ const BookingModal = ({ vehicle, onClose }: BookingModalProps) => {
 
   const handleWhatsApp = () => {
     const msg = encodeURIComponent(
-      `Bonjour B-LINE 26! Je souhaite réserver: ${t(vehicle.nameKey)}\nDu: ${startDate?.toLocaleDateString()}\nAu: ${endDate?.toLocaleDateString()}\nTotal: ${total} MAD`
+      `Bonjour B-LINE 26! Je souhaite réserver: ${t(vehicle.nameKey)}\nDu: ${startDate?.toLocaleDateString()}\nAu: ${endDate?.toLocaleDateString()}\nTotal: ${total} €`
     );
     window.open(`https://wa.me/212600000000?text=${msg}`, "_blank");
   };
@@ -79,8 +79,8 @@ const BookingModal = ({ vehicle, onClose }: BookingModalProps) => {
           {days > 0 && (
             <div className="glass rounded-xl p-4 mb-6">
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-muted-foreground">{days} {days > 1 ? "jours" : "jour"} × {vehicle.price} MAD</span>
-                <span className="text-foreground font-semibold">{total} MAD</span>
+                <span className="text-muted-foreground">{days} {days > 1 ? "jours" : "jour"} × {vehicle.price} €</span>
+                <span className="text-foreground font-semibold">{total} €</span>
               </div>
             </div>
           )}
