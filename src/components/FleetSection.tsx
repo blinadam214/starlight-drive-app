@@ -38,7 +38,7 @@ const FleetSection = () => {
             <span className="inline-block px-4 py-1.5 rounded-full glass text-xs font-semibold tracking-wider uppercase text-primary mb-4">
               {t("fleet.badge")}
             </span>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4">{t("fleet.title")}</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 font-serif">{t("fleet.title")}</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("fleet.subtitle")}</p>
           </motion.div>
 

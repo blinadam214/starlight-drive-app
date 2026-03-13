@@ -45,7 +45,7 @@ const InnovationSection = () => {
             <span className="inline-block px-4 py-1.5 rounded-full glass text-xs font-semibold tracking-wider uppercase text-primary mb-6">
               {t("innovation.badge")}
             </span>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight font-serif">
               {t("innovation.title")}
             </h2>
             <p className="text-muted-foreground text-lg mb-10 leading-relaxed">
