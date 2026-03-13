@@ -27,6 +27,9 @@ export const translations: Translations = {
   "hero.title1": {
     fr: "MAÎTRISEZ LA NUIT.", en: "MASTER THE NIGHT.", ar: "سَيطِر على الليل.", es: "DOMINA LA NOCHE.", it: "DOMINA LA NOTTE.", de: "BEHERRSCHE DIE NACHT.", nl: "BEHEERS DE NACHT."
   },
+  "hero.slogan": {
+    fr: "Prenez le volant de vos nuits.", en: "Take the wheel of your nights.", ar: "خُذ مِقوَد ليالِيك.", es: "Toma el volante de tus noches.", it: "Prendi il volante delle tue notti.", de: "Übernimm das Steuer deiner Nächte.", nl: "Neem het stuur van je nachten."
+  },
   "hero.subtitle": {
     fr: "Découvrez nos citadines transformées avec ciel étoilé et ambiance LED. Le luxe accessible, la nuit à Marrakech.",
     en: "Discover our city cars transformed with starlight ceilings and LED ambiance. Affordable luxury, Marrakech by night.",
