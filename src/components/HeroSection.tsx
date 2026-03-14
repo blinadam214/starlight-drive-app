@@ -9,16 +9,18 @@ const NeonText = ({ text }: { text: string }) => {
   const letters = useMemo(() => {
     return text.split("").map((char, i) => {
       if (char === " ") return <span key={i}>&nbsp;</span>;
-      const duration = 3 + Math.random() * 4; // 3-7s
-      const delay = Math.random() * 5; // 0-5s offset
+      // Only animate ~1 in 3 letters randomly
+      const shouldAnimate = i % 3 === Math.floor(Math.random() * 3);
+      const duration = 2.5 + Math.random() * 3; // 2.5-5.5s
+      const delay = Math.random() * 4; // 0-4s offset
       return (
         <span
           key={i}
-          className="neon-letter"
-          style={{
+          className={`neon-letter${shouldAnimate ? " animate-neon" : ""}`}
+          style={shouldAnimate ? {
             "--neon-duration": `${duration}s`,
             "--neon-delay": `${delay}s`,
-          } as React.CSSProperties}
+          } as React.CSSProperties : undefined}
         >
           {char}
         </span>
