@@ -262,29 +262,23 @@
 }
 
 /* ── Neon Flicker (Starlight Breath) ── */
-@keyframes neon-breath {
+@keyframes neon-pulse {
   0%, 100% {
-    text-shadow: none;
+    text-shadow: 0 0 2px rgba(49, 66, 219, 0), 0 0 5px rgba(49, 66, 219, 0);
   }
-  40% {
-    text-shadow:
-      0 0 8px hsl(var(--primary) / 0.6),
-      0 0 20px hsl(var(--primary) / 0.4),
-      0 0 40px hsl(var(--primary) / 0.2),
-      0 0 80px hsl(var(--primary) / 0.1);
-  }
-  60% {
-    text-shadow:
-      0 0 6px hsl(var(--primary) / 0.5),
-      0 0 16px hsl(var(--primary) / 0.3),
-      0 0 30px hsl(var(--primary) / 0.15);
+  50% {
+    text-shadow: 0 0 10px rgba(49, 66, 219, 0.8), 0 0 20px rgba(49, 66, 219, 0.5), 0 0 30px rgba(49, 66, 219, 0.3);
   }
 }
 
 .neon-letter {
   display: inline-block;
-  color: hsl(0 0% 100% / 0.9);
-  animation: neon-breath var(--neon-duration, 4s) ease-in-out var(--neon-delay, 0s) infinite;
+  color: #E2E8F0;
+}
+
+.neon-letter.animate-neon {
+  animation: neon-pulse var(--neon-duration, 3s) infinite ease-in-out;
+  animation-delay: var(--neon-delay, 0s);
   will-change: text-shadow;
 }
 
