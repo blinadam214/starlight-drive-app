@@ -71,7 +71,7 @@ const FooterSection = () => {
         </div>
 
         <div className="border-t border-border mt-12 pt-8 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} B-LINE 26. {t("footer.rights")}
+          © {new Date().getFullYear()} Kech Night Drive. {t("footer.rights")}
         </div>
       </div>
     </footer>

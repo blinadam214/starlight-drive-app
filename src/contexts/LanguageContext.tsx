@@ -245,13 +245,13 @@ export const translations: Translations = {
 
   // Footer
   "footer.tagline": {
-    fr: "Location premium à Marrakech. L'expérience Starlight, accessible à tous.",
-    en: "Premium rental in Marrakech. The Starlight experience, accessible to all.",
-    ar: "تأجير فاخر في مراكش. تجربة ستارلايت، في متناول الجميع.",
-    es: "Alquiler premium en Marrakech. La experiencia Starlight, accesible para todos.",
-    it: "Noleggio premium a Marrakech. L'esperienza Starlight, accessibile a tutti.",
-    de: "Premium-Vermietung in Marrakesch. Das Starlight-Erlebnis, für alle zugänglich.",
-    nl: "Premium verhuur in Marrakech. De Starlight-ervaring, toegankelijk voor iedereen."
+    fr: "Kech Night Drive — Location premium à Marrakech. L'expérience Starlight, accessible à tous.",
+    en: "Kech Night Drive — Premium rental in Marrakech. The Starlight experience, accessible to all.",
+    ar: "Kech Night Drive — تأجير فاخر في مراكش. تجربة ستارلايت، في متناول الجميع.",
+    es: "Kech Night Drive — Alquiler premium en Marrakech. La experiencia Starlight, accesible para todos.",
+    it: "Kech Night Drive — Noleggio premium a Marrakech. L'esperienza Starlight, accessibile a tutti.",
+    de: "Kech Night Drive — Premium-Vermietung in Marrakesch. Das Starlight-Erlebnis, für alle zugänglich.",
+    nl: "Kech Night Drive — Premium verhuur in Marrakech. De Starlight-ervaring, toegankelijk voor iedereen."
   },
   "footer.links": {
     fr: "Liens rapides", en: "Quick Links", ar: "روابط سريعة", es: "Enlaces rápidos", it: "Link rapidi", de: "Schnelllinks", nl: "Snelkoppelingen"
