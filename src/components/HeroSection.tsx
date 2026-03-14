@@ -9,16 +9,18 @@ const NeonText = ({ text }: { text: string }) => {
   const letters = useMemo(() => {
     return text.split("").map((char, i) => {
       if (char === " ") return <span key={i}>&nbsp;</span>;
-      const duration = 3 + Math.random() * 4; // 3-7s
-      const delay = Math.random() * 5; // 0-5s offset
+      // Only animate ~1 in 3 letters randomly
+      const shouldAnimate = i % 3 === Math.floor(Math.random() * 3);
+      const duration = 2.5 + Math.random() * 3; // 2.5-5.5s
+      const delay = Math.random() * 4; // 0-4s offset
       return (
         <span
           key={i}
-          className="neon-letter"
-          style={{
+          className={`neon-letter${shouldAnimate ? " animate-neon" : ""}`}
+          style={shouldAnimate ? {
             "--neon-duration": `${duration}s`,
             "--neon-delay": `${delay}s`,
-          } as React.CSSProperties}
+          } as React.CSSProperties : undefined}
         >
           {char}
         </span>
@@ -77,7 +79,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-2xl sm:text-3xl lg:text-5xl font-light tracking-[0.08em] mb-8 font-serif"
+            className="text-2xl sm:text-3xl lg:text-5xl font-light tracking-[0.08em] mb-8 font-serif [word-break:keep-all] [text-wrap:balance]"
           >
             <NeonText text={t("hero.slogan")} />
           </motion.p>
