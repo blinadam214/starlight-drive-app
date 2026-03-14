@@ -13,7 +13,7 @@ const FooterSection = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="mb-4">
-              <img src={logoB26} alt="B26 Location de voiture Marrakech" className="h-16 w-auto object-contain" />
+              <img src={logoKND} alt="Kech Night Drive — Location Premium Marrakech" className="h-16 w-auto object-contain" />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mb-6">
               {t("footer.tagline")}
