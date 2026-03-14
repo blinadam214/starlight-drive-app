@@ -25,7 +25,7 @@ export const translations: Translations = {
     fr: "Location Premium à Marrakech", en: "Premium Rental in Marrakech", ar: "تأجير فاخر في مراكش", es: "Alquiler Premium en Marrakech", it: "Noleggio Premium a Marrakech", de: "Premium-Vermietung in Marrakesch", nl: "Premium verhuur in Marrakech"
   },
   "hero.title1": {
-    fr: "MAÎTRISEZ LA NUIT.", en: "MASTER THE NIGHT.", ar: "سَيطِر على الليل.", es: "DOMINA LA NOCHE.", it: "DOMINA LA NOTTE.", de: "BEHERRSCHE DIE NACHT.", nl: "BEHEERS DE NACHT."
+    fr: "KECH NIGHT DRIVE", en: "KECH NIGHT DRIVE", ar: "KECH NIGHT DRIVE", es: "KECH NIGHT DRIVE", it: "KECH NIGHT DRIVE", de: "KECH NIGHT DRIVE", nl: "KECH NIGHT DRIVE"
   },
   "hero.slogan": {
     fr: "Prenez le volant de vos nuits.", en: "Take the wheel of your nights.", ar: "خُذ مِقوَد ليالِيك.", es: "Toma el volante de tus noches.", it: "Prendi il volante delle tue notti.", de: "Übernimm das Steuer deiner Nächte.", nl: "Neem het stuur van je nachten."
