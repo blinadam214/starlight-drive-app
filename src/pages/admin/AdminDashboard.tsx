@@ -144,7 +144,7 @@ const INITIAL_CHARGES: ChargeItem[] = [
 
 const ChargesCard: React.FC<ChargesCardProps> = ({ monthlyRevenue }) => {
   const [charges, setCharges] = useState<ChargeItem[]>(() => {
-    const saved = localStorage.getItem('b26-charges');
+    const saved = localStorage.getItem('knd-charges');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
