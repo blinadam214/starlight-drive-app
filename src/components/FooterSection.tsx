@@ -1,7 +1,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { MessageCircle, MapPin, Instagram, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import logoB26 from "@/assets/logo-b26.png";
+import logoKND from "@/assets/logo-knd.png";
 
 const FooterSection = () => {
   const { t } = useLanguage();
@@ -13,7 +13,7 @@ const FooterSection = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="mb-4">
-              <img src={logoB26} alt="B26 Location de voiture Marrakech" className="h-16 w-auto object-contain" />
+              <img src={logoKND} alt="Kech Night Drive — Location Premium Marrakech" className="h-16 w-auto object-contain" />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mb-6">
               {t("footer.tagline")}
@@ -71,7 +71,7 @@ const FooterSection = () => {
         </div>
 
         <div className="border-t border-border mt-12 pt-8 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} B-LINE 26. {t("footer.rights")}
+          © {new Date().getFullYear()} Kech Night Drive. {t("footer.rights")}
         </div>
       </div>
     </footer>

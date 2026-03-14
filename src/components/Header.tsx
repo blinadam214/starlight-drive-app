@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { Menu, X, Globe, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logoB26 from "@/assets/logo-b26.png";
+import logoKND from "@/assets/logo-knd.png";
 import ThemeToggle from "./ThemeToggle";
 
 const LANGUAGES: { code: Language; label: string; flag: string }[] = [
@@ -52,7 +52,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center group">
-            <img src={logoB26} alt="B26 Location de voiture Marrakech" className="h-12 lg:h-14 w-auto object-contain" />
+            <img src={logoKND} alt="Kech Night Drive — Location Premium Marrakech" className="h-14 lg:h-16 w-auto object-contain" />
           </a>
 
           {/* Desktop Nav */}

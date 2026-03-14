@@ -25,7 +25,7 @@ export const translations: Translations = {
     fr: "Location Premium à Marrakech", en: "Premium Rental in Marrakech", ar: "تأجير فاخر في مراكش", es: "Alquiler Premium en Marrakech", it: "Noleggio Premium a Marrakech", de: "Premium-Vermietung in Marrakesch", nl: "Premium verhuur in Marrakech"
   },
   "hero.title1": {
-    fr: "MAÎTRISEZ LA NUIT.", en: "MASTER THE NIGHT.", ar: "سَيطِر على الليل.", es: "DOMINA LA NOCHE.", it: "DOMINA LA NOTTE.", de: "BEHERRSCHE DIE NACHT.", nl: "BEHEERS DE NACHT."
+    fr: "KECH NIGHT DRIVE", en: "KECH NIGHT DRIVE", ar: "KECH NIGHT DRIVE", es: "KECH NIGHT DRIVE", it: "KECH NIGHT DRIVE", de: "KECH NIGHT DRIVE", nl: "KECH NIGHT DRIVE"
   },
   "hero.slogan": {
     fr: "Prenez le volant de vos nuits.", en: "Take the wheel of your nights.", ar: "خُذ مِقوَد ليالِيك.", es: "Toma el volante de tus noches.", it: "Prendi il volante delle tue notti.", de: "Übernimm das Steuer deiner Nächte.", nl: "Neem het stuur van je nachten."
@@ -48,7 +48,7 @@ export const translations: Translations = {
 
   // Innovation
   "innovation.badge": {
-    fr: "L'innovation B-LINE 26", en: "The B-LINE 26 Innovation", ar: "ابتكار B-LINE 26", es: "La innovación B-LINE 26", it: "L'innovazione B-LINE 26", de: "Die B-LINE 26 Innovation", nl: "De B-LINE 26 innovatie"
+    fr: "L'innovation Kech Night Drive", en: "The Kech Night Drive Innovation", ar: "ابتكار Kech Night Drive", es: "La innovación Kech Night Drive", it: "L'innovazione Kech Night Drive", de: "Die Kech Night Drive Innovation", nl: "De Kech Night Drive innovatie"
   },
   "innovation.title": {
     fr: "L'expérience Starlight", en: "The Starlight Experience", ar: "تجربة ستارلايت", es: "La experiencia Starlight", it: "L'esperienza Starlight", de: "Das Starlight-Erlebnis", nl: "De Starlight-ervaring"
@@ -245,13 +245,13 @@ export const translations: Translations = {
 
   // Footer
   "footer.tagline": {
-    fr: "Location premium à Marrakech. L'expérience Starlight, accessible à tous.",
-    en: "Premium rental in Marrakech. The Starlight experience, accessible to all.",
-    ar: "تأجير فاخر في مراكش. تجربة ستارلايت، في متناول الجميع.",
-    es: "Alquiler premium en Marrakech. La experiencia Starlight, accesible para todos.",
-    it: "Noleggio premium a Marrakech. L'esperienza Starlight, accessibile a tutti.",
-    de: "Premium-Vermietung in Marrakesch. Das Starlight-Erlebnis, für alle zugänglich.",
-    nl: "Premium verhuur in Marrakech. De Starlight-ervaring, toegankelijk voor iedereen."
+    fr: "Kech Night Drive — Location premium à Marrakech. L'expérience Starlight, accessible à tous.",
+    en: "Kech Night Drive — Premium rental in Marrakech. The Starlight experience, accessible to all.",
+    ar: "Kech Night Drive — تأجير فاخر في مراكش. تجربة ستارلايت، في متناول الجميع.",
+    es: "Kech Night Drive — Alquiler premium en Marrakech. La experiencia Starlight, accesible para todos.",
+    it: "Kech Night Drive — Noleggio premium a Marrakech. L'esperienza Starlight, accessibile a tutti.",
+    de: "Kech Night Drive — Premium-Vermietung in Marrakesch. Das Starlight-Erlebnis, für alle zugänglich.",
+    nl: "Kech Night Drive — Premium verhuur in Marrakech. De Starlight-ervaring, toegankelijk voor iedereen."
   },
   "footer.links": {
     fr: "Liens rapides", en: "Quick Links", ar: "روابط سريعة", es: "Enlaces rápidos", it: "Link rapidi", de: "Schnelllinks", nl: "Snelkoppelingen"
