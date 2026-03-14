@@ -40,7 +40,7 @@ const HeroSection = () => {
       <div className="absolute inset-0">
         <img
           src={heroImage}
-          alt="Lumina Majorelle Starlight car"
+          alt="Kech Night Drive — Starlight car"
           className="w-full h-full object-cover"
           loading="eager"
         />
