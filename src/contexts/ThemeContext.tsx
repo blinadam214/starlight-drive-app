@@ -13,15 +13,15 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("b26-theme") as Theme;
+      const stored = localStorage.getItem("knd-theme") as Theme;
       if (stored === "light" || stored === "dark") return stored;
     }
-    return "dark"; // Default: dark — the soul of B-LINE 26
+    return "dark"; // Default: dark — the soul of Kech Night Drive
   });
 
   const setTheme = (t: Theme) => {
     setThemeState(t);
-    localStorage.setItem("b26-theme", t);
+    localStorage.setItem("knd-theme", t);
   };
 
   const toggleTheme = () => {

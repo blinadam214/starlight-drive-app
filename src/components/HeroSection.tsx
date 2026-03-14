@@ -10,9 +10,9 @@ const NeonText = ({ text }: { text: string }) => {
     return text.split("").map((char, i) => {
       if (char === " ") return <span key={i}>&nbsp;</span>;
       // Only animate ~1 in 3 letters randomly
-      const shouldAnimate = i % 3 === Math.floor(Math.random() * 3);
-      const duration = 2.5 + Math.random() * 3; // 2.5-5.5s
-      const delay = Math.random() * 4; // 0-4s offset
+      const shouldAnimate = i % 3 === 0;
+      const delay = `${(i * 0.4) % 3}s`;
+      const duration = 2.5 + (i % 5) * 0.6;
       return (
         <span
           key={i}
@@ -40,7 +40,7 @@ const HeroSection = () => {
       <div className="absolute inset-0">
         <img
           src={heroImage}
-          alt="Lumina Majorelle Starlight car"
+          alt="Kech Night Drive — Starlight car"
           className="w-full h-full object-cover"
           loading="eager"
         />

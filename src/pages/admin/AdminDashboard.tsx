@@ -74,10 +74,10 @@ interface ChargeItem {
 const LogoMark = () => (
   <div className="flex items-center space-x-2">
     <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-cyan-500 rounded-lg flex items-center justify-center">
-      <span className="text-white font-bold text-sm">B</span>
+      <span className="text-white font-bold text-sm">K</span>
     </div>
     <span className="font-bold text-lg bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
-      B-LINE 26
+      Kech Night Drive
     </span>
   </div>
 );
@@ -144,7 +144,7 @@ const INITIAL_CHARGES: ChargeItem[] = [
 
 const ChargesCard: React.FC<ChargesCardProps> = ({ monthlyRevenue }) => {
   const [charges, setCharges] = useState<ChargeItem[]>(() => {
-    const saved = localStorage.getItem('b26-charges');
+    const saved = localStorage.getItem('knd-charges');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -170,7 +170,7 @@ const ChargesCard: React.FC<ChargesCardProps> = ({ monthlyRevenue }) => {
     setCharges(updated);
     const toSave: Record<string, number> = {};
     updated.forEach(c => { toSave[c.id] = c.amount; });
-    localStorage.setItem('b26-charges', JSON.stringify(toSave));
+    localStorage.setItem('knd-charges', JSON.stringify(toSave));
     setEditingId(null);
   };
 
@@ -576,7 +576,7 @@ const AdminDashboard: React.FC = () => {
             <header className="bg-gray-900/50 border-b border-gray-800 px-6 py-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-bold text-violet-300">Dashboard B-LINE 26</h1>
+                  <h1 className="text-2xl font-bold text-violet-300">Dashboard Kech Night Drive</h1>
                   <p className="text-gray-400 text-sm">{format(new Date(), 'EEEE dd MMMM yyyy', { locale: fr })}</p>
                 </div>
                 <div className="flex items-center space-x-4">

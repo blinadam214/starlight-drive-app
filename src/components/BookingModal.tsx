@@ -23,7 +23,7 @@ const BookingModal = ({ vehicle, onClose }: BookingModalProps) => {
 
   const handleWhatsApp = () => {
     const msg = encodeURIComponent(
-      `Bonjour B-LINE 26! Je souhaite réserver: ${t(vehicle.nameKey)}\nDu: ${startDate?.toLocaleDateString()}\nAu: ${endDate?.toLocaleDateString()}\nTotal: ${total} €`
+      `Bonjour Kech Night Drive! Je souhaite réserver: ${t(vehicle.nameKey)}\nDu: ${startDate?.toLocaleDateString()}\nAu: ${endDate?.toLocaleDateString()}\nTotal: ${total} €`
     );
     window.open(`https://wa.me/212600000000?text=${msg}`, "_blank");
   };
