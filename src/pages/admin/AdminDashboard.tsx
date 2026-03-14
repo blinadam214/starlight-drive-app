@@ -170,7 +170,7 @@ const ChargesCard: React.FC<ChargesCardProps> = ({ monthlyRevenue }) => {
     setCharges(updated);
     const toSave: Record<string, number> = {};
     updated.forEach(c => { toSave[c.id] = c.amount; });
-    localStorage.setItem('b26-charges', JSON.stringify(toSave));
+    localStorage.setItem('knd-charges', JSON.stringify(toSave));
     setEditingId(null);
   };
 
