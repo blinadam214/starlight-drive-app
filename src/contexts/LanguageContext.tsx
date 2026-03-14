@@ -48,7 +48,7 @@ export const translations: Translations = {
 
   // Innovation
   "innovation.badge": {
-    fr: "L'innovation B-LINE 26", en: "The B-LINE 26 Innovation", ar: "ابتكار B-LINE 26", es: "La innovación B-LINE 26", it: "L'innovazione B-LINE 26", de: "Die B-LINE 26 Innovation", nl: "De B-LINE 26 innovatie"
+    fr: "L'innovation Kech Night Drive", en: "The Kech Night Drive Innovation", ar: "ابتكار Kech Night Drive", es: "La innovación Kech Night Drive", it: "L'innovazione Kech Night Drive", de: "Die Kech Night Drive Innovation", nl: "De Kech Night Drive innovatie"
   },
   "innovation.title": {
     fr: "L'expérience Starlight", en: "The Starlight Experience", ar: "تجربة ستارلايت", es: "La experiencia Starlight", it: "L'esperienza Starlight", de: "Das Starlight-Erlebnis", nl: "De Starlight-ervaring"
