@@ -576,7 +576,7 @@ const AdminDashboard: React.FC = () => {
             <header className="bg-gray-900/50 border-b border-gray-800 px-6 py-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-bold text-violet-300">Dashboard B-LINE 26</h1>
+                  <h1 className="text-2xl font-bold text-violet-300">Dashboard Kech Night Drive</h1>
                   <p className="text-gray-400 text-sm">{format(new Date(), 'EEEE dd MMMM yyyy', { locale: fr })}</p>
                 </div>
                 <div className="flex items-center space-x-4">

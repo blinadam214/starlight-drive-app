@@ -59,12 +59,12 @@ const FooterSection = () => {
                 +212 6XX XXX XXX
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                contact@bline26.ma
-              </li>
-              <li className="flex items-center gap-2">
-                <Instagram className="w-4 h-4 text-primary flex-shrink-0" />
-                @bline26
+              <Mail className="w-4 h-4 text-primary flex-shrink-0" />
+              contact@kechnightdrive.ma
+            </li>
+            <li className="flex items-center gap-2">
+              <Instagram className="w-4 h-4 text-primary flex-shrink-0" />
+              @kechnightdrive
               </li>
             </ul>
           </div>

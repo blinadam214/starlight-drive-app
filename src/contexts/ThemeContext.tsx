@@ -21,7 +21,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   const setTheme = (t: Theme) => {
     setThemeState(t);
-    localStorage.setItem("b26-theme", t);
+    localStorage.setItem("knd-theme", t);
   };
 
   const toggleTheme = () => {
