@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { Menu, X, Globe, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logoB26 from "@/assets/logo-b26.png";
+import logoKND from "@/assets/logo-knd.png";
 import ThemeToggle from "./ThemeToggle";
 
 const LANGUAGES: { code: Language; label: string; flag: string }[] = [
