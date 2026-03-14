@@ -10,9 +10,9 @@ const NeonText = ({ text }: { text: string }) => {
     return text.split("").map((char, i) => {
       if (char === " ") return <span key={i}>&nbsp;</span>;
       // Only animate ~1 in 3 letters randomly
-    const shouldAnimate = index % 3 === 0 && char !== " ";
-      const delay = `${(index * 0.4) % 3}s`;
-      const duration = 2.5 + (index % 5) * 0.6; // deterministic variation
+      const shouldAnimate = i % 3 === 0;
+      const delay = `${(i * 0.4) % 3}s`;
+      const duration = 2.5 + (i % 5) * 0.6;
       return (
         <span
           key={i}
