@@ -192,7 +192,7 @@ const Header = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.href}
-                  onClick={() => scrollTo(link.href)}
+                  onClick={() => scrollTo(link.href, (link as any).isRoute)}
                   className="block w-full text-left rtl:text-right text-foreground text-lg font-medium py-2"
                 >
                   {link.label}
