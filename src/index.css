@@ -287,6 +287,11 @@
   will-change: text-shadow;
 }
 
+/* Light mode: reduce neon intensity */
+:root .neon-letter.animate-neon {
+  animation: neon-pulse var(--neon-duration, 4s) infinite ease-in-out;
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }

@@ -90,7 +90,7 @@ export const translations: Translations = {
     fr: "Livraison VIP Aéroport", en: "VIP Airport Delivery", ar: "توصيل VIP للمطار", es: "Entrega VIP Aeropuerto", it: "Consegna VIP Aeroporto", de: "VIP Flughafen-Lieferung", nl: "VIP Luchthaven Bezorging"
   },
   "innovation.feat3.desc": {
-    fr: "Votre véhicule vous attend dès votre sortie de l'aéroport Marrakech-Menara ou directement à votre hôtel/villa. Check-in express garanti.",
+    fr: "Votre véhicule vous attend dès votre sortie de l'aéroport Marrakech-Menara ou directement à votre hôtel/villa. Enregistrement express garanti.",
     en: "Your vehicle awaits you at the exit of Marrakech-Menara airport or directly at your hotel/villa. Express check-in guaranteed.",
     ar: "سيارتك بانتظارك عند خروجك من مطار مراكش المنارة أو مباشرة في فندقك/فيلتك. تسجيل سريع مضمون.",
     es: "Tu vehículo te espera a la salida del aeropuerto Marrakech-Menara o directamente en tu hotel/villa. Check-in express garantizado.",
