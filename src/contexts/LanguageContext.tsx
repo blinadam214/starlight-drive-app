@@ -289,7 +289,7 @@ export const translations: Translations = {
 
   // Check-in Express
   "checkin.title": {
-    fr: "Check-in Express", en: "Express Check-in", ar: "تسجيل سريع", es: "Check-in Express", it: "Check-in Express", de: "Express Check-in", nl: "Express Check-in"
+    fr: "Enregistrement Express", en: "Express Registration", ar: "تسجيل سريع", es: "Registro Express", it: "Registrazione Express", de: "Express-Registrierung", nl: "Express Registratie"
   },
   "checkin.desc": {
     fr: "Gagnez du temps en pré-enregistrant vos documents. Récupérez votre véhicule sans attente.",
