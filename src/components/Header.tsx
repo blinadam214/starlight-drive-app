@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { Menu, X, Globe, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
