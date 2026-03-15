@@ -159,9 +159,9 @@ const Header = () => {
             {/* Theme Toggle */}
             <ThemeToggle />
 
-            {/* Check-in Express */}
+            {/* Enregistrement Express */}
             <button
-              onClick={() => scrollTo("#booking")}
+              onClick={() => { setMobileOpen(false); navigate("/enregistrement"); }}
               className="hidden sm:flex items-center gap-2 btn-neon text-sm !px-5 !py-2"
             >
               <Zap className="w-4 h-4" />
@@ -222,7 +222,7 @@ const Header = () => {
               </div>
 
               <button
-                onClick={() => scrollTo("#booking")}
+                onClick={() => { setMobileOpen(false); navigate("/enregistrement"); }}
                 className="btn-neon w-full flex items-center justify-center gap-2 text-sm mt-4"
               >
                 <Zap className="w-4 h-4" />

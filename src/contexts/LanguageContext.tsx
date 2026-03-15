@@ -17,7 +17,7 @@ export const translations: Translations = {
     fr: "Réservation", en: "Booking", ar: "الحجز", es: "Reserva", it: "Prenotazione", de: "Buchung", nl: "Reservering"
   },
   "nav.checkin": {
-    fr: "Check-in Express", en: "Express Check-in", ar: "تسجيل سريع", es: "Check-in Express", it: "Check-in Express", de: "Express Check-in", nl: "Express Check-in"
+    fr: "Enregistrement Express", en: "Express Registration", ar: "تسجيل سريع", es: "Registro Express", it: "Registrazione Express", de: "Express-Registrierung", nl: "Express Registratie"
   },
 
   // Hero
@@ -31,7 +31,7 @@ export const translations: Translations = {
     fr: "Prenez le volant de vos nuits.", en: "Take the wheel of your nights.", ar: "خُذ مِقوَد ليالِيك.", es: "Toma el volante de tus noches.", it: "Prendi il volante delle tue notti.", de: "Übernimm das Steuer deiner Nächte.", nl: "Neem het stuur van je nachten."
   },
   "hero.subtitle": {
-    fr: "Découvrez la première agence de location « Custom Experience » à Marrakech. Des citadines et deux-roues transformés en véhicules premium (Ciel étoilé Starlight & LED d'ambiance). Le luxe nocturne, enfin accessible.",
+    fr: "Découvrez la première agence de location « Expérience Sur-Mesure » à Marrakech. Des citadines et deux-roues transformés en véhicules premium (Ciel étoilé Starlight & LED d'ambiance). Le luxe nocturne, enfin accessible.",
     en: "Discover the first 'Custom Experience' rental agency in Marrakech. City cars and motorcycles transformed into premium vehicles (Starlight ceiling & ambient LED). Nighttime luxury, finally accessible.",
     ar: "اكتشف أول وكالة تأجير « Custom Experience » في مراكش. سيارات مدنية ودراجات نارية محوّلة إلى مركبات فاخرة (سقف نجمي Starlight وإضاءة LED). الفخامة الليلية، أخيراً في متناول الجميع.",
     es: "Descubre la primera agencia de alquiler 'Custom Experience' en Marrakech. Utilitarios y motos transformados en vehículos premium (Cielo estrellado Starlight y LED ambiental). El lujo nocturno, al fin accesible.",
@@ -90,7 +90,7 @@ export const translations: Translations = {
     fr: "Livraison VIP Aéroport", en: "VIP Airport Delivery", ar: "توصيل VIP للمطار", es: "Entrega VIP Aeropuerto", it: "Consegna VIP Aeroporto", de: "VIP Flughafen-Lieferung", nl: "VIP Luchthaven Bezorging"
   },
   "innovation.feat3.desc": {
-    fr: "Votre véhicule vous attend dès votre sortie de l'aéroport Marrakech-Menara ou directement à votre hôtel/villa. Check-in express garanti.",
+    fr: "Votre véhicule vous attend dès votre sortie de l'aéroport Marrakech-Menara ou directement à votre hôtel/villa. Enregistrement express garanti.",
     en: "Your vehicle awaits you at the exit of Marrakech-Menara airport or directly at your hotel/villa. Express check-in guaranteed.",
     ar: "سيارتك بانتظارك عند خروجك من مطار مراكش المنارة أو مباشرة في فندقك/فيلتك. تسجيل سريع مضمون.",
     es: "Tu vehículo te espera a la salida del aeropuerto Marrakech-Menara o directamente en tu hotel/villa. Check-in express garantizado.",
@@ -231,10 +231,10 @@ export const translations: Translations = {
     nl: "Selecteer uw huurperiode op onze interactieve kalender. Controleer beschikbaarheid in realtime."
   },
   "booking.step2.title": {
-    fr: "Check-in Express", en: "Express Check-in", ar: "تسجيل سريع", es: "Check-in Express", it: "Check-in Express", de: "Express Check-in", nl: "Express Check-in"
+    fr: "Enregistrement Express", en: "Express Registration", ar: "تسجيل سريع", es: "Registro Express", it: "Registrazione Express", de: "Express-Registrierung", nl: "Express Registratie"
   },
   "booking.step2.desc": {
-    fr: "Uploadez votre permis de conduire et passeport/CIN. Votre contrat sera pré-rempli à votre arrivée.",
+    fr: "Téléversez votre permis de conduire et passeport/CIN. Votre contrat sera pré-rempli à votre arrivée.",
     en: "Upload your driver's license and passport/ID. Your contract will be pre-filled on arrival.",
     ar: "قم بتحميل رخصة القيادة وجواز السفر/بطاقة الهوية. سيتم ملء عقدك مسبقاً عند وصولك.",
     es: "Sube tu licencia de conducir y pasaporte/DNI. Tu contrato estará prerrellenado a tu llegada.",
@@ -289,7 +289,7 @@ export const translations: Translations = {
 
   // Check-in Express
   "checkin.title": {
-    fr: "Check-in Express", en: "Express Check-in", ar: "تسجيل سريع", es: "Check-in Express", it: "Check-in Express", de: "Express Check-in", nl: "Express Check-in"
+    fr: "Enregistrement Express", en: "Express Registration", ar: "تسجيل سريع", es: "Registro Express", it: "Registrazione Express", de: "Express-Registrierung", nl: "Express Registratie"
   },
   "checkin.desc": {
     fr: "Gagnez du temps en pré-enregistrant vos documents. Récupérez votre véhicule sans attente.",
@@ -316,7 +316,7 @@ export const translations: Translations = {
     fr: "Passeport ou CIN", en: "Passport or ID", ar: "جواز السفر أو بطاقة الهوية", es: "Pasaporte o DNI", it: "Passaporto o carta d'identità", de: "Reisepass oder Ausweis", nl: "Paspoort of ID"
   },
   "checkin.upload": {
-    fr: "Cliquez pour uploader", en: "Click to upload", ar: "انقر للتحميل", es: "Haz clic para subir", it: "Clicca per caricare", de: "Klicken zum Hochladen", nl: "Klik om te uploaden"
+    fr: "Cliquez pour téléverser", en: "Click to upload", ar: "انقر للتحميل", es: "Haz clic para subir", it: "Clicca per caricare", de: "Klicken zum Hochladen", nl: "Klik om te uploaden"
   },
   "checkin.submit": {
     fr: "Envoyer mes documents", en: "Submit My Documents", ar: "إرسال مستنداتي", es: "Enviar mis documentos", it: "Invia i miei documenti", de: "Dokumente einreichen", nl: "Mijn documenten indienen"
