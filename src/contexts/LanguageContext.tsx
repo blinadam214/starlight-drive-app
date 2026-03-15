@@ -231,10 +231,10 @@ export const translations: Translations = {
     nl: "Selecteer uw huurperiode op onze interactieve kalender. Controleer beschikbaarheid in realtime."
   },
   "booking.step2.title": {
-    fr: "Check-in Express", en: "Express Check-in", ar: "تسجيل سريع", es: "Check-in Express", it: "Check-in Express", de: "Express Check-in", nl: "Express Check-in"
+    fr: "Enregistrement Express", en: "Express Registration", ar: "تسجيل سريع", es: "Registro Express", it: "Registrazione Express", de: "Express-Registrierung", nl: "Express Registratie"
   },
   "booking.step2.desc": {
-    fr: "Uploadez votre permis de conduire et passeport/CIN. Votre contrat sera pré-rempli à votre arrivée.",
+    fr: "Téléversez votre permis de conduire et passeport/CIN. Votre contrat sera pré-rempli à votre arrivée.",
     en: "Upload your driver's license and passport/ID. Your contract will be pre-filled on arrival.",
     ar: "قم بتحميل رخصة القيادة وجواز السفر/بطاقة الهوية. سيتم ملء عقدك مسبقاً عند وصولك.",
     es: "Sube tu licencia de conducir y pasaporte/DNI. Tu contrato estará prerrellenado a tu llegada.",
