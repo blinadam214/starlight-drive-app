@@ -77,7 +77,7 @@ const Header = () => {
             {navLinks.map((link) => (
               <button
                 key={link.href}
-                onClick={() => scrollTo(link.href)}
+                onClick={() => scrollTo(link.href, (link as any).isRoute)}
                 className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium tracking-wide"
               >
                 {link.label}
