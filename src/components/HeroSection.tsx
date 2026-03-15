@@ -65,15 +65,6 @@ const HeroSection = () => {
             </span>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-6xl font-light leading-[1.1] tracking-[0.3em] mb-6 uppercase font-sans text-slate-100 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
-          >
-            {t("hero.title1")}
-          </motion.h1>
-
           {/* Neon slogan with per-letter flicker */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
