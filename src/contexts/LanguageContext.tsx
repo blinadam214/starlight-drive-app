@@ -75,16 +75,16 @@ export const translations: Translations = {
     nl: "Honderden glasvezels transformeren het plafond in een hemelgewelf."
   },
   "innovation.feat2.title": {
-    fr: "Ambiance LED", en: "LED Ambiance", ar: "أجواء LED", es: "Ambiente LED", it: "Ambiente LED", de: "LED-Ambiente", nl: "LED-sfeer"
+    fr: "Jeunes Permis Acceptés", en: "Young Drivers Welcome", ar: "رخص جديدة مقبولة", es: "Jóvenes Conductores", it: "Neopatentati Benvenuti", de: "Fahranfänger willkommen", nl: "Jonge rijbewijzen welkom"
   },
   "innovation.feat2.desc": {
-    fr: "Éclairage d'ambiance multicolore pour une atmosphère unique à chaque trajet.",
-    en: "Multicolor ambient lighting for a unique atmosphere on every ride.",
-    ar: "إضاءة محيطية متعددة الألوان لأجواء فريدة في كل رحلة.",
-    es: "Iluminación ambiental multicolor para una atmósfera única en cada trayecto.",
-    it: "Illuminazione ambientale multicolore per un'atmosfera unica ad ogni viaggio.",
-    de: "Mehrfarbige Ambientebeleuchtung für eine einzigartige Atmosphäre bei jeder Fahrt.",
-    nl: "Meerkleurige sfeerverlichting voor een unieke sfeer bij elke rit."
+    fr: "Contrairement aux agences traditionnelles, nous faisons confiance aux jeunes conducteurs. Véhicule suréquipé et esthétique VIP au même tarif, sans restrictions d'âge abusives.",
+    en: "Unlike traditional agencies, we trust young drivers. Premium equipped vehicles and VIP aesthetics at the same rate, no abusive age restrictions.",
+    ar: "على عكس الوكالات التقليدية، نثق بالسائقين الشباب. مركبات مجهزة بالكامل وجمالية VIP بنفس السعر، بدون قيود عمرية مبالغة.",
+    es: "A diferencia de las agencias tradicionales, confiamos en los jóvenes conductores. Vehículo sobreequipado y estética VIP al mismo precio, sin restricciones de edad abusivas.",
+    it: "A differenza delle agenzie tradizionali, ci fidiamo dei giovani conducenti. Veicoli super equipaggiati e estetica VIP alla stessa tariffa, senza restrizioni d'età eccessive.",
+    de: "Anders als traditionelle Agenturen vertrauen wir jungen Fahrern. Voll ausgestattete Fahrzeuge und VIP-Ästhetik zum gleichen Tarif, ohne übermäßige Altersbeschränkungen.",
+    nl: "In tegenstelling tot traditionele bureaus vertrouwen wij jonge bestuurders. Volledig uitgerust voertuig en VIP-esthetiek voor hetzelfde tarief, zonder buitensporige leeftijdsbeperkingen."
   },
   "innovation.feat3.title": {
     fr: "Luxe Abordable", en: "Affordable Luxury", ar: "فخامة بأسعار معقولة", es: "Lujo Asequible", it: "Lusso Accessibile", de: "Erschwinglicher Luxus", nl: "Betaalbare luxe"
