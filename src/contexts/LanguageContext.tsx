@@ -87,16 +87,28 @@ export const translations: Translations = {
     nl: "In tegenstelling tot traditionele bureaus vertrouwen wij jonge bestuurders. Volledig uitgerust voertuig en VIP-esthetiek voor hetzelfde tarief, zonder buitensporige leeftijdsbeperkingen."
   },
   "innovation.feat3.title": {
-    fr: "Luxe Abordable", en: "Affordable Luxury", ar: "فخامة بأسعار معقولة", es: "Lujo Asequible", it: "Lusso Accessibile", de: "Erschwinglicher Luxus", nl: "Betaalbare luxe"
+    fr: "Livraison VIP Aéroport", en: "VIP Airport Delivery", ar: "توصيل VIP للمطار", es: "Entrega VIP Aeropuerto", it: "Consegna VIP Aeroporto", de: "VIP Flughafen-Lieferung", nl: "VIP Luchthaven Bezorging"
   },
   "innovation.feat3.desc": {
-    fr: "L'expérience VIP sans le prix VIP. Le confort premium au tarif citadine.",
-    en: "The VIP experience without the VIP price. Premium comfort at city car rates.",
-    ar: "تجربة VIP بدون سعر VIP. راحة فاخرة بأسعار السيارات المدنية.",
-    es: "La experiencia VIP sin el precio VIP. Confort premium a precio de coche urbano.",
-    it: "L'esperienza VIP senza il prezzo VIP. Comfort premium a tariffe da city car.",
-    de: "Das VIP-Erlebnis ohne VIP-Preis. Premium-Komfort zum Stadtwagen-Tarif.",
-    nl: "De VIP-ervaring zonder VIP-prijs. Premium comfort tegen stadsautotarieven."
+    fr: "Votre véhicule vous attend dès votre sortie de l'aéroport Marrakech-Menara ou directement à votre hôtel/villa. Check-in express garanti.",
+    en: "Your vehicle awaits you at the exit of Marrakech-Menara airport or directly at your hotel/villa. Express check-in guaranteed.",
+    ar: "سيارتك بانتظارك عند خروجك من مطار مراكش المنارة أو مباشرة في فندقك/فيلتك. تسجيل سريع مضمون.",
+    es: "Tu vehículo te espera a la salida del aeropuerto Marrakech-Menara o directamente en tu hotel/villa. Check-in express garantizado.",
+    it: "Il tuo veicolo ti attende all'uscita dell'aeroporto di Marrakech-Menara o direttamente al tuo hotel/villa. Check-in express garantito.",
+    de: "Ihr Fahrzeug wartet am Ausgang des Flughafens Marrakesch-Menara oder direkt an Ihrem Hotel/Villa. Express Check-in garantiert.",
+    nl: "Uw voertuig wacht op u bij de uitgang van Marrakech-Menara luchthaven of direct bij uw hotel/villa. Express check-in gegarandeerd."
+  },
+  "innovation.feat4.title": {
+    fr: "Fiabilité & Discrétion", en: "Reliability & Discretion", ar: "موثوقية وسرية", es: "Fiabilidad y Discreción", it: "Affidabilità e Discrezione", de: "Zuverlässigkeit & Diskretion", nl: "Betrouwbaarheid & Discretie"
+  },
+  "innovation.feat4.desc": {
+    fr: "Flotte 100% neuve, assistance 7j/7 et véhicules livrés dans un état de propreté clinique.",
+    en: "100% new fleet, 24/7 assistance and vehicles delivered in clinical cleanliness.",
+    ar: "أسطول جديد 100%، مساعدة 7/7 ومركبات تُسلّم بنظافة سريرية.",
+    es: "Flota 100% nueva, asistencia 7/7 y vehículos entregados en estado de limpieza clínica.",
+    it: "Flotta 100% nuova, assistenza 7/7 e veicoli consegnati in condizioni di pulizia clinica.",
+    de: "100% neue Flotte, 7/7-Assistance und Fahrzeuge in klinischer Sauberkeit geliefert.",
+    nl: "100% nieuw wagenpark, 7/7 assistentie en voertuigen geleverd in klinische netheid."
   },
 
   // Fleet
