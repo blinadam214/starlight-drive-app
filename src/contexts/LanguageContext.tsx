@@ -31,13 +31,13 @@ export const translations: Translations = {
     fr: "Prenez le volant de vos nuits.", en: "Take the wheel of your nights.", ar: "خُذ مِقوَد ليالِيك.", es: "Toma el volante de tus noches.", it: "Prendi il volante delle tue notti.", de: "Übernimm das Steuer deiner Nächte.", nl: "Neem het stuur van je nachten."
   },
   "hero.subtitle": {
-    fr: "Découvrez nos citadines transformées avec ciel étoilé et ambiance LED. Le luxe accessible, la nuit à Marrakech.",
-    en: "Discover our city cars transformed with starlight ceilings and LED ambiance. Affordable luxury, Marrakech by night.",
-    ar: "اكتشف سياراتنا المدنية المحولة بسقف نجمي وأجواء LED. الفخامة في متناول الجميع، مراكش ليلاً.",
-    es: "Descubre nuestros coches urbanos transformados con techo estrellado y ambiente LED. Lujo accesible, Marrakech de noche.",
-    it: "Scopri le nostre city car trasformate con cielo stellato e illuminazione LED. Lusso accessibile, Marrakech di notte.",
-    de: "Entdecken Sie unsere Stadtautos mit Sternenhimmel und LED-Ambiente. Erschwinglicher Luxus, Marrakesch bei Nacht.",
-    nl: "Ontdek onze stadsauto's met sterrenhemel en LED-sfeer. Betaalbare luxe, Marrakech bij nacht."
+    fr: "Découvrez la première agence de location « Custom Experience » à Marrakech. Des citadines et deux-roues transformés en véhicules premium (Ciel étoilé Starlight & LED d'ambiance). Le luxe nocturne, enfin accessible.",
+    en: "Discover the first 'Custom Experience' rental agency in Marrakech. City cars and motorcycles transformed into premium vehicles (Starlight ceiling & ambient LED). Nighttime luxury, finally accessible.",
+    ar: "اكتشف أول وكالة تأجير « Custom Experience » في مراكش. سيارات مدنية ودراجات نارية محوّلة إلى مركبات فاخرة (سقف نجمي Starlight وإضاءة LED). الفخامة الليلية، أخيراً في متناول الجميع.",
+    es: "Descubre la primera agencia de alquiler 'Custom Experience' en Marrakech. Utilitarios y motos transformados en vehículos premium (Cielo estrellado Starlight y LED ambiental). El lujo nocturno, al fin accesible.",
+    it: "Scopri la prima agenzia di noleggio « Custom Experience » a Marrakech. City car e moto trasformate in veicoli premium (Cielo stellato Starlight e LED ambientale). Il lusso notturno, finalmente accessibile.",
+    de: "Entdecken Sie die erste « Custom Experience »-Vermietungsagentur in Marrakesch. Stadtautos und Motorräder, verwandelt in Premium-Fahrzeuge (Sternenhimmel Starlight & LED-Ambiente). Nächtlicher Luxus, endlich erschwinglich.",
+    nl: "Ontdek het eerste 'Custom Experience'-verhuurbedrijf in Marrakech. Stadsauto's en motoren omgebouwd tot premiumvoertuigen (Starlight sterrenhemel & LED-sfeer). Nachtelijk luxe, eindelijk bereikbaar."
   },
   "hero.cta": {
     fr: "Découvrir la flotte", en: "Explore the Fleet", ar: "استكشف الأسطول", es: "Explorar la flota", it: "Esplora la flotta", de: "Flotte entdecken", nl: "Ontdek de vloot"
@@ -54,13 +54,13 @@ export const translations: Translations = {
     fr: "L'expérience Starlight", en: "The Starlight Experience", ar: "تجربة ستارلايت", es: "La experiencia Starlight", it: "L'esperienza Starlight", de: "Das Starlight-Erlebnis", nl: "De Starlight-ervaring"
   },
   "innovation.subtitle": {
-    fr: "Des citadines ordinaires, une expérience extraordinaire. Nos Clio 5 et Peugeot 208 sont équipées de ciels étoilés et d'éclairages LED d'ambiance.",
-    en: "Ordinary city cars, an extraordinary experience. Our Clio 5 and Peugeot 208 come equipped with starlight ceilings and LED ambient lighting.",
-    ar: "سيارات مدنية عادية، تجربة استثنائية. سياراتنا Clio 5 و Peugeot 208 مجهزة بسقوف نجمية وإضاءة LED محيطية.",
-    es: "Coches urbanos ordinarios, una experiencia extraordinaria. Nuestros Clio 5 y Peugeot 208 están equipados con techos estrellados e iluminación LED ambiental.",
-    it: "City car ordinarie, un'esperienza straordinaria. Le nostre Clio 5 e Peugeot 208 sono dotate di cielo stellato e illuminazione LED ambientale.",
-    de: "Gewöhnliche Stadtautos, ein außergewöhnliches Erlebnis. Unsere Clio 5 und Peugeot 208 sind mit Sternenhimmel und LED-Ambiente ausgestattet.",
-    nl: "Gewone stadsauto's, een buitengewone ervaring. Onze Clio 5 en Peugeot 208 zijn uitgerust met sterrenhemel en LED-sfeerverlichting."
+    fr: "Ne louez pas seulement un véhicule, louez une atmosphère. Nos habitacles sont équipés de ciels étoilés et d'éclairages d'ambiance sur-mesure pour maîtriser la nuit marrakchie.",
+    en: "Don't just rent a vehicle, rent an atmosphere. Our cabins are equipped with starlight ceilings and custom ambient lighting to own the Marrakech night.",
+    ar: "لا تستأجر مجرد سيارة، استأجر أجواء. مقصوراتنا مجهزة بسقوف نجمية وإضاءة محيطية مخصصة لتملك ليل مراكش.",
+    es: "No alquiles solo un vehículo, alquila una atmósfera. Nuestros habitáculos están equipados con cielos estrellados e iluminación ambiental personalizada.",
+    it: "Non noleggiare solo un veicolo, noleggia un'atmosfera. I nostri abitacoli sono dotati di cielo stellato e illuminazione ambientale su misura.",
+    de: "Mieten Sie nicht nur ein Fahrzeug, mieten Sie eine Atmosphäre. Unsere Fahrgastzellen sind mit Sternenhimmel und maßgeschneiderter Ambientebeleuchtung ausgestattet.",
+    nl: "Huur niet alleen een voertuig, huur een sfeer. Onze cabines zijn uitgerust met sterrenhemel en op maat gemaakte sfeerverlichting."
   },
   "innovation.feat1.title": {
     fr: "Ciel Étoilé", en: "Starlight Ceiling", ar: "سقف نجمي", es: "Cielo Estrellado", it: "Cielo Stellato", de: "Sternenhimmel", nl: "Sterrenhemel"
@@ -75,28 +75,40 @@ export const translations: Translations = {
     nl: "Honderden glasvezels transformeren het plafond in een hemelgewelf."
   },
   "innovation.feat2.title": {
-    fr: "Ambiance LED", en: "LED Ambiance", ar: "أجواء LED", es: "Ambiente LED", it: "Ambiente LED", de: "LED-Ambiente", nl: "LED-sfeer"
+    fr: "Jeunes Permis Acceptés", en: "Young Drivers Welcome", ar: "رخص جديدة مقبولة", es: "Jóvenes Conductores", it: "Neopatentati Benvenuti", de: "Fahranfänger willkommen", nl: "Jonge rijbewijzen welkom"
   },
   "innovation.feat2.desc": {
-    fr: "Éclairage d'ambiance multicolore pour une atmosphère unique à chaque trajet.",
-    en: "Multicolor ambient lighting for a unique atmosphere on every ride.",
-    ar: "إضاءة محيطية متعددة الألوان لأجواء فريدة في كل رحلة.",
-    es: "Iluminación ambiental multicolor para una atmósfera única en cada trayecto.",
-    it: "Illuminazione ambientale multicolore per un'atmosfera unica ad ogni viaggio.",
-    de: "Mehrfarbige Ambientebeleuchtung für eine einzigartige Atmosphäre bei jeder Fahrt.",
-    nl: "Meerkleurige sfeerverlichting voor een unieke sfeer bij elke rit."
+    fr: "Contrairement aux agences traditionnelles, nous faisons confiance aux jeunes conducteurs. Véhicule suréquipé et esthétique VIP au même tarif, sans restrictions d'âge abusives.",
+    en: "Unlike traditional agencies, we trust young drivers. Premium equipped vehicles and VIP aesthetics at the same rate, no abusive age restrictions.",
+    ar: "على عكس الوكالات التقليدية، نثق بالسائقين الشباب. مركبات مجهزة بالكامل وجمالية VIP بنفس السعر، بدون قيود عمرية مبالغة.",
+    es: "A diferencia de las agencias tradicionales, confiamos en los jóvenes conductores. Vehículo sobreequipado y estética VIP al mismo precio, sin restricciones de edad abusivas.",
+    it: "A differenza delle agenzie tradizionali, ci fidiamo dei giovani conducenti. Veicoli super equipaggiati e estetica VIP alla stessa tariffa, senza restrizioni d'età eccessive.",
+    de: "Anders als traditionelle Agenturen vertrauen wir jungen Fahrern. Voll ausgestattete Fahrzeuge und VIP-Ästhetik zum gleichen Tarif, ohne übermäßige Altersbeschränkungen.",
+    nl: "In tegenstelling tot traditionele bureaus vertrouwen wij jonge bestuurders. Volledig uitgerust voertuig en VIP-esthetiek voor hetzelfde tarief, zonder buitensporige leeftijdsbeperkingen."
   },
   "innovation.feat3.title": {
-    fr: "Luxe Abordable", en: "Affordable Luxury", ar: "فخامة بأسعار معقولة", es: "Lujo Asequible", it: "Lusso Accessibile", de: "Erschwinglicher Luxus", nl: "Betaalbare luxe"
+    fr: "Livraison VIP Aéroport", en: "VIP Airport Delivery", ar: "توصيل VIP للمطار", es: "Entrega VIP Aeropuerto", it: "Consegna VIP Aeroporto", de: "VIP Flughafen-Lieferung", nl: "VIP Luchthaven Bezorging"
   },
   "innovation.feat3.desc": {
-    fr: "L'expérience VIP sans le prix VIP. Le confort premium au tarif citadine.",
-    en: "The VIP experience without the VIP price. Premium comfort at city car rates.",
-    ar: "تجربة VIP بدون سعر VIP. راحة فاخرة بأسعار السيارات المدنية.",
-    es: "La experiencia VIP sin el precio VIP. Confort premium a precio de coche urbano.",
-    it: "L'esperienza VIP senza il prezzo VIP. Comfort premium a tariffe da city car.",
-    de: "Das VIP-Erlebnis ohne VIP-Preis. Premium-Komfort zum Stadtwagen-Tarif.",
-    nl: "De VIP-ervaring zonder VIP-prijs. Premium comfort tegen stadsautotarieven."
+    fr: "Votre véhicule vous attend dès votre sortie de l'aéroport Marrakech-Menara ou directement à votre hôtel/villa. Check-in express garanti.",
+    en: "Your vehicle awaits you at the exit of Marrakech-Menara airport or directly at your hotel/villa. Express check-in guaranteed.",
+    ar: "سيارتك بانتظارك عند خروجك من مطار مراكش المنارة أو مباشرة في فندقك/فيلتك. تسجيل سريع مضمون.",
+    es: "Tu vehículo te espera a la salida del aeropuerto Marrakech-Menara o directamente en tu hotel/villa. Check-in express garantizado.",
+    it: "Il tuo veicolo ti attende all'uscita dell'aeroporto di Marrakech-Menara o direttamente al tuo hotel/villa. Check-in express garantito.",
+    de: "Ihr Fahrzeug wartet am Ausgang des Flughafens Marrakesch-Menara oder direkt an Ihrem Hotel/Villa. Express Check-in garantiert.",
+    nl: "Uw voertuig wacht op u bij de uitgang van Marrakech-Menara luchthaven of direct bij uw hotel/villa. Express check-in gegarandeerd."
+  },
+  "innovation.feat4.title": {
+    fr: "Fiabilité & Discrétion", en: "Reliability & Discretion", ar: "موثوقية وسرية", es: "Fiabilidad y Discreción", it: "Affidabilità e Discrezione", de: "Zuverlässigkeit & Diskretion", nl: "Betrouwbaarheid & Discretie"
+  },
+  "innovation.feat4.desc": {
+    fr: "Flotte 100% neuve, assistance 7j/7 et véhicules livrés dans un état de propreté clinique.",
+    en: "100% new fleet, 24/7 assistance and vehicles delivered in clinical cleanliness.",
+    ar: "أسطول جديد 100%، مساعدة 7/7 ومركبات تُسلّم بنظافة سريرية.",
+    es: "Flota 100% nueva, asistencia 7/7 y vehículos entregados en estado de limpieza clínica.",
+    it: "Flotta 100% nuova, assistenza 7/7 e veicoli consegnati in condizioni di pulizia clinica.",
+    de: "100% neue Flotte, 7/7-Assistance und Fahrzeuge in klinischer Sauberkeit geliefert.",
+    nl: "100% nieuw wagenpark, 7/7 assistentie en voertuigen geleverd in klinische netheid."
   },
 
   // Fleet

@@ -1,6 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { Stars, Lightbulb, Crown } from "lucide-react";
+import { Stars, Lightbulb, Crown, Users, MapPin, Shield } from "lucide-react";
 import starlightInterior from "@/assets/starlight-interior.jpg";
 
 const InnovationSection = () => {
@@ -8,8 +8,9 @@ const InnovationSection = () => {
 
   const features = [
     { icon: Stars, titleKey: "innovation.feat1.title", descKey: "innovation.feat1.desc" },
-    { icon: Lightbulb, titleKey: "innovation.feat2.title", descKey: "innovation.feat2.desc" },
-    { icon: Crown, titleKey: "innovation.feat3.title", descKey: "innovation.feat3.desc" },
+    { icon: Users, titleKey: "innovation.feat2.title", descKey: "innovation.feat2.desc" },
+    { icon: MapPin, titleKey: "innovation.feat3.title", descKey: "innovation.feat3.desc" },
+    { icon: Shield, titleKey: "innovation.feat4.title", descKey: "innovation.feat4.desc" },
   ];
 
   return (

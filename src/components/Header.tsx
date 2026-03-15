@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { Menu, X, Globe, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -25,7 +26,12 @@ const Header = () => {
     { href: "#fleet", label: t("nav.fleet") },
     { href: "#concept", label: t("nav.concept") },
     { href: "#booking", label: t("nav.booking") },
+    { href: "/faq", label: "FAQ", isRoute: true },
+    { href: "/contact", label: t("footer.contact"), isRoute: true },
   ];
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const currentLang = LANGUAGES.find((l) => l.code === language)!;
 
@@ -40,8 +46,19 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const scrollTo = (href: string) => {
+  const scrollTo = (href: string, isRoute?: boolean) => {
     setMobileOpen(false);
+    if (isRoute) {
+      navigate(href);
+      return;
+    }
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+      return;
+    }
     const el = document.querySelector(href);
     el?.scrollIntoView({ behavior: "smooth" });
   };
@@ -60,7 +77,7 @@ const Header = () => {
             {navLinks.map((link) => (
               <button
                 key={link.href}
-                onClick={() => scrollTo(link.href)}
+                onClick={() => scrollTo(link.href, (link as any).isRoute)}
                 className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium tracking-wide"
               >
                 {link.label}
@@ -175,7 +192,7 @@ const Header = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.href}
-                  onClick={() => scrollTo(link.href)}
+                  onClick={() => scrollTo(link.href, (link as any).isRoute)}
                   className="block w-full text-left rtl:text-right text-foreground text-lg font-medium py-2"
                 >
                   {link.label}
