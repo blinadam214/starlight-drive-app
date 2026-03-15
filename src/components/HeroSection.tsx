@@ -48,6 +48,12 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background/70 to-transparent" />
       </div>
 
+      {/* Watermark logo filigrane */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none bg-center bg-no-repeat opacity-[0.03]"
+        style={{ backgroundImage: `url(${logoKND})`, backgroundSize: '60%' }}
+      />
+
       {/* Starlight particles */}
       <div className="absolute inset-0 starlight-dots opacity-40" />
 
