@@ -31,13 +31,13 @@ export const translations: Translations = {
     fr: "Prenez le volant de vos nuits.", en: "Take the wheel of your nights.", ar: "خُذ مِقوَد ليالِيك.", es: "Toma el volante de tus noches.", it: "Prendi il volante delle tue notti.", de: "Übernimm das Steuer deiner Nächte.", nl: "Neem het stuur van je nachten."
   },
   "hero.subtitle": {
-    fr: "Découvrez nos citadines transformées avec ciel étoilé et ambiance LED. Le luxe accessible, la nuit à Marrakech.",
-    en: "Discover our city cars transformed with starlight ceilings and LED ambiance. Affordable luxury, Marrakech by night.",
-    ar: "اكتشف سياراتنا المدنية المحولة بسقف نجمي وأجواء LED. الفخامة في متناول الجميع، مراكش ليلاً.",
-    es: "Descubre nuestros coches urbanos transformados con techo estrellado y ambiente LED. Lujo accesible, Marrakech de noche.",
-    it: "Scopri le nostre city car trasformate con cielo stellato e illuminazione LED. Lusso accessibile, Marrakech di notte.",
-    de: "Entdecken Sie unsere Stadtautos mit Sternenhimmel und LED-Ambiente. Erschwinglicher Luxus, Marrakesch bei Nacht.",
-    nl: "Ontdek onze stadsauto's met sterrenhemel en LED-sfeer. Betaalbare luxe, Marrakech bij nacht."
+    fr: "Découvrez la première agence de location « Custom Experience » à Marrakech. Des citadines et deux-roues transformés en véhicules premium (Ciel étoilé Starlight & LED d'ambiance). Le luxe nocturne, enfin accessible.",
+    en: "Discover the first 'Custom Experience' rental agency in Marrakech. City cars and motorcycles transformed into premium vehicles (Starlight ceiling & ambient LED). Nighttime luxury, finally accessible.",
+    ar: "اكتشف أول وكالة تأجير « Custom Experience » في مراكش. سيارات مدنية ودراجات نارية محوّلة إلى مركبات فاخرة (سقف نجمي Starlight وإضاءة LED). الفخامة الليلية، أخيراً في متناول الجميع.",
+    es: "Descubre la primera agencia de alquiler 'Custom Experience' en Marrakech. Utilitarios y motos transformados en vehículos premium (Cielo estrellado Starlight y LED ambiental). El lujo nocturno, al fin accesible.",
+    it: "Scopri la prima agenzia di noleggio « Custom Experience » a Marrakech. City car e moto trasformate in veicoli premium (Cielo stellato Starlight e LED ambientale). Il lusso notturno, finalmente accessibile.",
+    de: "Entdecken Sie die erste « Custom Experience »-Vermietungsagentur in Marrakesch. Stadtautos und Motorräder, verwandelt in Premium-Fahrzeuge (Sternenhimmel Starlight & LED-Ambiente). Nächtlicher Luxus, endlich erschwinglich.",
+    nl: "Ontdek het eerste 'Custom Experience'-verhuurbedrijf in Marrakech. Stadsauto's en motoren omgebouwd tot premiumvoertuigen (Starlight sterrenhemel & LED-sfeer). Nachtelijk luxe, eindelijk bereikbaar."
   },
   "hero.cta": {
     fr: "Découvrir la flotte", en: "Explore the Fleet", ar: "استكشف الأسطول", es: "Explorar la flota", it: "Esplora la flotta", de: "Flotte entdecken", nl: "Ontdek de vloot"
