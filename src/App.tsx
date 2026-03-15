@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import FAQ from "./pages/FAQ";
 import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
+import EnregistrementExpress from "./pages/EnregistrementExpress";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
