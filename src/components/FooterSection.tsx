@@ -33,9 +33,9 @@ const FooterSection = () => {
           <div>
             <h4 className="font-semibold text-foreground mb-4">{t("footer.links")}</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li><a href="#fleet" className="hover:text-primary transition-colors">{t("nav.fleet")}</a></li>
-              <li><a href="#concept" className="hover:text-primary transition-colors">{t("nav.concept")}</a></li>
-              <li><a href="#booking" className="hover:text-primary transition-colors">{t("nav.booking")}</a></li>
+              <li><a href="/#fleet" className="hover:text-primary transition-colors">{t("nav.fleet")}</a></li>
+              <li><a href="/#concept" className="hover:text-primary transition-colors">{t("nav.concept")}</a></li>
+              <li><a href="/#booking" className="hover:text-primary transition-colors">{t("nav.booking")}</a></li>
               <li><Link to="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
               <li><Link to="/terms" className="hover:text-primary transition-colors">{t("footer.terms")}</Link></li>
               <li><Link to="/contact" className="hover:text-primary transition-colors">{t("footer.contact")}</Link></li>
