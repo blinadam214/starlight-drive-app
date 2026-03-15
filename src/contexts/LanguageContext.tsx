@@ -17,7 +17,7 @@ export const translations: Translations = {
     fr: "Réservation", en: "Booking", ar: "الحجز", es: "Reserva", it: "Prenotazione", de: "Buchung", nl: "Reservering"
   },
   "nav.checkin": {
-    fr: "Check-in Express", en: "Express Check-in", ar: "تسجيل سريع", es: "Check-in Express", it: "Check-in Express", de: "Express Check-in", nl: "Express Check-in"
+    fr: "Enregistrement Express", en: "Express Registration", ar: "تسجيل سريع", es: "Registro Express", it: "Registrazione Express", de: "Express-Registrierung", nl: "Express Registratie"
   },
 
   // Hero
