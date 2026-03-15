@@ -8,6 +8,9 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { AdminRoute } from "@/routes/AdminRoute";
 import Index from "./pages/Index";
+import FAQ from "./pages/FAQ";
+import Terms from "./pages/Terms";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -25,6 +28,9 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/contact" element={<Contact />} />
 
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route
