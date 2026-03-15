@@ -26,7 +26,12 @@ const Header = () => {
     { href: "#fleet", label: t("nav.fleet") },
     { href: "#concept", label: t("nav.concept") },
     { href: "#booking", label: t("nav.booking") },
+    { href: "/faq", label: "FAQ", isRoute: true },
+    { href: "/contact", label: t("footer.contact"), isRoute: true },
   ];
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const currentLang = LANGUAGES.find((l) => l.code === language)!;
 
