@@ -46,8 +46,19 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const scrollTo = (href: string) => {
+  const scrollTo = (href: string, isRoute?: boolean) => {
     setMobileOpen(false);
+    if (isRoute) {
+      navigate(href);
+      return;
+    }
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+      return;
+    }
     const el = document.querySelector(href);
     el?.scrollIntoView({ behavior: "smooth" });
   };
