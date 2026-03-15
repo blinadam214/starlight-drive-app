@@ -12,7 +12,7 @@ const NeonText = ({ text }: { text: string }) => {
       // Only animate ~1 in 3 letters randomly
       const shouldAnimate = i % 3 === 0;
       const delay = `${(i * 0.4) % 3}s`;
-      const duration = 2.5 + (i % 5) * 0.6;
+      const duration = 3.5 + (i % 5) * 0.5;
       return (
         <span
           key={i}
