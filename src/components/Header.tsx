@@ -68,8 +68,11 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center group">
-            <img src={logoKND} alt="Kech Night Drive — Location Premium Marrakech" className="h-16 md:h-20 w-auto object-contain" />
+          <a href="/" className="flex items-center gap-3 group">
+            <img src={logoKND} alt="Kech Night Drive — Location Premium Marrakech" className="h-16 md:h-20 w-auto object-contain mix-blend-screen" />
+            <span className="hidden sm:inline font-serif font-bold tracking-wider text-lg md:text-xl text-amber-200/90 drop-shadow-[0_1px_4px_rgba(200,170,80,0.3)]">
+              KECH NIGHT DRIVE
+            </span>
           </a>
 
           {/* Desktop Nav */}

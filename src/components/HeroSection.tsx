@@ -2,6 +2,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import heroImage from "@/assets/hero-starlight.jpg";
+import logoKND from "@/assets/logo-knd.png";
 import { useMemo } from "react";
 
 /** Wrap each character in a span with randomized animation timing */
@@ -48,6 +49,12 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background/70 to-transparent" />
       </div>
 
+      {/* Watermark logo filigrane */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none bg-center bg-no-repeat opacity-[0.03]"
+        style={{ backgroundImage: `url(${logoKND})`, backgroundSize: '60%' }}
+      />
+
       {/* Starlight particles */}
       <div className="absolute inset-0 starlight-dots opacity-40" />
 
@@ -64,15 +71,6 @@ const HeroSection = () => {
               {t("hero.tagline")}
             </span>
           </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-6xl font-light leading-[1.1] tracking-[0.3em] mb-6 uppercase font-sans text-slate-100 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
-          >
-            {t("hero.title1")}
-          </motion.h1>
 
           {/* Neon slogan with per-letter flicker */}
           <motion.p
