@@ -316,7 +316,7 @@ export const translations: Translations = {
     fr: "Passeport ou CIN", en: "Passport or ID", ar: "جواز السفر أو بطاقة الهوية", es: "Pasaporte o DNI", it: "Passaporto o carta d'identità", de: "Reisepass oder Ausweis", nl: "Paspoort of ID"
   },
   "checkin.upload": {
-    fr: "Cliquez pour uploader", en: "Click to upload", ar: "انقر للتحميل", es: "Haz clic para subir", it: "Clicca per caricare", de: "Klicken zum Hochladen", nl: "Klik om te uploaden"
+    fr: "Cliquez pour téléverser", en: "Click to upload", ar: "انقر للتحميل", es: "Haz clic para subir", it: "Clicca per caricare", de: "Klicken zum Hochladen", nl: "Klik om te uploaden"
   },
   "checkin.submit": {
     fr: "Envoyer mes documents", en: "Submit My Documents", ar: "إرسال مستنداتي", es: "Enviar mis documentos", it: "Invia i miei documenti", de: "Dokumente einreichen", nl: "Mijn documenten indienen"
