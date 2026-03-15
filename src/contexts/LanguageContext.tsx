@@ -54,13 +54,13 @@ export const translations: Translations = {
     fr: "L'expérience Starlight", en: "The Starlight Experience", ar: "تجربة ستارلايت", es: "La experiencia Starlight", it: "L'esperienza Starlight", de: "Das Starlight-Erlebnis", nl: "De Starlight-ervaring"
   },
   "innovation.subtitle": {
-    fr: "Des citadines ordinaires, une expérience extraordinaire. Nos Clio 5 et Peugeot 208 sont équipées de ciels étoilés et d'éclairages LED d'ambiance.",
-    en: "Ordinary city cars, an extraordinary experience. Our Clio 5 and Peugeot 208 come equipped with starlight ceilings and LED ambient lighting.",
-    ar: "سيارات مدنية عادية، تجربة استثنائية. سياراتنا Clio 5 و Peugeot 208 مجهزة بسقوف نجمية وإضاءة LED محيطية.",
-    es: "Coches urbanos ordinarios, una experiencia extraordinaria. Nuestros Clio 5 y Peugeot 208 están equipados con techos estrellados e iluminación LED ambiental.",
-    it: "City car ordinarie, un'esperienza straordinaria. Le nostre Clio 5 e Peugeot 208 sono dotate di cielo stellato e illuminazione LED ambientale.",
-    de: "Gewöhnliche Stadtautos, ein außergewöhnliches Erlebnis. Unsere Clio 5 und Peugeot 208 sind mit Sternenhimmel und LED-Ambiente ausgestattet.",
-    nl: "Gewone stadsauto's, een buitengewone ervaring. Onze Clio 5 en Peugeot 208 zijn uitgerust met sterrenhemel en LED-sfeerverlichting."
+    fr: "Ne louez pas seulement un véhicule, louez une atmosphère. Nos habitacles sont équipés de ciels étoilés et d'éclairages d'ambiance sur-mesure pour maîtriser la nuit marrakchie.",
+    en: "Don't just rent a vehicle, rent an atmosphere. Our cabins are equipped with starlight ceilings and custom ambient lighting to own the Marrakech night.",
+    ar: "لا تستأجر مجرد سيارة، استأجر أجواء. مقصوراتنا مجهزة بسقوف نجمية وإضاءة محيطية مخصصة لتملك ليل مراكش.",
+    es: "No alquiles solo un vehículo, alquila una atmósfera. Nuestros habitáculos están equipados con cielos estrellados e iluminación ambiental personalizada.",
+    it: "Non noleggiare solo un veicolo, noleggia un'atmosfera. I nostri abitacoli sono dotati di cielo stellato e illuminazione ambientale su misura.",
+    de: "Mieten Sie nicht nur ein Fahrzeug, mieten Sie eine Atmosphäre. Unsere Fahrgastzellen sind mit Sternenhimmel und maßgeschneiderter Ambientebeleuchtung ausgestattet.",
+    nl: "Huur niet alleen een voertuig, huur een sfeer. Onze cabines zijn uitgerust met sterrenhemel en op maat gemaakte sfeerverlichting."
   },
   "innovation.feat1.title": {
     fr: "Ciel Étoilé", en: "Starlight Ceiling", ar: "سقف نجمي", es: "Cielo Estrellado", it: "Cielo Stellato", de: "Sternenhimmel", nl: "Sterrenhemel"
