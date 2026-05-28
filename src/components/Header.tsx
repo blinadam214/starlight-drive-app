@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { Menu, X, Globe, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logoKND from "@/assets/logo-knd.png";
+import logoKND from "@/assets/logo-ld26.svg";
 import ThemeToggle from "./ThemeToggle";
 
 const LANGUAGES: { code: Language; label: string; flag: string }[] = [
