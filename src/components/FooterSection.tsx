@@ -1,7 +1,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { MessageCircle, MapPin, Instagram, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import logoKND from "@/assets/logo-knd.png";
+import logoKND from "@/assets/logo-ld26.svg";
 
 const FooterSection = () => {
   const { t } = useLanguage();
