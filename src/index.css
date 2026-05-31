@@ -275,7 +275,29 @@
       0 0 100px rgba(49, 66, 219, 0.5);
   }
 }
+@keyframes neon-pulse-gold {
+  0%, 100% {
+    text-shadow: 0 0 2px rgba(201, 168, 76, 0);
+  }
+  40%, 60% {
+    text-shadow:
+      0 0 5px #e8c96a,
+      0 0 15px rgba(201, 168, 76, 1),
+      0 0 30px rgba(201, 168, 76, 0.8),
+      0 0 60px rgba(201, 168, 76, 0.5);
+  }
+}
 
+.neon-letter-gold {
+  display: inline-block;
+  color: #C9A84C;
+}
+
+.neon-letter-gold.animate-neon-gold {
+  animation: neon-pulse-gold var(--neon-duration, 4s) infinite ease-in-out;
+  animation-delay: var(--neon-delay, 0s);
+  will-change: text-shadow;
+}
 .neon-letter {
   display: inline-block;
   color: #E2E8F0;
