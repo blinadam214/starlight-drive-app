@@ -71,7 +71,7 @@ const Header = () => {
           <a href="/" className="flex items-center gap-3 group">
             <img src={logoKND} alt="Light Drive 26 — Location Premium Marrakech" className="h-16 md:h-20 w-auto object-contain mix-blend-screen" />
 <span className="inline font-serif font-bold tracking-wider text-sm md:text-xl text-amber-200/90 drop-shadow-[0_1px_4px_rgba(200,170,80,0.3)]">
-  LIGHT DRIVE 26
+  LIGHT DRIVE26
 </span>
           </a>
 
