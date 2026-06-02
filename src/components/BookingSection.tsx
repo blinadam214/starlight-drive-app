@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { CalendarDays, Upload, KeyRound, CheckCircle, User, Mail, Phone, FileImage } from "lucide-react";
+import { CalendarDays, Upload, KeyRound, Zap } from "lucide-react";
+
 import { toast } from "sonner";
 
 const BookingSection = () => {
