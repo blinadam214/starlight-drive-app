@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { CalendarDays, Upload, KeyRound, Zap } from "lucide-react";
