@@ -83,7 +83,7 @@ const BookingSection = () => {
     <Zap className="w-5 h-5" />
     Accéder à l'Enregistrement Express
   </a>
-</motion.div>>
+</motion.div>
       </div>
     </section>
   );
