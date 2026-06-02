@@ -5,7 +5,7 @@ import { MapPin, Phone, Mail, Instagram, MessageCircle } from "lucide-react";
 
 const contactItems = [
   { icon: MapPin, label: "Siège", value: "Marrakech, Maroc (Livraison Aéroport & Hôtels)" },
-  { icon: Phone, label: "Téléphone / WhatsApp", value: "+212 6XX XXX XXX", note: "Réponse en moins de 15 minutes" },
+  { icon: Phone, label: "Téléphone / WhatsApp", value: "+33 6 35 12 12 05", note: "Réponse en moins de 15 minutes" },
   { icon: Mail, label: "Email", value: "contact@kechnightdrive.com", href: "mailto:contact@kechnightdrive.com" },
   { icon: Instagram, label: "Instagram", value: "@kech_night_drive", href: "https://instagram.com/kech_night_drive" },
 ];
@@ -68,7 +68,7 @@ const Contact = () => {
             className="text-center mt-10"
           >
             <a
-              href="https://wa.me/212600000000"
+              href="https://wa.me/+33635121205"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-neon inline-flex items-center gap-2 text-base"
