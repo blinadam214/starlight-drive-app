@@ -65,102 +65,24 @@ const BookingSection = () => {
         </div>
 
         {/* Check-in Express Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-2xl mx-auto"
-        >
-          <div className="glass-strong rounded-2xl p-8 sm:p-10">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-foreground mb-2">{t("checkin.title")}</h3>
-              <p className="text-muted-foreground">{t("checkin.desc")}</p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label className="text-sm text-muted-foreground mb-2 flex items-center gap-2">
-                    <User className="w-4 h-4" /> {t("checkin.name")}
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl glass border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
-                    placeholder="Mohammed Alami"
-                  />
-                </div>
-                <div>
-                  <label className="text-sm text-muted-foreground mb-2 flex items-center gap-2">
-                    <Phone className="w-4 h-4" /> {t("checkin.phone")}
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl glass border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
-                    placeholder="+212 6XX XXX XXX"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="text-sm text-muted-foreground mb-2 flex items-center gap-2">
-                  <Mail className="w-4 h-4" /> {t("checkin.email")}
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl glass border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
-                  placeholder="email@example.com"
-                />
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label className="text-sm text-muted-foreground mb-2 flex items-center gap-2">
-                    <FileImage className="w-4 h-4" /> {t("checkin.license")}
-                  </label>
-                  <label className="flex flex-col items-center justify-center w-full h-28 rounded-xl glass border-dashed border-2 border-border/50 cursor-pointer hover:border-primary/40 transition-colors">
-                    {licenseFile ? (
-                      <span className="flex items-center gap-2 text-sm text-primary">
-                        <CheckCircle className="w-4 h-4" /> {licenseFile.name}
-                      </span>
-                    ) : (
-                      <span className="text-sm text-muted-foreground">{t("checkin.upload")}</span>
-                    )}
-                    <input type="file" accept="image/*" className="hidden" onChange={(e) => setLicenseFile(e.target.files?.[0] || null)} />
-                  </label>
-                </div>
-                <div>
-                  <label className="text-sm text-muted-foreground mb-2 flex items-center gap-2">
-                    <FileImage className="w-4 h-4" /> {t("checkin.id")}
-                  </label>
-                  <label className="flex flex-col items-center justify-center w-full h-28 rounded-xl glass border-dashed border-2 border-border/50 cursor-pointer hover:border-primary/40 transition-colors">
-                    {idFile ? (
-                      <span className="flex items-center gap-2 text-sm text-primary">
-                        <CheckCircle className="w-4 h-4" /> {idFile.name}
-                      </span>
-                    ) : (
-                      <span className="text-sm text-muted-foreground">{t("checkin.upload")}</span>
-                    )}
-                    <input type="file" accept="image/*" className="hidden" onChange={(e) => setIdFile(e.target.files?.[0] || null)} />
-                  </label>
-                </div>
-              </div>
-
-              <button type="submit" className="btn-neon w-full text-base mt-4">
-                {t("checkin.submit")}
-              </button>
-            </form>
-          </div>
-        </motion.div>
+       <motion.div
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="text-center mt-8"
+>
+  <p className="text-muted-foreground mb-6 text-lg">
+    Vous avez réservé ? Gagnez du temps en pré-enregistrant vos documents avant votre arrivée.
+  </p>
+  
+    href="/enregistrement"
+    className="btn-neon inline-flex items-center gap-2 text-base"
+  >
+    <Zap className="w-5 h-5" />
+    Accéder à l'Enregistrement Express
+  </a>
+</motion.div>>
       </div>
     </section>
   );
