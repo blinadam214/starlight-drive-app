@@ -3,13 +3,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { CalendarDays, Upload, KeyRound, Zap } from "lucide-react";
 
-import { toast } from "sonner";
-
 const BookingSection = () => {
   const { t } = useLanguage();
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
-  const [licenseFile, setLicenseFile] = useState<File | null>(null);
-  const [idFile, setIdFile] = useState<File | null>(null);
 
   const steps = [
     { icon: CalendarDays, titleKey: "booking.step1.title", descKey: "booking.step1.desc", num: "01" },
@@ -17,18 +12,9 @@ const BookingSection = () => {
     { icon: KeyRound, titleKey: "booking.step3.title", descKey: "booking.step3.desc", num: "03" },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast.success(t("checkin.success"));
-    setFormData({ name: "", email: "", phone: "" });
-    setLicenseFile(null);
-    setIdFile(null);
-  };
-
   return (
     <section id="booking" className="section-padding relative">
       <div className="max-w-7xl mx-auto">
-        {/* Steps */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,25 +51,24 @@ const BookingSection = () => {
           ))}
         </div>
 
-        {/* Check-in Express Form */}
-       <motion.div
-  initial={{ opacity: 0, y: 30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.6 }}
-  className="text-center mt-8"
->
-  <p className="text-muted-foreground mb-6 text-lg">
-    Vous avez réservé ? Gagnez du temps en pré-enregistrant vos documents avant votre arrivée.
-  </p>
-  
-    href="/enregistrement"
-    className="btn-neon inline-flex items-center gap-2 text-base"
-  >
-    <Zap className="w-5 h-5" />
-    Accéder à l'Enregistrement Express
-  </a>
-</motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mt-8"
+        >
+          <p className="text-muted-foreground mb-6 text-lg">
+            Vous avez réservé ? Gagnez du temps en pré-enregistrant vos documents avant votre arrivée.
+          </p>
+          
+            href="/enregistrement"
+            className="btn-neon inline-flex items-center gap-2 text-base"
+          >
+            <Zap className="w-5 h-5" />
+            Accéder à l'Enregistrement Express
+          </a>
+        </motion.div>
       </div>
     </section>
   );
