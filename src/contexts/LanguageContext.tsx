@@ -219,10 +219,10 @@ export const translations: Translations = {
     nl: "Ons Fast-Track-proces elimineert alle wachttijd. Ontvang uw sleutels direct."
   },
   "booking.step1.title": {
-    fr: "Choisissez vos dates", en: "Choose Your Dates", ar: "اختر تواريخك", es: "Elige tus fechas", it: "Scegli le tue date", de: "Wählen Sie Ihre Termine", nl: "Kies uw data"
+    fr: "Planifiez votre séjour", en: "Plan Your Stay", ar: "اختر تواريخك", es: "Elige tus fechas", it: "Scegli le tue date", de: "Wählen Sie Ihre Termine", nl: "Kies uw data"
   },
   "booking.step1.desc": {
-    fr: "Sélectionnez la période de location sur notre calendrier interactif. Vérifiez la disponibilité en temps réel.",
+    fr: "Indiquez vos dates de location sur le site, puis basculez sur WhatsApp pour confirmer la disponibilité de votre véhicule en un clic.",
     en: "Select your rental period on our interactive calendar. Check availability in real-time.",
     ar: "حدد فترة الإيجار على تقويمنا التفاعلي. تحقق من التوفر في الوقت الفعلي.",
     es: "Selecciona el período de alquiler en nuestro calendario interactivo. Verifica la disponibilidad en tiempo real.",
