@@ -25,7 +25,7 @@ const BookingModal = ({ vehicle, onClose }: BookingModalProps) => {
     const msg = encodeURIComponent(
       `Bonjour Kech Night Drive! Je souhaite réserver: ${t(vehicle.nameKey)}\nDu: ${startDate?.toLocaleDateString()}\nAu: ${endDate?.toLocaleDateString()}\nTotal: ${total} €`
     );
-    window.open(`https://wa.me/212600000000?text=${msg}`, "_blank");
+    window.open(`https://wa.me/33635121205?text=${msg}`, "_blank");
   };
 
   return (
