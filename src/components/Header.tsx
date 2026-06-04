@@ -103,76 +103,99 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Right side */}
-          <div className="flex items-center gap-3">
-            {/* Language switcher */}
-            <div className="relative" ref={langRef}>
-              <button
-                onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-2 px-3 py-2 rounded-xl glass text-sm font-medium text-foreground hover:border-primary/30 transition-all duration-300 group"
-              >
-                <Globe className="w-4 h-4 text-primary transition-transform duration-300 group-hover:rotate-45" />
-                <span className="text-base">{currentLang.flag}</span>
-                <motion.svg
-                  animate={{ rotate: langOpen ? 180 : 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="w-3 h-3 text-muted-foreground"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </motion.svg>
-              </button>
+         {/* Right side */}
+<div className="flex items-center gap-3">
+  {/* Language switcher */}
+  <div className="relative" ref={langRef}>
+    <button
+      onClick={() => setLangOpen(!langOpen)}
+      className="flex items-center gap-2 px-3 py-2 rounded-xl glass text-sm font-medium text-foreground hover:border-primary/30 transition-all duration-300 group"
+    >
+      <Globe className="w-4 h-4 text-primary transition-transform duration-300 group-hover:rotate-45" />
+      <span className="text-base">{currentLang.flag}</span>
+      <motion.svg
+        animate={{ rotate: langOpen ? 180 : 0 }}
+        transition={{ duration: 0.2 }}
+        className="w-3 h-3 text-muted-foreground"
+        viewBox="0 0 12 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </motion.svg>
+    </button>
 
-              <AnimatePresence>
-                {langOpen && (
+    <AnimatePresence>
+      {langOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -8, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -8, scale: 0.95 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
+          className="absolute right-0 rtl:right-auto rtl:left-0 mt-2 rounded-xl overflow-hidden min-w-[180px] border border-border/30"
+          style={{
+            background: "rgba(15, 15, 20, 0.85)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05)",
+          }}
+        >
+          <div className="py-1.5">
+            {LANGUAGES.map((lang, i) => (
+              <motion.button
+                key={lang.code}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.04 }}
+                onClick={() => {
+                  setLanguage(lang.code);
+                  setLangOpen(false);
+                }}
+                className={`flex items-center gap-3 w-full px-4 py-2.5 text-sm text-left rtl:text-right transition-all duration-200 group/item ${
+                  language === lang.code
+                    ? "text-primary bg-primary/10"
+                    : "text-muted-foreground hover:text-foreground hover:bg-[hsl(var(--primary)/0.08)]"
+                }`}
+              >
+                <span className="text-base">{lang.flag}</span>
+                <span className="flex-1 font-medium">{lang.label}</span>
+                {language === lang.code && (
                   <motion.div
-                    initial={{ opacity: 0, y: -8, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -8, scale: 0.95 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute right-0 rtl:right-auto rtl:left-0 mt-2 rounded-xl overflow-hidden min-w-[180px] border border-border/30"
-                    style={{
-                      background: "rgba(15, 15, 20, 0.85)",
-                      backdropFilter: "blur(20px)",
-                      WebkitBackdropFilter: "blur(20px)",
-                      boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05)",
-                    }}
-                  >
-                    <div className="py-1.5">
-                      {LANGUAGES.map((lang, i) => (
-                        <motion.button
-                          key={lang.code}
-                          initial={{ opacity: 0, x: -8 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: i * 0.04 }}
-                          onClick={() => {
-                            setLanguage(lang.code);
-                            setLangOpen(false);
-                          }}
-                          className={`flex items-center gap-3 w-full px-4 py-2.5 text-sm text-left rtl:text-right transition-all duration-200 group/item ${
-                            language === lang.code
-                              ? "text-primary bg-primary/10"
-                              : "text-muted-foreground hover:text-foreground hover:bg-[hsl(var(--primary)/0.08)]"
-                          }`}
-                        >
-                          <span className="text-base">{lang.flag}</span>
-                          <span className="flex-1 font-medium">{lang.label}</span>
-                          {language === lang.code && (
-                            <motion.div
-                              layoutId="activeLang"
-                              className="w-1.5 h-1.5 rounded-full bg-primary"
-                              style={{ boxShadow: "0 0 8px hsl(var(--primary))" }}
-                            />
-                          )}
-                        </motion.button>
-                      ))}
-                    </div>
-                  </motion.div>
+                    layoutId="activeLang"
+                    className="w-1.5 h-1.5 rounded-full bg-primary"
+                    style={{ boxShadow: "0 0 8px hsl(var(--primary))" }}
+                  />
                 )}
-              </AnimatePresence>
-            </div>
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
+
+  {/* Theme Toggle — desktop uniquement */}
+  <div className="hidden lg:block">
+    <ThemeToggle />
+  </div>
+
+  {/* Enregistrement Express — desktop uniquement */}
+  <button
+    onClick={() => { setMobileOpen(false); navigate("/enregistrement"); }}
+    className="hidden sm:flex items-center gap-2 btn-neon text-sm !px-5 !py-2"
+  >
+    <Zap className="w-4 h-4" />
+    {t("nav.checkin")}
+  </button>
+
+  {/* Mobile menu burger */}
+  <button
+    onClick={() => setMobileOpen(!mobileOpen)}
+    className="lg:hidden p-2 text-foreground"
+  >
+    {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+  </button>
+</div>
 
             {/* Theme Toggle */}
             <ThemeToggle />
