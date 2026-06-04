@@ -71,9 +71,19 @@ export default function AdminLogin() {
           return;
         }
 
-        toast.success("Compte créé", { description: "Connecte-toi maintenant avec tes identifiants." });
-        setIsSignupMode(false);
-        return;
+        try {
+  const { error } = await signInWithPassword(values.email, values.password);
+  if (error) {
+    console.error("Détail erreur connexion:", error);
+    toast.error("Connexion impossible", { description: error });
+    return;
+  }
+} catch (err) {
+  console.error("Erreur réseau brute:", err);
+  toast.error("Erreur réseau", {
+    description: "Impossible de joindre le serveur. Vérifie la config Supabase dans Vercel."
+  });
+  return;
       }
 
       const { error } = await signInWithPassword(values.email, values.password);
