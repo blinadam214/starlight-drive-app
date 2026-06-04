@@ -68,8 +68,8 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-3 group">
-            <img src={logoKND} alt="KECH NIGHT DRIVE — Location Premium Marrakech" className="h-16 md:h-20 w-auto object-contain mix-blend-screen" />
+          <a href="/" className="flex items-center gap-1 group">
+            <img src={logoKND} alt="Kech Night Drive — Location Premium Marrakech" className="h-20 md:h-24 w-20 md:w-24 object-contain mix-blend-screen" />
 <span className="inline font-serif font-bold tracking-tight text-[12px] md:text-xl text-amber-200/90 drop-shadow-[0_1px_4px_rgba(200,170,80,0.3)] whitespace-nowrap">
   {"KECH NIGHT DRIVE".split("").map((char, i) => {
     if (char === " ") return <span key={i}>&nbsp;</span>;
