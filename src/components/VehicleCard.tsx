@@ -1,22 +1,24 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { Calendar, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, Sparkles, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 
 interface VehicleCardProps {
   images: string[];
-  /** URL vers un fichier vidéo (.mp4 / .webm) — laisser vide pour désactiver le hover video */
   video?: string;
   nameKey: string;
   descKey: string;
   price: number;
   category: "starlight" | "essential" | "adrenaline";
+  slug: string;
   onBook: () => void;
   delay?: number;
 }
 
-const VehicleCard = ({ images, video, nameKey, descKey, price, category, onBook, delay = 0 }: VehicleCardProps) => {
+const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, onBook, delay = 0 }: VehicleCardProps) => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -37,9 +39,7 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, onBook,
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
+    if (videoRef.current) videoRef.current.play().catch(() => {});
   };
 
   const handleMouseLeave = () => {
@@ -70,10 +70,8 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, onBook,
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Conteneur média avec hover zoom */}
-      <div className="relative h-56 overflow-hidden">
+      <div className="relative h-56 overflow-hidden cursor-pointer" onClick={() => navigate(`/vehicules/${slug}`)}>
         <div className="w-full h-full transition-transform duration-700 group-hover:scale-110">
-          {/* Images carousel */}
           {images.map((img, idx) => (
             <img
               key={idx}
@@ -86,7 +84,6 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, onBook,
             />
           ))}
 
-          {/* Vidéo (fade in au hover) */}
           {video && (
             <video
               ref={videoRef}
@@ -102,10 +99,8 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, onBook,
           )}
         </div>
 
-        {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent pointer-events-none" />
 
-        {/* Flèches de navigation (visibles uniquement s'il y a plusieurs images et pas de vidéo en lecture) */}
         {hasMultipleImages && !(isHovered && video) && (
           <>
             <button
@@ -123,7 +118,6 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, onBook,
               <ChevronRight className="w-4 h-4" />
             </button>
 
-            {/* Indicateurs de position (dots) */}
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
               {images.map((_, idx) => (
                 <button
@@ -139,7 +133,6 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, onBook,
           </>
         )}
 
-        {/* Badge catégorie */}
         <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${categoryStyles[category]} backdrop-blur-sm border border-border/30`}>
           <span className="flex items-center gap-1.5">
             {category === "starlight" && <Sparkles className="w-3 h-3" />}
@@ -148,22 +141,32 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, onBook,
         </div>
       </div>
 
-      {/* Content */}
       <div className="p-6">
         <h3 className="text-lg font-bold text-foreground mb-2">{t(nameKey)}</h3>
         <p className="text-sm text-muted-foreground mb-6 leading-relaxed">{t(descKey)}</p>
 
-        <div className="flex items-end justify-between">
+        <div className="flex items-end justify-between mb-4">
           <div>
             <span className="text-xs text-muted-foreground">{t("fleet.from")}</span>
             <div className="flex items-baseline gap-1">
-            <span className="text-2xl font-bold text-foreground">{price} €</span>
+              <span className="text-2xl font-bold text-foreground">{price} €</span>
               <span className="text-sm text-muted-foreground">{t("fleet.perday")}</span>
             </div>
           </div>
+        </div>
+
+        {/* Boutons : Voir (outline) + Réserver (plein) */}
+        <div className="flex gap-3">
+          <button
+            onClick={() => navigate(`/vehicules/${slug}`)}
+            className="flex-1 btn-glass !py-2.5 text-sm flex items-center justify-center gap-2 border border-primary/40 hover:border-primary"
+          >
+            <Eye className="w-4 h-4" />
+            {t("fleet.view")}
+          </button>
           <button
             onClick={onBook}
-            className="btn-neon !px-5 !py-2.5 text-sm flex items-center gap-2"
+            className="flex-1 btn-neon !py-2.5 text-sm flex items-center justify-center gap-2"
           >
             <Calendar className="w-4 h-4" />
             {t("fleet.book")}
