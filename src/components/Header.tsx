@@ -1,5 +1,15 @@
-Je vois le problème — il y a un bloc dupliqué dans le code. Après le nouveau bloc "Right side", l'ancien code (ThemeToggle + Enregistrement + Mobile menu) est resté collé, ce qui casse la structure.
-Voilà le fichier entier corrigé. Sélectionne tout (Ctrl+A), efface, colle ça :
+On va tout remettre en ordre proprement, un fichier à la fois. Pas de panique, on reprend calmement.
+
+ÉTAPE 1 — On répare d'abord Header.tsx
+
+Va sur GitHub : github.com/blinadam214/starlight-drive-app
+Clique sur le dossier src
+Clique sur le dossier components
+Clique sur Header.tsx
+Clique sur le crayon ✏️ pour éditer
+Fais Ctrl+A (tout sélectionner) puis Suppr (tout effacer)
+Colle exactement ce code :
+
 tsximport { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
@@ -106,7 +116,6 @@ const Header = () => {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            {/* Language switcher */}
             <div className="relative" ref={langRef}>
               <button
                 onClick={() => setLangOpen(!langOpen)}
@@ -175,12 +184,10 @@ const Header = () => {
               </AnimatePresence>
             </div>
 
-            {/* Theme Toggle — desktop uniquement */}
             <div className="hidden lg:block">
               <ThemeToggle />
             </div>
 
-            {/* Enregistrement Express — desktop uniquement */}
             <button
               onClick={() => { setMobileOpen(false); navigate("/enregistrement"); }}
               className="hidden sm:flex items-center gap-2 btn-neon text-sm !px-5 !py-2"
@@ -189,7 +196,6 @@ const Header = () => {
               {t("nav.checkin")}
             </button>
 
-            {/* Mobile menu burger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden p-2 text-foreground"
@@ -200,7 +206,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile nav */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
