@@ -1,4 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+Je vois le problème — il y a un bloc dupliqué dans le code. Après le nouveau bloc "Right side", l'ancien code (ThemeToggle + Enregistrement + Mobile menu) est resté collé, ce qui casse la structure.
+Voilà le fichier entier corrigé. Sélectionne tout (Ctrl+A), efface, colle ça :
+tsximport { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { Menu, X, Globe, Zap } from "lucide-react";
@@ -35,7 +37,6 @@ const Header = () => {
 
   const currentLang = LANGUAGES.find((l) => l.code === language)!;
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (langRef.current && !langRef.current.contains(e.target as Node)) {
@@ -70,24 +71,24 @@ const Header = () => {
           {/* Logo */}
           <a href="/" className="flex items-center gap-0 group">
             <img src={logoKND} alt="Kech Night Drive — Location Premium Marrakech" className="h-16 w-16 md:h-28 md:w-28 object-contain mix-blend-screen" />
-<span className="inline font-serif font-bold tracking-tight text-[12px] md:text-xl text-amber-200/90 drop-shadow-[0_1px_4px_rgba(200,170,80,0.3)] whitespace-nowrap">
-  {"KECH NIGHT DRIVE".split("").map((char, i) => {
-    if (char === " ") return <span key={i}>&nbsp;</span>;
-    const shouldAnimate = i % 3 === 0;
-    return (
-      <span
-        key={i}
-        className={`neon-letter-gold${shouldAnimate ? " animate-neon-gold" : ""}`}
-        style={shouldAnimate ? {
-          "--neon-duration": `${3.5 + (i % 5) * 0.5}s`,
-          "--neon-delay": `${(i * 0.4) % 3}s`,
-        } as React.CSSProperties : undefined}
-      >
-        {char}
-      </span>
-    );
-  })}
-</span>
+            <span className="inline font-serif font-bold tracking-tight text-[12px] md:text-xl text-amber-200/90 drop-shadow-[0_1px_4px_rgba(200,170,80,0.3)] whitespace-nowrap">
+              {"KECH NIGHT DRIVE".split("").map((char, i) => {
+                if (char === " ") return <span key={i}>&nbsp;</span>;
+                const shouldAnimate = i % 3 === 0;
+                return (
+                  <span
+                    key={i}
+                    className={`neon-letter-gold${shouldAnimate ? " animate-neon-gold" : ""}`}
+                    style={shouldAnimate ? {
+                      "--neon-duration": `${3.5 + (i % 5) * 0.5}s`,
+                      "--neon-delay": `${(i * 0.4) % 3}s`,
+                    } as React.CSSProperties : undefined}
+                  >
+                    {char}
+                  </span>
+                );
+              })}
+            </span>
           </a>
 
           {/* Desktop Nav */}
@@ -103,104 +104,83 @@ const Header = () => {
             ))}
           </nav>
 
-         {/* Right side */}
-<div className="flex items-center gap-3">
-  {/* Language switcher */}
-  <div className="relative" ref={langRef}>
-    <button
-      onClick={() => setLangOpen(!langOpen)}
-      className="flex items-center gap-2 px-3 py-2 rounded-xl glass text-sm font-medium text-foreground hover:border-primary/30 transition-all duration-300 group"
-    >
-      <Globe className="w-4 h-4 text-primary transition-transform duration-300 group-hover:rotate-45" />
-      <span className="text-base">{currentLang.flag}</span>
-      <motion.svg
-        animate={{ rotate: langOpen ? 180 : 0 }}
-        transition={{ duration: 0.2 }}
-        className="w-3 h-3 text-muted-foreground"
-        viewBox="0 0 12 12"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      </motion.svg>
-    </button>
-
-    <AnimatePresence>
-      {langOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -8, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -8, scale: 0.95 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="absolute right-0 rtl:right-auto rtl:left-0 mt-2 rounded-xl overflow-hidden min-w-[180px] border border-border/30"
-          style={{
-            background: "rgba(15, 15, 20, 0.85)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05)",
-          }}
-        >
-          <div className="py-1.5">
-            {LANGUAGES.map((lang, i) => (
-              <motion.button
-                key={lang.code}
-                initial={{ opacity: 0, x: -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.04 }}
-                onClick={() => {
-                  setLanguage(lang.code);
-                  setLangOpen(false);
-                }}
-                className={`flex items-center gap-3 w-full px-4 py-2.5 text-sm text-left rtl:text-right transition-all duration-200 group/item ${
-                  language === lang.code
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-[hsl(var(--primary)/0.08)]"
-                }`}
+          {/* Right side */}
+          <div className="flex items-center gap-3">
+            {/* Language switcher */}
+            <div className="relative" ref={langRef}>
+              <button
+                onClick={() => setLangOpen(!langOpen)}
+                className="flex items-center gap-2 px-3 py-2 rounded-xl glass text-sm font-medium text-foreground hover:border-primary/30 transition-all duration-300 group"
               >
-                <span className="text-base">{lang.flag}</span>
-                <span className="flex-1 font-medium">{lang.label}</span>
-                {language === lang.code && (
+                <Globe className="w-4 h-4 text-primary transition-transform duration-300 group-hover:rotate-45" />
+                <span className="text-base">{currentLang.flag}</span>
+                <motion.svg
+                  animate={{ rotate: langOpen ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="w-3 h-3 text-muted-foreground"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </motion.svg>
+              </button>
+
+              <AnimatePresence>
+                {langOpen && (
                   <motion.div
-                    layoutId="activeLang"
-                    className="w-1.5 h-1.5 rounded-full bg-primary"
-                    style={{ boxShadow: "0 0 8px hsl(var(--primary))" }}
-                  />
+                    initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute right-0 rtl:right-auto rtl:left-0 mt-2 rounded-xl overflow-hidden min-w-[180px] border border-border/30"
+                    style={{
+                      background: "rgba(15, 15, 20, 0.85)",
+                      backdropFilter: "blur(20px)",
+                      WebkitBackdropFilter: "blur(20px)",
+                      boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05)",
+                    }}
+                  >
+                    <div className="py-1.5">
+                      {LANGUAGES.map((lang, i) => (
+                        <motion.button
+                          key={lang.code}
+                          initial={{ opacity: 0, x: -8 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.04 }}
+                          onClick={() => {
+                            setLanguage(lang.code);
+                            setLangOpen(false);
+                          }}
+                          className={`flex items-center gap-3 w-full px-4 py-2.5 text-sm text-left rtl:text-right transition-all duration-200 group/item ${
+                            language === lang.code
+                              ? "text-primary bg-primary/10"
+                              : "text-muted-foreground hover:text-foreground hover:bg-[hsl(var(--primary)/0.08)]"
+                          }`}
+                        >
+                          <span className="text-base">{lang.flag}</span>
+                          <span className="flex-1 font-medium">{lang.label}</span>
+                          {language === lang.code && (
+                            <motion.div
+                              layoutId="activeLang"
+                              className="w-1.5 h-1.5 rounded-full bg-primary"
+                              style={{ boxShadow: "0 0 8px hsl(var(--primary))" }}
+                            />
+                          )}
+                        </motion.button>
+                      ))}
+                    </div>
+                  </motion.div>
                 )}
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  </div>
+              </AnimatePresence>
+            </div>
 
-  {/* Theme Toggle — desktop uniquement */}
-  <div className="hidden lg:block">
-    <ThemeToggle />
-  </div>
+            {/* Theme Toggle — desktop uniquement */}
+            <div className="hidden lg:block">
+              <ThemeToggle />
+            </div>
 
-  {/* Enregistrement Express — desktop uniquement */}
-  <button
-    onClick={() => { setMobileOpen(false); navigate("/enregistrement"); }}
-    className="hidden sm:flex items-center gap-2 btn-neon text-sm !px-5 !py-2"
-  >
-    <Zap className="w-4 h-4" />
-    {t("nav.checkin")}
-  </button>
-
-  {/* Mobile menu burger */}
-  <button
-    onClick={() => setMobileOpen(!mobileOpen)}
-    className="lg:hidden p-2 text-foreground"
-  >
-    {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-  </button>
-</div>
-
-            {/* Theme Toggle */}
-            <ThemeToggle />
-
-            {/* Enregistrement Express */}
+            {/* Enregistrement Express — desktop uniquement */}
             <button
               onClick={() => { setMobileOpen(false); navigate("/enregistrement"); }}
               className="hidden sm:flex items-center gap-2 btn-neon text-sm !px-5 !py-2"
@@ -209,7 +189,7 @@ const Header = () => {
               {t("nav.checkin")}
             </button>
 
-            {/* Mobile menu */}
+            {/* Mobile menu burger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden p-2 text-foreground"
@@ -240,7 +220,6 @@ const Header = () => {
                 </button>
               ))}
 
-              {/* Mobile language selector */}
               <div className="pt-4 border-t border-border/30">
                 <div className="flex flex-wrap gap-2">
                   {LANGUAGES.map((lang) => (
