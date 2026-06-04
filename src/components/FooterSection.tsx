@@ -39,11 +39,7 @@ const FooterSection = () => {
               <li><Link to="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
               <li><Link to="/terms" className="hover:text-primary transition-colors">{t("footer.terms")}</Link></li>
               <li><Link to="/contact" className="hover:text-primary transition-colors">{t("footer.contact")}</Link></li>
-              <li>
-                <Link to="/admin" className="hover:text-primary transition-colors">
-                  Tableau de bord
-                </Link>
-              </li>
+              
             </ul>
           </div>
 
