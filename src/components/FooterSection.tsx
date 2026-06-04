@@ -13,13 +13,13 @@ const FooterSection = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="mb-4">
-              <img src={logoKND} alt="Kech Night Drive — Location Premium Marrakech" className="h-16 w-auto object-contain mix-blend-screen" />
+              <img src={logobon} alt="Kech Night Drive — Location Premium Marrakech" className="h-16 w-auto object-contain mix-blend-screen" />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mb-6">
               {t("footer.tagline")}
             </p>
             <a
-              href="https://wa.me/212600000000"
+              href="https://wa.me/33635121205"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-neon inline-flex items-center gap-2 !px-6 !py-3 text-sm"
