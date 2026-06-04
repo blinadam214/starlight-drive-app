@@ -5,23 +5,18 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
-import { AuthProvider } from "@/contexts/AuthContext";
-import { AdminRoute } from "@/routes/AdminRoute";
 import Index from "./pages/Index";
 import FAQ from "./pages/FAQ";
 import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import EnregistrementExpress from "./pages/EnregistrementExpress";
 import NotFound from "./pages/NotFound";
-import AdminLogin from "./pages/admin/AdminLogin";
-import AdminDashboard from "./pages/admin/AdminDashboard";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
-    <AuthProvider>
       <LanguageProvider>
         <TooltipProvider>
           <Toaster />
@@ -33,23 +28,11 @@ const App = () => (
               <Route path="/terms" element={<Terms />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/enregistrement" element={<EnregistrementExpress />} />
-
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route
-                path="/admin"
-                element={
-                  <AdminRoute>
-                    <AdminDashboard />
-                  </AdminRoute>
-                }
-              />
-
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
         </TooltipProvider>
       </LanguageProvider>
-    </AuthProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );
