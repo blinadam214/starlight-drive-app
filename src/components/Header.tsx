@@ -68,8 +68,8 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="/" className="flex items-center gap-0 group">
-           <img src={logoKND} alt="Kech Night Drive — Location Premium Marrakech" className="h-21 w-21 md:h-20 md:w-20 object-contain mix-blend-screen" />
-            <span className="inline font-serif font-bold tracking-tight text-[13px] md:text-xl text-amber-200/90 drop-shadow-[0_1<span className="inline font-serif font-bold tracking-tight text-[10px] md:text-base text-amber-200/90 drop-shadow-[0_1px_4px_rgba(200,170,80,0.3)] whitespace-nowrap -ml-2">px_4px_rgba(200,170,80,0.3)] whitespace-nowrap">
+           <img src={logoKND} alt="Kech Night Drive — Location Premium Marrakech" className="h-23 w-23 md:h-20 md:w-20 object-contain mix-blend-screen" />
+            <span className="inline font-serif font-bold tracking-tight text-[16px] md:text-xl text-amber-200/90 drop-shadow-[0_1<span className="inline font-serif font-bold tracking-tight text-[10px] md:text-base text-amber-200/90 drop-shadow-[0_1px_4px_rgba(200,170,80,0.3)] whitespace-nowrap -ml-2">px_4px_rgba(200,170,80,0.3)] whitespace-nowrap">
               {"KECH NIGHT DRIVE".split("").map((char, i) => {
                 if (char === " ") return <span key={i}>&nbsp;</span>;
                 const shouldAnimate = i % 3 === 0;
