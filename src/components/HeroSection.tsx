@@ -2,7 +2,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import heroImage from "@/assets/hero-starlight.jpg";
-import logoKND from "@/assets/logo-knd.png";
+import logoKND from "@/assets/logobon.png";
 import { useMemo } from "react";
 
 /** Wrap each character in a span with randomized animation timing */
