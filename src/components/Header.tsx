@@ -1,16 +1,4 @@
-On va tout remettre en ordre proprement, un fichier à la fois. Pas de panique, on reprend calmement.
-
-ÉTAPE 1 — On répare d'abord Header.tsx
-
-Va sur GitHub : github.com/blinadam214/starlight-drive-app
-Clique sur le dossier src
-Clique sur le dossier components
-Clique sur Header.tsx
-Clique sur le crayon ✏️ pour éditer
-Fais Ctrl+A (tout sélectionner) puis Suppr (tout effacer)
-Colle exactement ce code :
-
-tsximport { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { Menu, X, Globe, Zap } from "lucide-react";
