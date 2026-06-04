@@ -2,7 +2,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import heroImage from "@/assets/hero-starlight.jpg";
-import logoKND from "@/assets/logobon.png";
+import logobon from "@/assets/logobon.png";
 import { useMemo } from "react";
 
 /** Wrap each character in a span with randomized animation timing */
@@ -52,7 +52,7 @@ const HeroSection = () => {
       {/* Watermark logo filigrane */}
       <div
         className="absolute inset-0 z-0 pointer-events-none bg-center bg-no-repeat opacity-[0.03]"
-        style={{ backgroundImage: `url(${logoKND})`, backgroundSize: '60%' }}
+        style={{ backgroundImage: `url(${logobon})`, backgroundSize: '60%' }}
       />
 
       {/* Starlight particles */}
