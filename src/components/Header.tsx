@@ -69,7 +69,7 @@ const Header = () => {
           {/* Logo */}
           <a href="/" className="flex items-center gap-0 group">
             <img src={logoKND} alt="Kech Night Drive — Location Premium Marrakech" className="h-15 w-15 md:h-20 md:w-20 object-contain mix-blend-screen" />
-            <span className="inline font-serif font-bold tracking-tight text-[13px] md:text-base text-amber-200/90 drop-shadow-[0_1px_4px_rgba(200,170,80,0.3)] whitespace-nowrap -ml-2">
+            <span className="inline font-serif font-bold tracking-tight text-[12px] md:text-base text-amber-200/90 drop-shadow-[0_1px_4px_rgba(200,170,80,0.3)] whitespace-nowrap -ml-2">
               {"KECH NIGHT DRIVE".split("").map((char, i) => {
                 if (char === " ") return <span key={i}>&nbsp;</span>;
                 const shouldAnimate = i % 3 === 0;
