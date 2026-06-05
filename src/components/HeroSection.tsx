@@ -97,11 +97,8 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.35 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <a href="#fleet" className="btn-neon text-center text-base font-sans">
+          <a href="#fleet" className="btn-neon text-center text-base font-sans">
               {t("hero.cta")}
-            </a>
-            <a href="#booking" className="btn-glass text-center text-base font-sans">
-              {t("hero.cta2")}
             </a>
           </motion.div>
         </div>
@@ -113,7 +110,7 @@ const HeroSection = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
         onClick={() => document.querySelector("#fleet")?.scrollIntoView({ behavior: "smooth" })}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer group"
+       className="absolute bottom-24 left-1/2 -translate-x-1/2 cursor-pointer group"
         aria-label="Découvrir la flotte"
       >
         <motion.div
