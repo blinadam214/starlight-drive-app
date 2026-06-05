@@ -2,7 +2,11 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { Calendar, Sparkles, ChevronLeft, ChevronRight, Eye } from "lucide-react";
+import {
+  Calendar, Sparkles, ChevronLeft, ChevronRight, Eye,
+  Snowflake, MapPin, Video, Bluetooth, Settings2, ShieldCheck
+} from "lucide-react";
+import type { VehicleEquipment } from "@/data/vehicles";
 
 interface VehicleCardProps {
   images: string[];
@@ -12,11 +16,12 @@ interface VehicleCardProps {
   price: number;
   category: "starlight" | "essential" | "adrenaline";
   slug: string;
+  equipment: VehicleEquipment;
   onBook: () => void;
   delay?: number;
 }
 
-const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, onBook, delay = 0 }: VehicleCardProps) => {
+const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, equipment, onBook, delay = 0 }: VehicleCardProps) => {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -36,6 +41,15 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, o
     essential: t("cat.essential"),
     adrenaline: t("cat.adrenaline"),
   };
+
+  // Construire la liste des badges d'équipement actifs
+  const badges: { icon: typeof Snowflake; label: string }[] = [];
+  if (equipment.ac) badges.push({ icon: Snowflake, label: t("equip.ac") });
+  if (equipment.gps) badges.push({ icon: MapPin, label: t("equip.gps") });
+  if (equipment.rearCam) badges.push({ icon: Video, label: t("equip.cam") });
+  if (equipment.bluetooth) badges.push({ icon: Bluetooth, label: t("equip.audio") });
+  if (equipment.automatic) badges.push({ icon: Settings2, label: t("equip.auto") });
+  if (equipment.gearPro) badges.push({ icon: ShieldCheck, label: t("equip.gear") });
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -103,31 +117,15 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, o
 
         {hasMultipleImages && !(isHovered && video) && (
           <>
-            <button
-              onClick={goToPrev}
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-background/60 backdrop-blur-sm border border-border/30 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-background/80"
-              aria-label="Image précédente"
-            >
+            <button onClick={goToPrev} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-background/60 backdrop-blur-sm border border-border/30 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-background/80" aria-label="Image précédente">
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <button
-              onClick={goToNext}
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-background/60 backdrop-blur-sm border border-border/30 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-background/80"
-              aria-label="Image suivante"
-            >
+            <button onClick={goToNext} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-background/60 backdrop-blur-sm border border-border/30 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-background/80" aria-label="Image suivante">
               <ChevronRight className="w-4 h-4" />
             </button>
-
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
               {images.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
-                  className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                    idx === currentIndex ? "bg-primary w-3" : "bg-foreground/40"
-                  }`}
-                  aria-label={`Image ${idx + 1}`}
-                />
+                <button key={idx} onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }} className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex ? "bg-primary w-3" : "bg-foreground/40"}`} aria-label={`Image ${idx + 1}`} />
               ))}
             </div>
           </>
@@ -143,7 +141,22 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, o
 
       <div className="p-6">
         <h3 className="text-lg font-bold text-foreground mb-2">{t(nameKey)}</h3>
-        <p className="text-sm text-muted-foreground mb-6 leading-relaxed">{t(descKey)}</p>
+        <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{t(descKey)}</p>
+
+        {/* Ligne d'équipements */}
+        {badges.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-5">
+            {badges.map((b, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg glass border border-border/30 text-[11px] text-muted-foreground"
+              >
+                <b.icon className="w-3 h-3 text-primary" />
+                {b.label}
+              </span>
+            ))}
+          </div>
+        )}
 
         <div className="flex items-end justify-between mb-4">
           <div>
