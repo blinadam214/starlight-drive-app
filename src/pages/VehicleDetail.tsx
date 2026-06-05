@@ -11,7 +11,7 @@ import Header from "@/components/Header";
 import FooterSection from "@/components/FooterSection";
 import { getVehicleBySlug } from "@/data/vehicles";
 
-const WHATSAPP_NUMBER = "212635121205";
+const WHATSAPP_NUMBER = "33635121205";
 
 const VehicleDetail = () => {
   const { slug } = useParams<{ slug: string }>();
