@@ -154,6 +154,15 @@ export const translations: Translations = {
   "equip.gear": {
     fr: "Casque + Gants", en: "Helmet + Gloves", ar: "خوذة + قفازات", es: "Casco + Guantes", it: "Casco + Guanti", de: "Helm + Handschuhe", nl: "Helm + Handsch."
   },
+  "equip.starlight": {
+    fr: "Ciel Étoilé", en: "Starlight Ceiling", ar: "سقف نجمي", es: "Cielo Estrellado", it: "Cielo Stellato", de: "Sternenhimmel", nl: "Sterrenhemel"
+  },
+  "equip.led": {
+    fr: "LED Ambiance", en: "Ambient LED", ar: "إضاءة LED", es: "LED Ambiente", it: "LED Ambiente", de: "LED-Ambiente", nl: "LED-sfeer"
+  },
+  "detail.equipments": {
+    fr: "Équipements & Options", en: "Equipment & Options", ar: "التجهيزات والخيارات", es: "Equipamiento y Opciones", it: "Equipaggiamento e Opzioni", de: "Ausstattung & Optionen", nl: "Uitrusting & Opties"
+  },
   "detail.gearbox": {
     fr: "Boîte", en: "Gearbox", ar: "ناقل الحركة", es: "Caja", it: "Cambio", de: "Getriebe", nl: "Versnelling"
   },
