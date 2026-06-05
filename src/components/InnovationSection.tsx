@@ -138,22 +138,25 @@ const InnovationSection = () => {
               {c.badge}
             </span>
             <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold mb-6 leading-tight font-serif">
-              {c.title.split("").map((char, i) => {
-                if (char === " ") return <span key={i}>&nbsp;</span>;
-                const shouldAnimate = i % 3 === 0;
-                return (
-                  <span
-                    key={i}
-                      className={`neon-letter${shouldAnimate ? " animate-neon" : ""}`}
-                    style={shouldAnimate ? {
-                      "--neon-duration": `${2 + (i % 5) * 0.3}s`,
-                      "--neon-delay": `${(i * 0.2) % 2}s`,
-                    } as React.CSSProperties : undefined}
-                  >
-                    {char}
-                  </span>
-                );
-              })}
+           {c.title.split(" ").map((word, wi) => (
+                <span key={wi} className="inline-block whitespace-nowrap mr-[0.25em]">
+                  {word.split("").map((char, i) => {
+                    const shouldAnimate = (wi + i) % 3 === 0;
+                    return (
+                      <span
+                        key={i}
+                        className={`neon-letter${shouldAnimate ? " animate-neon" : ""}`}
+                        style={shouldAnimate ? {
+                          "--neon-duration": `${2 + (i % 5) * 0.3}s`,
+                          "--neon-delay": `${(i * 0.2) % 2}s`,
+                        } as React.CSSProperties : undefined}
+                      >
+                        {char}
+                      </span>
+                    );
+                  })}
+                </span>
+              ))}
             </h2>
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
               {c.intro}
