@@ -110,7 +110,7 @@ const HeroSection = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
         onClick={() => document.querySelector("#fleet")?.scrollIntoView({ behavior: "smooth" })}
-       className="absolute bottom-24 left-1/2 -translate-x-1/2 cursor-pointer group"
+       className="absolute bottom-20 left-1/2 -translate-x-1/2 cursor-pointer group"
         aria-label="Découvrir la flotte"
       >
         <motion.div
