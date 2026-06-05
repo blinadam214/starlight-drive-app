@@ -53,7 +53,7 @@ const FooterSection = () => {
               </li>
               <li className="flex items-center gap-2">
                 <MessageCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                +212 6XX XXX XXX
+                +33 6 35 12 12 05
               </li>
               <li className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-primary flex-shrink-0" />
