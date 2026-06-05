@@ -1,5 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { MessageCircle, MapPin, Instagram, Mail } from "lucide-react";
+import { MessageCircle, MapPin, Instagram, Mail, Ghost } from "lucide-react";
 import { Link } from "react-router-dom";
 import logobon from "@/assets/logobon.png";
 
@@ -13,7 +13,7 @@ const FooterSection = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="mb-4">
-              <img src={logobon} alt="Kech Night Drive — Location Premium Marrakech" className="h-16 w-auto object-contain mix-blend-screen" />
+             <img src={logobon} alt="Kech Night Drive — Location Premium Marrakech" className="h-28 w-auto object-contain mix-blend-screen" />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mb-6">
               {t("footer.tagline")}
@@ -61,7 +61,11 @@ const FooterSection = () => {
             </li>
             <li className="flex items-center gap-2">
               <Instagram className="w-4 h-4 text-primary flex-shrink-0" />
-              @kechnightdrive
+              @kech_night_drive
+              </li>
+            <li className="flex items-center gap-2">
+              <Ghost className="w-4 h-4 text-primary flex-shrink-0" />
+              @kech_nightdrive
               </li>
             </ul>
           </div>
