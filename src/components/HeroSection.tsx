@@ -122,7 +122,7 @@ const HeroSection = () => {
           className="flex items-center justify-center w-16 h-16 rounded-full border border-primary/30 group-hover:border-primary/70 transition-colors duration-300"
           style={{ boxShadow: "0 0 20px hsl(var(--primary) / 0.15)" }}
         >
-          <ChevronDown className="w-5 h-5 text-primary group-hover:text-foreground transition-colors duration-300" />
+          <ChevronDown className="w-8 h-8 text-primary group-hover:text-foreground transition-colors duration-300" />
         </motion.div>
       </motion.button>
     </section>
