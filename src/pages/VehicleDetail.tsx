@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import {
   ChevronLeft, ChevronRight, ArrowLeft, MessageCircle,
-  Settings2, Fuel, Users, Sparkles, Calendar
+  Settings2, Fuel, Users, Sparkles, Stars,
+  Snowflake, MapPin, Video, Bluetooth, ShieldCheck
 } from "lucide-react";
 import Header from "@/components/Header";
 import FooterSection from "@/components/FooterSection";
@@ -18,6 +19,12 @@ const VehicleDetail = () => {
   const { t } = useLanguage();
   const vehicle = slug ? getVehicleBySlug(slug) : undefined;
   const [imgIndex, setImgIndex] = useState(0);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [slug]);
 
   if (!vehicle) {
     return (
@@ -51,12 +58,22 @@ const VehicleDetail = () => {
     { icon: Users, label: t("detail.seats"), value: vehicle.spec.seats },
   ];
 
+  // Badges d'équipement actifs
+  const eq = vehicle.equipment;
+  const badges: { icon: typeof Snowflake; label: string }[] = [];
+  if (vehicle.spec.starlight) badges.push({ icon: Stars, label: t("equip.starlight") });
+  if (vehicle.spec.starlight) badges.push({ icon: Sparkles, label: t("equip.led") });
+  if (eq.ac) badges.push({ icon: Snowflake, label: t("equip.ac") });
+  if (eq.gps) badges.push({ icon: MapPin, label: t("equip.gps") });
+  if (eq.rearCam) badges.push({ icon: Video, label: t("equip.cam") });
+  if (eq.bluetooth) badges.push({ icon: Bluetooth, label: t("equip.audio") });
+  if (eq.gearPro) badges.push({ icon: ShieldCheck, label: t("equip.gear") });
+
   return (
     <div className="min-h-screen">
       <Header />
       <main className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          {/* Back button */}
           <button
             onClick={() => navigate("/#fleet")}
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 text-sm"
@@ -124,15 +141,19 @@ const VehicleDetail = () => {
                 ))}
               </div>
 
-              {/* Starlight premium mention */}
-              {vehicle.spec.starlight && (
-                <div className="glass rounded-xl p-4 mb-6 flex items-center gap-3 border border-primary/30">
-                  <div className="w-10 h-10 rounded-lg gradient-neon flex items-center justify-center flex-shrink-0">
-                    <Sparkles className="w-5 h-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-foreground">{t("detail.starlight.title")}</div>
-                    <div className="text-xs text-muted-foreground">{t("detail.starlight.desc")}</div>
+              {/* Équipements & options — petites cartes */}
+              {badges.length > 0 && (
+                <div className="mb-6">
+                  <h3 className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">
+                    {t("detail.equipments")}
+                  </h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                    {badges.map((b, i) => (
+                      <div key={i} className="glass rounded-xl px-3 py-2.5 flex items-center gap-2 border border-border/30">
+                        <b.icon className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span className="text-xs font-medium text-foreground">{b.label}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}
