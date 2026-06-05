@@ -133,6 +133,48 @@ export const translations: Translations = {
   "fleet.perday": {
     fr: "/jour", en: "/day", ar: "/يوم", es: "/día", it: "/giorno", de: "/Tag", nl: "/dag"
   },
+  "fleet.view": {
+    fr: "Voir", en: "View", ar: "عرض", es: "Ver", it: "Vedi", de: "Ansehen", nl: "Bekijken"
+  },
+  "equip.ac": {
+    fr: "Clim", en: "A/C", ar: "تكييف", es: "A/C", it: "Clima", de: "Klima", nl: "Airco"
+  },
+  "equip.gps": {
+    fr: "GPS / CarPlay", en: "GPS / CarPlay", ar: "GPS", es: "GPS / CarPlay", it: "GPS / CarPlay", de: "GPS / CarPlay", nl: "GPS / CarPlay"
+  },
+  "equip.cam": {
+    fr: "Caméra recul", en: "Rear cam", ar: "كاميرا خلفية", es: "Cámara tras.", it: "Telecamera", de: "Rückfahrk.", nl: "Achteruitcam."
+  },
+  "equip.audio": {
+    fr: "USB / Audio", en: "USB / Audio", ar: "USB / صوت", es: "USB / Audio", it: "USB / Audio", de: "USB / Audio", nl: "USB / Audio"
+  },
+  "equip.auto": {
+    fr: "Auto", en: "Automatic", ar: "أوتوماتيك", es: "Automático", it: "Automatico", de: "Automatik", nl: "Automaat"
+  },
+  "equip.gear": {
+    fr: "Casque + Gants", en: "Helmet + Gloves", ar: "خوذة + قفازات", es: "Casco + Guantes", it: "Casco + Guanti", de: "Helm + Handschuhe", nl: "Helm + Handsch."
+  },
+  "detail.gearbox": {
+    fr: "Boîte", en: "Gearbox", ar: "ناقل الحركة", es: "Caja", it: "Cambio", de: "Getriebe", nl: "Versnelling"
+  },
+  "detail.fuel": {
+    fr: "Carburant", en: "Fuel", ar: "الوقود", es: "Combustible", it: "Carburante", de: "Kraftstoff", nl: "Brandstof"
+  },
+  "detail.seats": {
+    fr: "Places", en: "Seats", ar: "المقاعد", es: "Plazas", it: "Posti", de: "Sitze", nl: "Plaatsen"
+  },
+  "detail.back": {
+    fr: "Retour à la flotte", en: "Back to fleet", ar: "العودة للأسطول", es: "Volver a la flota", it: "Torna alla flotta", de: "Zurück zur Flotte", nl: "Terug naar vloot"
+  },
+  "detail.book": {
+    fr: "Réserver maintenant", en: "Book now", ar: "احجز الآن", es: "Reservar ahora", it: "Prenota ora", de: "Jetzt buchen", nl: "Nu boeken"
+  },
+  "detail.starlight.title": {
+    fr: "Pack Starlight inclus", en: "Starlight Pack included", ar: "باقة ستارلايت مشمولة", es: "Pack Starlight incluido", it: "Pacchetto Starlight incluso", de: "Starlight-Paket inklusive", nl: "Starlight-pakket inbegrepen"
+  },
+  "detail.starlight.desc": {
+    fr: "Ciel étoilé & éclairage d'ambiance LED", en: "Starlight ceiling & LED ambient lighting", ar: "سقف نجمي وإضاءة LED", es: "Cielo estrellado e iluminación LED", it: "Cielo stellato e illuminazione LED", de: "Sternenhimmel & LED-Ambiente", nl: "Sterrenhemel & LED-sfeerverlichting"
+  },
   "fleet.book": {
     fr: "Réserver", en: "Book Now", ar: "احجز الآن", es: "Reservar", it: "Prenota", de: "Buchen", nl: "Boeken"
   },
