@@ -107,20 +107,24 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
+     {/* Scroll indicator — cliquable */}
+      <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        onClick={() => document.querySelector("#fleet")?.scrollIntoView({ behavior: "smooth" })}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer group"
+        aria-label="Découvrir la flotte"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          className="flex items-center justify-center w-11 h-11 rounded-full border border-primary/30 group-hover:border-primary/70 transition-colors duration-300"
+          style={{ boxShadow: "0 0 20px hsl(var(--primary) / 0.15)" }}
         >
-          <ChevronDown className="w-6 h-6 text-muted-foreground" />
+          <ChevronDown className="w-5 h-5 text-primary group-hover:text-foreground transition-colors duration-300" />
         </motion.div>
-      </motion.div>
+      </motion.button>
     </section>
   );
 };
