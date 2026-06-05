@@ -137,8 +137,23 @@ const InnovationSection = () => {
             <span className="inline-block px-4 py-1.5 rounded-full glass text-xs font-semibold tracking-wider uppercase text-primary mb-6">
               {c.badge}
             </span>
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6 leading-tight font-serif">
-              {c.title}
+           <h2 className="text-3xl lg:text-4xl font-bold mb-6 leading-tight font-serif">
+              {c.title.split("").map((char, i) => {
+                if (char === " ") return <span key={i}>&nbsp;</span>;
+                const shouldAnimate = i % 3 === 0;
+                return (
+                  <span
+                    key={i}
+                    className={`neon-letter-gold${shouldAnimate ? " animate-neon-gold" : ""}`}
+                    style={shouldAnimate ? {
+                      "--neon-duration": `${3.5 + (i % 5) * 0.5}s`,
+                      "--neon-delay": `${(i * 0.4) % 3}s`,
+                    } as React.CSSProperties : undefined}
+                  >
+                    {char}
+                  </span>
+                );
+              })}
             </h2>
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
               {c.intro}
