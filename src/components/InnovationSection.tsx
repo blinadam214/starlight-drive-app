@@ -18,10 +18,10 @@ const TEXTS: Record<Lang, {
     intro: "Succombez au luxe dès l'ouverture de la portière : un ciel étoilé et une ambiance lumineuse sur-mesure pour une esthétique VIP unique au cœur de Marrakech.",
     listLabel: "L'Expérience en 4 lignes :",
     features: [
-      { emoji: "🌌", title: "Ciel Étoilé & Éclairage d'Ambiance", desc: "Des centaines de fibres optiques et des LED sur-mesure transforment votre habitacle en voûte céleste pour maîtriser la nuit marrakchie." },
-      { emoji: "🍬", title: "Détails Premium", desc: "Une flotte à la propreté clinique et au parfum soigné, avec bouteilles d'eau fraîche et douceurs offertes à bord." },
-      { emoji: "✈️", title: "Livraison VIP Express", desc: "Prise en charge immédiate et sur-mesure dès votre sortie de l'aéroport, à votre hôtel ou votre villa." },
-      { emoji: "🔑", title: "Jeunes Permis Bienvenus", desc: "Le prestige accessible à tous, basé sur la confiance et sans restrictions d'âge abusives." },
+      { title: "Ciel Étoilé & Éclairage d'Ambiance", desc: "Des centaines de fibres optiques et des LED sur-mesure transforment votre habitacle en voûte céleste pour maîtriser la nuit marrakchie." },
+      { title: "Détails Premium", desc: "Une flotte à la propreté clinique et au parfum soigné, avec bouteilles d'eau fraîche et douceurs offertes à bord." },
+      { title: "Livraison VIP Express", desc: "Prise en charge immédiate et sur-mesure dès votre sortie de l'aéroport, à votre hôtel ou votre villa." },
+      { title: "Jeunes Permis Bienvenus", desc: "Le prestige accessible à tous, basé sur la confiance et sans restrictions d'âge abusives." },
     ],
   },
   en: {
