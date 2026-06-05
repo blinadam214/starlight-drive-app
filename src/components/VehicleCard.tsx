@@ -143,21 +143,6 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, e
         <h3 className="text-lg font-bold text-foreground mb-2">{t(nameKey)}</h3>
         <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{t(descKey)}</p>
 
-        {/* Ligne d'équipements */}
-        {badges.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-5">
-            {badges.map((b, i) => (
-              <span
-                key={i}
-                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg glass border border-border/30 text-[11px] text-muted-foreground"
-              >
-                <b.icon className="w-3 h-3 text-primary" />
-                {b.label}
-              </span>
-            ))}
-          </div>
-        )}
-
         <div className="flex items-end justify-between mb-4">
           <div>
             <span className="text-xs text-muted-foreground">{t("fleet.from")}</span>
