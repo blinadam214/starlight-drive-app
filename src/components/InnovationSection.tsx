@@ -30,10 +30,10 @@ const TEXTS: Record<Lang, {
     intro: "Give in to luxury the moment you open the door: a starlit ceiling and custom ambient lighting for a unique VIP aesthetic in the heart of Marrakech.",
     listLabel: "The Experience in 4 lines:",
     features: [
-      { emoji: "🌌", title: "Starlight Ceiling & Ambient Lighting", desc: "Hundreds of fiber optics and custom LEDs turn your cabin into a celestial vault to own the Marrakech night." },
-      { emoji: "🍬", title: "Premium Details", desc: "A fleet with clinical cleanliness and a refined scent, with fresh water bottles and sweet treats offered on board." },
-      { emoji: "✈️", title: "Express VIP Delivery", desc: "Immediate, tailor-made pickup the moment you exit the airport, at your hotel or your villa." },
-      { emoji: "🔑", title: "Young Drivers Welcome", desc: "Prestige accessible to all, based on trust and without abusive age restrictions." },
+      { title: "Starlight Ceiling & Ambient Lighting", desc: "Hundreds of fiber optics and custom LEDs turn your cabin into a celestial vault to own the Marrakech night." },
+      {  title: "Premium Details", desc: "A fleet with clinical cleanliness and a refined scent, with fresh water bottles and sweet treats offered on board." },
+      { title: "Express VIP Delivery", desc: "Immediate, tailor-made pickup the moment you exit the airport, at your hotel or your villa." },
+      {title: "Young Drivers Welcome", desc: "Prestige accessible to all, based on trust and without abusive age restrictions." },
     ],
   },
   ar: {
@@ -42,10 +42,10 @@ const TEXTS: Record<Lang, {
     intro: "استسلم للفخامة منذ لحظة فتح الباب: سقف نجمي وإضاءة محيطة مخصصة لجمالية VIP فريدة في قلب مراكش.",
     listLabel: "التجربة في 4 نقاط:",
     features: [
-      { emoji: "🌌", title: "سقف نجمي وإضاءة محيطة", desc: "مئات الألياف الضوئية وإضاءة LED مخصصة تحوّل مقصورتك إلى قبة سماوية للسيطرة على ليل مراكش." },
-      { emoji: "🍬", title: "تفاصيل فاخرة", desc: "أسطول بنظافة فائقة ورائحة عطرة، مع زجاجات ماء بارد وحلويات مقدمة على متن السيارة." },
-      { emoji: "✈️", title: "توصيل VIP سريع", desc: "استلام فوري ومخصص فور خروجك من المطار، إلى فندقك أو فيلتك." },
-      { emoji: "🔑", title: "الرخص الجديدة مرحب بها", desc: "الفخامة في متناول الجميع، قائمة على الثقة ودون قيود عمرية مبالغ فيها." },
+      {title: "سقف نجمي وإضاءة محيطة", desc: "مئات الألياف الضوئية وإضاءة LED مخصصة تحوّل مقصورتك إلى قبة سماوية للسيطرة على ليل مراكش." },
+      { title: "تفاصيل فاخرة", desc: "أسطول بنظافة فائقة ورائحة عطرة، مع زجاجات ماء بارد وحلويات مقدمة على متن السيارة." },
+      { etitle: "توصيل VIP سريع", desc: "استلام فوري ومخصص فور خروجك من المطار، إلى فندقك أو فيلتك." },
+      {  title: "الرخص الجديدة مرحب بها", desc: "الفخامة في متناول الجميع، قائمة على الثقة ودون قيود عمرية مبالغ فيها." },
     ],
   },
   es: {
@@ -54,10 +54,10 @@ const TEXTS: Record<Lang, {
     intro: "Sucumbe al lujo desde que abres la puerta: un cielo estrellado y una iluminación ambiental personalizada para una estética VIP única en el corazón de Marrakech.",
     listLabel: "La Experiencia en 4 líneas:",
     features: [
-      { emoji: "🌌", title: "Cielo Estrellado e Iluminación Ambiental", desc: "Cientos de fibras ópticas y LED personalizados transforman tu habitáculo en una bóveda celeste para dominar la noche de Marrakech." },
-      { emoji: "🍬", title: "Detalles Premium", desc: "Una flota con limpieza clínica y aroma cuidado, con botellas de agua fresca y dulces ofrecidos a bordo." },
-      { emoji: "✈️", title: "Entrega VIP Exprés", desc: "Recogida inmediata y personalizada nada más salir del aeropuerto, en tu hotel o tu villa." },
-      { emoji: "🔑", title: "Jóvenes Conductores Bienvenidos", desc: "El prestigio accesible para todos, basado en la confianza y sin restricciones de edad abusivas." },
+      { title: "Cielo Estrellado e Iluminación Ambiental", desc: "Cientos de fibras ópticas y LED personalizados transforman tu habitáculo en una bóveda celeste para dominar la noche de Marrakech." },
+      { title: "Detalles Premium", desc: "Una flota con limpieza clínica y aroma cuidado, con botellas de agua fresca y dulces ofrecidos a bordo." },
+      { title: "Entrega VIP Exprés", desc: "Recogida inmediata y personalizada nada más salir del aeropuerto, en tu hotel o tu villa." },
+      { title: "Jóvenes Conductores Bienvenidos", desc: "El prestigio accesible para todos, basado en la confianza y sin restricciones de edad abusivas." },
     ],
   },
   it: {
@@ -66,10 +66,10 @@ const TEXTS: Record<Lang, {
     intro: "Cedi al lusso dal momento in cui apri la portiera: un cielo stellato e un'illuminazione ambientale su misura per un'estetica VIP unica nel cuore di Marrakech.",
     listLabel: "L'Esperienza in 4 punti:",
     features: [
-      { emoji: "🌌", title: "Cielo Stellato e Illuminazione Ambientale", desc: "Centinaia di fibre ottiche e LED su misura trasformano il tuo abitacolo in una volta celeste per dominare la notte di Marrakech." },
-      { emoji: "🍬", title: "Dettagli Premium", desc: "Una flotta dalla pulizia clinica e dal profumo curato, con bottiglie d'acqua fresca e dolcetti offerti a bordo." },
-      { emoji: "✈️", title: "Consegna VIP Express", desc: "Presa in carico immediata e su misura appena esci dall'aeroporto, al tuo hotel o alla tua villa." },
-      { emoji: "🔑", title: "Neopatentati Benvenuti", desc: "Il prestigio accessibile a tutti, basato sulla fiducia e senza restrizioni d'età eccessive." },
+      { title: "Cielo Stellato e Illuminazione Ambientale", desc: "Centinaia di fibre ottiche e LED su misura trasformano il tuo abitacolo in una volta celeste per dominare la notte di Marrakech." },
+      {  title: "Dettagli Premium", desc: "Una flotta dalla pulizia clinica e dal profumo curato, con bottiglie d'acqua fresca e dolcetti offerti a bordo." },
+      { title: "Consegna VIP Express", desc: "Presa in carico immediata e su misura appena esci dall'aeroporto, al tuo hotel o alla tua villa." },
+      { title: "Neopatentati Benvenuti", desc: "Il prestigio accessibile a tutti, basato sulla fiducia e senza restrizioni d'età eccessive." },
     ],
   },
   de: {
@@ -78,10 +78,10 @@ const TEXTS: Record<Lang, {
     intro: "Geben Sie sich dem Luxus hin, sobald Sie die Tür öffnen: ein Sternenhimmel und maßgeschneiderte Ambientebeleuchtung für eine einzigartige VIP-Ästhetik im Herzen von Marrakesch.",
     listLabel: "Das Erlebnis in 4 Punkten:",
     features: [
-      { emoji: "🌌", title: "Sternenhimmel & Ambientebeleuchtung", desc: "Hunderte von Glasfasern und maßgeschneiderte LEDs verwandeln Ihre Fahrgastzelle in ein Himmelsgewölbe, um die Nacht von Marrakesch zu beherrschen." },
-      { emoji: "🍬", title: "Premium-Details", desc: "Eine Flotte mit klinischer Sauberkeit und gepflegtem Duft, mit frischen Wasserflaschen und Süßigkeiten an Bord." },
-      { emoji: "✈️", title: "Express VIP-Lieferung", desc: "Sofortige, maßgeschneiderte Abholung direkt nach dem Verlassen des Flughafens, an Ihrem Hotel oder Ihrer Villa." },
-      { emoji: "🔑", title: "Fahranfänger willkommen", desc: "Prestige für alle zugänglich, basierend auf Vertrauen und ohne übermäßige Altersbeschränkungen." },
+      {  title: "Sternenhimmel & Ambientebeleuchtung", desc: "Hunderte von Glasfasern und maßgeschneiderte LEDs verwandeln Ihre Fahrgastzelle in ein Himmelsgewölbe, um die Nacht von Marrakesch zu beherrschen." },
+      {  title: "Premium-Details", desc: "Eine Flotte mit klinischer Sauberkeit und gepflegtem Duft, mit frischen Wasserflaschen und Süßigkeiten an Bord." },
+      {  title: "Express VIP-Lieferung", desc: "Sofortige, maßgeschneiderte Abholung direkt nach dem Verlassen des Flughafens, an Ihrem Hotel oder Ihrer Villa." },
+      {  title: "Fahranfänger willkommen", desc: "Prestige für alle zugänglich, basierend auf Vertrauen und ohne übermäßige Altersbeschränkungen." },
     ],
   },
   nl: {
@@ -90,10 +90,10 @@ const TEXTS: Record<Lang, {
     intro: "Geef u over aan luxe vanaf het moment dat u de deur opent: een sterrenhemel en op maat gemaakte sfeerverlichting voor een unieke VIP-esthetiek in het hart van Marrakech.",
     listLabel: "De Ervaring in 4 punten:",
     features: [
-      { emoji: "🌌", title: "Sterrenhemel & Sfeerverlichting", desc: "Honderden glasvezels en op maat gemaakte LED's veranderen uw cabine in een hemelgewelf om de Marrakech-nacht te beheersen." },
-      { emoji: "🍬", title: "Premium Details", desc: "Een wagenpark met klinische netheid en een verzorgde geur, met verse waterflessen en lekkernijen aan boord." },
-      { emoji: "✈️", title: "Express VIP-bezorging", desc: "Onmiddellijke, op maat gemaakte ophaling zodra u de luchthaven verlaat, bij uw hotel of uw villa." },
-      { emoji: "🔑", title: "Jonge Bestuurders Welkom", desc: "Prestige toegankelijk voor iedereen, gebaseerd op vertrouwen en zonder buitensporige leeftijdsbeperkingen." },
+      {  title: "Sterrenhemel & Sfeerverlichting", desc: "Honderden glasvezels en op maat gemaakte LED's veranderen uw cabine in een hemelgewelf om de Marrakech-nacht te beheersen." },
+      {  title: "Premium Details", desc: "Een wagenpark met klinische netheid en een verzorgde geur, met verse waterflessen en lekkernijen aan boord." },
+      {  title: "Express VIP-bezorging", desc: "Onmiddellijke, op maat gemaakte ophaling zodra u de luchthaven verlaat, bij uw hotel of uw villa." },
+      {  title: "Jonge Bestuurders Welkom", desc: "Prestige toegankelijk voor iedereen, gebaseerd op vertrouwen en zonder buitensporige leeftijdsbeperkingen." },
     ],
   },
 };
