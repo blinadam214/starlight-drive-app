@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import {
   Calendar, Sparkles, ChevronLeft, ChevronRight, Eye,
-  Snowflake, MapPin, Video, Bluetooth, Settings2, ShieldCheck
+  Snowflake, MapPin, Video, Bluetooth, Settings2, ShieldCheck, Stars
 } from "lucide-react";
 import type { VehicleEquipment } from "@/data/vehicles";
 
