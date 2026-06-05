@@ -114,7 +114,7 @@ const VehicleDetail = () => {
               </span>
 
               <h1 className="text-3xl lg:text-4xl font-bold font-serif mb-3">{t(vehicle.nameKey)}</h1>
-              <p className="text-muted-foreground mb-8 leading-relaxed">{t(vehicle.descKey)}</p>
+             
 
               {/* Specs grid */}
               <div className="grid grid-cols-3 gap-3 mb-6">
