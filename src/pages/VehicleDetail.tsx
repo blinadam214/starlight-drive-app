@@ -3,15 +3,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import {
-  ChevronLeft, ChevronRight, ArrowLeft, MessageCircle,
+  ChevronLeft, ChevronRight, ArrowLeft, Calendar,
   Settings2, Fuel, Users, Sparkles, Stars,
   Snowflake, MapPin, Video, Bluetooth, ShieldCheck
 } from "lucide-react";
 import Header from "@/components/Header";
 import FooterSection from "@/components/FooterSection";
+import BookingModal from "@/components/BookingModal";
 import { getVehicleBySlug } from "@/data/vehicles";
-
-const WHATSAPP_NUMBER = "33635121205";
 
 const VehicleDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -19,6 +18,7 @@ const VehicleDetail = () => {
   const { t } = useLanguage();
   const vehicle = slug ? getVehicleBySlug(slug) : undefined;
   const [imgIndex, setImgIndex] = useState(0);
+  const [showBooking, setShowBooking] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
@@ -41,13 +41,6 @@ const VehicleDetail = () => {
     );
   }
 
-  const handleWhatsApp = () => {
-    const msg = encodeURIComponent(
-      `Bonjour Kech Night Drive ! Je suis intéressé par la location de : ${t(vehicle.nameKey)} (${vehicle.price}€/jour). Pouvez-vous me confirmer la disponibilité ?`
-    );
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
-  };
-
   const hasMultiple = vehicle.images.length > 1;
   const prevImg = () => setImgIndex((p) => (p === 0 ? vehicle.images.length - 1 : p - 1));
   const nextImg = () => setImgIndex((p) => (p === vehicle.images.length - 1 ? 0 : p + 1));
@@ -58,7 +51,6 @@ const VehicleDetail = () => {
     { icon: Users, label: t("detail.seats"), value: vehicle.spec.seats },
   ];
 
-  // Badges d'équipement actifs
   const eq = vehicle.equipment;
   const badges: { icon: typeof Snowflake; label: string }[] = [];
   if (vehicle.spec.starlight) badges.push({ icon: Stars, label: t("equip.starlight") });
@@ -141,7 +133,7 @@ const VehicleDetail = () => {
                 ))}
               </div>
 
-              {/* Équipements & options — petites cartes */}
+              {/* Équipements & options */}
               {badges.length > 0 && (
                 <div className="mb-6">
                   <h3 className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">
@@ -169,8 +161,8 @@ const VehicleDetail = () => {
                     </div>
                   </div>
                 </div>
-                <button onClick={handleWhatsApp} className="btn-neon w-full flex items-center justify-center gap-2 text-base">
-                  <MessageCircle className="w-5 h-5" />
+                <button onClick={() => setShowBooking(true)} className="btn-neon w-full flex items-center justify-center gap-2 text-base">
+                  <Calendar className="w-5 h-5" />
                   {t("detail.book")}
                 </button>
               </div>
@@ -179,6 +171,13 @@ const VehicleDetail = () => {
         </div>
       </main>
       <FooterSection />
+
+      {showBooking && (
+        <BookingModal
+          vehicle={vehicle}
+          onClose={() => setShowBooking(false)}
+        />
+      )}
     </div>
   );
 };
