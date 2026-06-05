@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
@@ -10,7 +10,7 @@ import Header from "@/components/Header";
 import FooterSection from "@/components/FooterSection";
 import { getVehicleBySlug } from "@/data/vehicles";
 
-const WHATSAPP_NUMBER = "212635121205";
+const WHATSAPP_NUMBER = "33635121205";
 
 const VehicleDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -18,6 +18,9 @@ const VehicleDetail = () => {
   const { t } = useLanguage();
   const vehicle = slug ? getVehicleBySlug(slug) : undefined;
   const [imgIndex, setImgIndex] = useState(0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!vehicle) {
     return (
