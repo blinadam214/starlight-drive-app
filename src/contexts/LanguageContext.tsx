@@ -133,6 +133,15 @@ export const translations: Translations = {
   "fleet.perday": {
     fr: "/jour", en: "/day", ar: "/يوم", es: "/día", it: "/giorno", de: "/Tag", nl: "/dag"
   },
+  "avail.single": {
+    fr: "disponible", en: "available", ar: "متاح", es: "disponible", it: "disponibile", de: "verfügbar", nl: "beschikbaar"
+  },
+  "avail.plural": {
+    fr: "disponibles", en: "available", ar: "متاحة", es: "disponibles", it: "disponibili", de: "verfügbar", nl: "beschikbaar"
+  },
+  "avail.none": {
+    fr: "Indisponible", en: "Unavailable", ar: "غير متاح", es: "No disponible", it: "Non disponibile", de: "Nicht verfügbar", nl: "Niet beschikbaar"
+  },
   "fleet.view": {
     fr: "Voir", en: "View", ar: "عرض", es: "Ver", it: "Vedi", de: "Ansehen", nl: "Bekijken"
   },
