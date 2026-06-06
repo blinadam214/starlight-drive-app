@@ -38,7 +38,8 @@ const FleetSection = () => {
                 price={v.price}
                 category={v.category}
                 slug={v.slug}
-                equipment={v.equipment}
+                quantityTotal={v.quantityTotal}
+                quantityAvailable={v.quantityAvailable}
                 delay={i * 0.1}
                 onBook={() => setSelectedVehicle(v)}
               />
