@@ -1,6 +1,4 @@
 // Source de données centralisée pour tous les véhicules
-// Utilisée par FleetSection (cartes), VehicleCard et VehicleDetail
-
 import heroStarlight from "@/assets/hero-starlight.jpg";
 import peugeot208 from "@/assets/peugeot-208.jpg";
 import daciaLogan from "@/assets/dacia-logan.jpg";
@@ -11,20 +9,19 @@ export type VehicleCategory = "starlight" | "essential" | "adrenaline";
 export type VehicleType = "car" | "moto";
 
 export interface VehicleSpec {
-  gearbox: string;      // Boîte de vitesse
-  fuel: string;         // Carburant
-  seats: string;        // Places
-  starlight: boolean;   // Option Ciel Étoilé / LED
+  gearbox: string;
+  fuel: string;
+  seats: string;
+  starlight: boolean;
 }
 
-// Équipements affichés en badges sur la carte (booléens)
 export interface VehicleEquipment {
-  ac: boolean;          // Climatisation
-  gps: boolean;         // GPS / CarPlay
-  rearCam: boolean;     // Caméra de recul
-  bluetooth: boolean;   // Bluetooth / USB
-  automatic: boolean;   // Boîte automatique (sinon manuelle)
-  gearPro: boolean;     // Équipement moto fourni (casque + gants)
+  ac: boolean;
+  gps: boolean;
+  rearCam: boolean;
+  bluetooth: boolean;
+  automatic: boolean;
+  gearPro: boolean;
 }
 
 export interface VehicleData {
@@ -39,6 +36,8 @@ export interface VehicleData {
   category: VehicleCategory;
   spec: VehicleSpec;
   equipment: VehicleEquipment;
+  quantityTotal: number;       // Stock total d'exemplaires
+  quantityAvailable: number;   // Exemplaires actuellement disponibles
 }
 
 export const vehicles: VehicleData[] = [
@@ -54,6 +53,8 @@ export const vehicles: VehicleData[] = [
     category: "starlight",
     spec: { gearbox: "Manuelle", fuel: "Essence", seats: "5", starlight: true },
     equipment: { ac: true, gps: true, rearCam: false, bluetooth: true, automatic: false, gearPro: false },
+    quantityTotal: 3,
+    quantityAvailable: 3,
   },
   {
     id: "208",
@@ -66,6 +67,8 @@ export const vehicles: VehicleData[] = [
     category: "starlight",
     spec: { gearbox: "Manuelle", fuel: "Essence", seats: "5", starlight: true },
     equipment: { ac: true, gps: true, rearCam: true, bluetooth: true, automatic: false, gearPro: false },
+    quantityTotal: 1,
+    quantityAvailable: 1,
   },
   {
     id: "logan",
@@ -78,6 +81,8 @@ export const vehicles: VehicleData[] = [
     category: "essential",
     spec: { gearbox: "Manuelle", fuel: "Diesel", seats: "5", starlight: false },
     equipment: { ac: true, gps: true, rearCam: false, bluetooth: true, automatic: false, gearPro: false },
+    quantityTotal: 1,
+    quantityAvailable: 1,
   },
   {
     id: "tmax",
@@ -90,6 +95,8 @@ export const vehicles: VehicleData[] = [
     category: "adrenaline",
     spec: { gearbox: "Automatique", fuel: "Essence", seats: "2", starlight: false },
     equipment: { ac: false, gps: false, rearCam: false, bluetooth: false, automatic: true, gearPro: true },
+    quantityTotal: 1,
+    quantityAvailable: 1,
   },
   {
     id: "tracer",
@@ -102,6 +109,8 @@ export const vehicles: VehicleData[] = [
     category: "adrenaline",
     spec: { gearbox: "Manuelle", fuel: "Essence", seats: "2", starlight: false },
     equipment: { ac: false, gps: false, rearCam: false, bluetooth: false, automatic: false, gearPro: true },
+    quantityTotal: 1,
+    quantityAvailable: 1,
   },
 ];
 
