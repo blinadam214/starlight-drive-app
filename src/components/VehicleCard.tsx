@@ -2,11 +2,8 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import {
-  Calendar, Sparkles, ChevronLeft, ChevronRight, Eye,
-  Snowflake, MapPin, Video, Bluetooth, Settings2, ShieldCheck, Stars
-} from "lucide-react";
-import type { VehicleEquipment } from "@/data/vehicles";
+import { Calendar, Sparkles, ChevronLeft, ChevronRight, Eye } from "lucide-react";
+import AvailabilityBadge from "./AvailabilityBadge";
 
 interface VehicleCardProps {
   images: string[];
@@ -16,12 +13,13 @@ interface VehicleCardProps {
   price: number;
   category: "starlight" | "essential" | "adrenaline";
   slug: string;
-  equipment: VehicleEquipment;
+  quantityTotal: number;
+  quantityAvailable: number;
   onBook: () => void;
   delay?: number;
 }
 
-const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, equipment, onBook, delay = 0 }: VehicleCardProps) => {
+const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, quantityTotal, quantityAvailable, onBook, delay = 0 }: VehicleCardProps) => {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -29,6 +27,7 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, e
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const hasMultipleImages = images.length > 1;
+  const soldOut = quantityAvailable <= 0;
 
   const categoryStyles = {
     starlight: "from-neon-cyan/20 to-neon-violet/20 text-primary",
@@ -41,15 +40,6 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, e
     essential: t("cat.essential"),
     adrenaline: t("cat.adrenaline"),
   };
-
-  // Construire la liste des badges d'équipement actifs
-  const badges: { icon: typeof Snowflake; label: string }[] = [];
-  if (equipment.ac) badges.push({ icon: Snowflake, label: t("equip.ac") });
-  if (equipment.gps) badges.push({ icon: MapPin, label: t("equip.gps") });
-  if (equipment.rearCam) badges.push({ icon: Video, label: t("equip.cam") });
-  if (equipment.bluetooth) badges.push({ icon: Bluetooth, label: t("equip.audio") });
-  if (equipment.automatic) badges.push({ icon: Settings2, label: t("equip.auto") });
-  if (equipment.gearPro) badges.push({ icon: ShieldCheck, label: t("equip.gear") });
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -137,6 +127,11 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, e
             {categoryLabels[category]}
           </span>
         </div>
+
+        {/* Badge disponibilité en haut à droite */}
+        <div className="absolute top-4 right-4">
+          <AvailabilityBadge total={quantityTotal} available={quantityAvailable} />
+        </div>
       </div>
 
       <div className="p-6">
@@ -153,7 +148,6 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, e
           </div>
         </div>
 
-        {/* Boutons : Voir (outline) + Réserver (plein) */}
         <div className="flex gap-3">
           <button
             onClick={() => navigate(`/vehicules/${slug}`)}
@@ -164,7 +158,8 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, e
           </button>
           <button
             onClick={onBook}
-            className="flex-1 btn-neon !py-2.5 text-sm flex items-center justify-center gap-2"
+            disabled={soldOut}
+            className="flex-1 btn-neon !py-2.5 text-sm flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
           >
             <Calendar className="w-4 h-4" />
             {t("fleet.book")}
