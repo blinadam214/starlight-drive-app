@@ -18,8 +18,26 @@ const BookingModal = ({ vehicle, onClose }: BookingModalProps) => {
   const days = startDate && endDate
     ? Math.max(1, Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)))
     : 0;
-
   const total = days * vehicle.price;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Rendu personnalisé d'un jour : numéro + pastille verte + prix si disponible
+  const renderDay = (date: Date) => {
+    const isPast = date < today;
+    return (
+      <div className="flex flex-col items-center justify-center leading-none py-1">
+        <span>{date.getDate()}</span>
+        {!isPast && (
+          <span className="flex items-center gap-0.5 mt-0.5">
+            <span className="w-1 h-1 rounded-full" style={{ backgroundColor: "#10B981", boxShadow: "0 0 4px #10B981" }} />
+            <span className="text-[8px] font-medium text-primary">{vehicle.price}€</span>
+          </span>
+        )}
+      </div>
+    );
+  };
 
   const handleWhatsApp = () => {
     const msg = encodeURIComponent(
@@ -50,9 +68,7 @@ const BookingModal = ({ vehicle, onClose }: BookingModalProps) => {
               <X className="w-5 h-5 text-muted-foreground" />
             </button>
           </div>
-
           <p className="text-primary font-semibold mb-6">{t(vehicle.nameKey)}</p>
-
           <div className="space-y-4 mb-6">
             <div>
               <label className="text-sm text-muted-foreground mb-2 block">{t("modal.start")}</label>
@@ -60,8 +76,11 @@ const BookingModal = ({ vehicle, onClose }: BookingModalProps) => {
                 mode="single"
                 selected={startDate}
                 onSelect={setStartDate}
-                disabled={(date) => date < new Date()}
+                disabled={(date) => date < today}
                 className={cn("p-3 pointer-events-auto glass rounded-xl")}
+                components={{
+                  DayContent: ({ date }) => renderDay(date),
+                }}
               />
             </div>
             <div>
@@ -70,12 +89,14 @@ const BookingModal = ({ vehicle, onClose }: BookingModalProps) => {
                 mode="single"
                 selected={endDate}
                 onSelect={setEndDate}
-                disabled={(date) => date < (startDate || new Date())}
+                disabled={(date) => date < (startDate || today)}
                 className={cn("p-3 pointer-events-auto glass rounded-xl")}
+                components={{
+                  DayContent: ({ date }) => renderDay(date),
+                }}
               />
             </div>
           </div>
-
           {days > 0 && (
             <div className="glass rounded-xl p-4 mb-6">
               <div className="flex justify-between text-sm mb-2">
@@ -84,7 +105,6 @@ const BookingModal = ({ vehicle, onClose }: BookingModalProps) => {
               </div>
             </div>
           )}
-
           <button
             onClick={handleWhatsApp}
             disabled={!startDate || !endDate}
