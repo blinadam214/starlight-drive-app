@@ -7,8 +7,6 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instantiate createClient with right options
-  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "14.1"
   }
@@ -16,137 +14,60 @@ export type Database = {
     Tables: {
       profiles: {
         Row: {
-          avatar_url: string | null
-          created_at: string
-          display_name: string | null
-          id: string
-          updated_at: string
           user_id: string
+          created_at: string
         }
         Insert: {
-          avatar_url?: string | null
-          created_at?: string
-          display_name?: string | null
-          id?: string
-          updated_at?: string
           user_id: string
+          created_at?: string
         }
         Update: {
-          avatar_url?: string | null
-          created_at?: string
-          display_name?: string | null
-          id?: string
-          updated_at?: string
           user_id?: string
+          created_at?: string
         }
         Relationships: []
-      }
-      reservations: {
-        Row: {
-          created_at: string
-          customer_email: string
-          customer_name: string
-          customer_phone: string | null
-          end_date: string
-          id: string
-          notes: string | null
-          start_date: string
-          status: Database["public"]["Enums"]["reservation_status"]
-          total_amount: number
-          updated_at: string
-          vehicle_id: string
-        }
-        Insert: {
-          created_at?: string
-          customer_email: string
-          customer_name: string
-          customer_phone?: string | null
-          end_date: string
-          id?: string
-          notes?: string | null
-          start_date: string
-          status?: Database["public"]["Enums"]["reservation_status"]
-          total_amount: number
-          updated_at?: string
-          vehicle_id: string
-        }
-        Update: {
-          created_at?: string
-          customer_email?: string
-          customer_name?: string
-          customer_phone?: string | null
-          end_date?: string
-          id?: string
-          notes?: string | null
-          start_date?: string
-          status?: Database["public"]["Enums"]["reservation_status"]
-          total_amount?: number
-          updated_at?: string
-          vehicle_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "reservations_vehicle_id_fkey"
-            columns: ["vehicle_id"]
-            isOneToOne: false
-            referencedRelation: "vehicles"
-            referencedColumns: ["id"]
-          },
-        ]
       }
       user_roles: {
         Row: {
-          created_at: string
           id: string
-          role: Database["public"]["Enums"]["app_role"]
           user_id: string
+          role: string
+          created_at: string
         }
         Insert: {
-          created_at?: string
           id?: string
-          role?: Database["public"]["Enums"]["app_role"]
           user_id: string
+          role: string
+          created_at?: string
         }
         Update: {
-          created_at?: string
           id?: string
-          role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
+          role?: string
+          created_at?: string
         }
         Relationships: []
       }
-      vehicles: {
+      vehicle_availability: {
         Row: {
-          created_at: string
-          daily_rate: number
-          description: string | null
           id: string
-          image_url: string | null
+          vehicle_id: string
+          date: string
           is_available: boolean
-          name: string
-          type: Database["public"]["Enums"]["vehicle_type"]
           updated_at: string
         }
         Insert: {
-          created_at?: string
-          daily_rate: number
-          description?: string | null
           id?: string
-          image_url?: string | null
+          vehicle_id: string
+          date: string
           is_available?: boolean
-          name: string
-          type: Database["public"]["Enums"]["vehicle_type"]
           updated_at?: string
         }
         Update: {
-          created_at?: string
-          daily_rate?: number
-          description?: string | null
           id?: string
-          image_url?: string | null
+          vehicle_id?: string
+          date?: string
           is_available?: boolean
-          name?: string
-          type?: Database["public"]["Enums"]["vehicle_type"]
           updated_at?: string
         }
         Relationships: []
@@ -156,29 +77,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      bootstrap_user: { Args: never; Returns: undefined }
-      calculate_monthly_revenue: {
-        Args: { _month: number; _year: number }
-        Returns: number
-      }
-      get_active_reservations_count: { Args: never; Returns: number }
-      has_role: {
-        Args: {
-          _role: Database["public"]["Enums"]["app_role"]
-          _user_id: string
-        }
-        Returns: boolean
-      }
+      bootstrap_user: { Args: Record<string, never>; Returns: undefined }
     }
     Enums: {
-      app_role: "admin" | "user"
-      reservation_status:
-        | "pending"
-        | "confirmed"
-        | "active"
-        | "completed"
-        | "cancelled"
-      vehicle_type: "car" | "motorcycle"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -269,52 +171,8 @@ export type TablesUpdate<
       : never
     : never
 
-export type Enums<
-  DefaultSchemaEnumNameOrOptions extends
-    | keyof DefaultSchema["Enums"]
-    | { schema: keyof DatabaseWithoutInternals },
-  EnumName extends DefaultSchemaEnumNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
-  }
-    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
-    : never = never,
-> = DefaultSchemaEnumNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
-}
-  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
-    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
-    : never
-
-export type CompositeTypes<
-  PublicCompositeTypeNameOrOptions extends
-    | keyof DefaultSchema["CompositeTypes"]
-    | { schema: keyof DatabaseWithoutInternals },
-  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
-  }
-    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
-    : never = never,
-> = PublicCompositeTypeNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
-}
-  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
-  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
-    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
-    : never
-
 export const Constants = {
   public: {
-    Enums: {
-      app_role: ["admin", "user"],
-      reservation_status: [
-        "pending",
-        "confirmed",
-        "active",
-        "completed",
-        "cancelled",
-      ],
-      vehicle_type: ["car", "motorcycle"],
-    },
+    Enums: {},
   },
 } as const
