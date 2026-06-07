@@ -17,7 +17,6 @@ const AdminLogin = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Si déjà connecté ET admin, redirige vers le dashboard
   useEffect(() => {
     if (!loading && session && isAdmin) {
       navigate("/admin/disponibilites");
@@ -39,7 +38,6 @@ const AdminLogin = () => {
       return;
     }
 
-    // Appelle bootstrap_user pour s'assurer du rôle, puis vérifie admin
     await supabase.rpc("bootstrap_user");
 
     const { data: roleData } = await supabase
