@@ -12,6 +12,8 @@ import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import EnregistrementExpress from "./pages/EnregistrementExpress";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/AdminLogin";
+import AdminAvailability from "./pages/AdminAvailability";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +26,8 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <Routes>
+              <Route path="/admin" element={<AdminLogin />} />
+              <Route path="/admin/disponibilites" element={<AdminAvailability />} />
               <Route path="/" element={<Index />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/terms" element={<Terms />} />
