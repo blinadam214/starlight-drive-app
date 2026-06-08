@@ -10,7 +10,6 @@ import {
 import Header from "@/components/Header";
 import FooterSection from "@/components/FooterSection";
 import BookingModal from "@/components/BookingModal";
-import AvailabilityBadge from "@/components/AvailabilityBadge";
 import { getVehicleBySlug } from "@/data/vehicles";
 
 const VehicleDetail = () => {
@@ -114,10 +113,10 @@ const VehicleDetail = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <div className="flex items-center gap-3 mb-4 flex-wrap">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass text-xs font-semibold uppercase text-primary">
-                  {vehicle.category === "starlight" && <Sparkles className="w-3 h-3" />}
-                  {t(`cat.${vehicle.category}`)}
-                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass text-xs font-semibold uppercase text-primary mb-4">
+                {vehicle.category === "starlight" && <Sparkles className="w-3 h-3" />}
+                {t(`cat.${vehicle.category}`)}
+              </span>
                 <AvailabilityBadge total={vehicle.quantityTotal} available={vehicle.quantityAvailable} />
               </div>
 
