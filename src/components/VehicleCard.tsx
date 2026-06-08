@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { Calendar, Sparkles, ChevronLeft, ChevronRight, Eye } from "lucide-react";
-import AvailabilityBadge from "./AvailabilityBadge";
 
 interface VehicleCardProps {
   images: string[];
@@ -128,10 +127,6 @@ const VehicleCard = ({ images, video, nameKey, descKey, price, category, slug, q
           </span>
         </div>
 
-        {/* Badge disponibilité en haut à droite */}
-        <div className="absolute top-4 right-4">
-          <AvailabilityBadge total={quantityTotal} available={quantityAvailable} />
-        </div>
       </div>
 
       <div className="p-6">
