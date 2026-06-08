@@ -32,7 +32,7 @@ const BookingModal = ({ vehicle, onClose }: BookingModalProps) => {
        {!isPast ? (
           <span className="flex items-center gap-0.5 mt-0.5">
             <span className="w-1 h-1 rounded-full" style={{ backgroundColor: "#10B981", boxShadow: "0 0 4px #10B981" }} />
-            <span className="text-[8px] font-medium text-primary">{vehicle.price}€</span>
+         <span className="text-[11px] font-medium text-primary">{vehicle.price}€</span>
           </span>
         ) : (
           <span className="w-1 h-1 rounded-full mt-0.5" style={{ backgroundColor: "#EF4444" }} />
