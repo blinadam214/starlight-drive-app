@@ -159,6 +159,12 @@ const VehicleDetail = () => {
                   <Calendar className="w-5 h-5" />
                   {t("detail.book")}
                 </button>
+                <p className="text-center text-xs text-muted-foreground mt-3">
+                  Une question ?{" "}
+                  <a href="/faq" className="text-primary hover:underline">
+                    Consultez la FAQ
+                  </a>
+                </p>
               </div>
             </motion.div>
           </div>
