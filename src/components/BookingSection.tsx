@@ -57,13 +57,16 @@ const BookingSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mt-8"
         >
+          <p className="text-muted-foreground mb-4 text-sm">
+            Vous avez une question ?{" "}
+            <a href="/faq" className="text-primary hover:underline font-medium">
+              Consultez notre FAQ
+            </a>
+          </p>
           <p className="text-muted-foreground mb-6 text-lg">
             Vous avez réservé ? Gagnez du temps en pré-enregistrant vos documents avant votre arrivée.
           </p>
-          
-            <a href="/enregistrement"
-             className="btn-neon inline-flex items-center gap-2 text-base"
-          >
+          <a href="/enregistrement" className="btn-neon inline-flex items-center gap-2 text-base">
             <Zap className="w-5 h-5" />
             Accéder à l'Enregistrement Express
           </a>
