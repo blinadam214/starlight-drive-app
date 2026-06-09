@@ -57,7 +57,7 @@ const BookingSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mt-8"
         >
-          <p className="text-muted-foreground mb-4 text-sm">
+          <p className="text-muted-foreground mb-6 text-xl font-medium mt-[-12px]">
             Vous avez une question ?{" "}
             <a href="/faq" className="text-primary hover:underline font-medium">
               Consultez notre FAQ
