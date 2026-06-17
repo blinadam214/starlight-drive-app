@@ -16,7 +16,7 @@ interface BuildArgs {
 }
 
 const GENERIC: Record<Lang, string> = {
-  fr: "Bonjour Kech Night Drive ! J'aimerais avoir des informations sur la location.",
+  fr: "Bonjour Kech Night Drive ! J'aimerais avoir des informations sur la location de vos véhicules.",
   en: "Hello Kech Night Drive! I'd like some information about renting.",
   ar: "مرحبا Kech Night Drive! أود الحصول على معلومات حول التأجير.",
   es: "¡Hola Kech Night Drive! Me gustaría información sobre el alquiler.",
