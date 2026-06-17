@@ -1,3 +1,4 @@
+import StickyWhatsApp from "@/components/StickyWhatsApp";
 import VehicleDetail from "./pages/VehicleDetail";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
