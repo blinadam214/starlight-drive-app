@@ -25,7 +25,7 @@ const DATA: Record<Lang, { badge: string; title: string; subtitle: string; ctaLa
       { icon: Music, name: "Night Owner", price: "+15 €", included: false, features: ["Playlist personnalisée pré-chargée", "Couleur d'ambiance LED au choix", "Late check-out 2h"] },
       { icon: Video, name: "Content Creator", price: "+25 €", included: false, features: ["Trépied + ring light", "Spot photo géolocalisé recommandé", "10 min de shooting à la livraison (filmé avec votre téléphone)"] },
       { icon: PartyPopper, name: "Celebration", price: "+49 €", included: false, features: ["Décor intérieur (anniversaire, demande en mariage)", "Lettrage LED personnalisé", "Bouquet & polaroid"] },
-      { icon: ShieldCheck, name: "Réduction de franchise", price: "+12 €", included: false, features: ["Franchise divisée par deux en cas de pépin", "Tranquillité totale"] },
+      { icon: ShieldCheck, name: "Réduction de franchise", price: "+12 €/jour", included: false, features: ["Franchise divisée par deux en cas de pépin", "Tranquillité totale"] },
     ],
   },
   en: {
@@ -38,7 +38,7 @@ const DATA: Record<Lang, { badge: string; title: string; subtitle: string; ctaLa
       { icon: Music, name: "Night Owner", price: "+€15", included: false, features: ["Pre-loaded custom playlist", "Choose your LED ambient color", "Late check-out 2h"] },
       { icon: Video, name: "Content Creator", price: "+€25", included: false, features: ["Tripod + ring light", "Recommended geo-tagged photo spot", "10 min shooting at delivery (filmed with your phone)"] },
       { icon: PartyPopper, name: "Celebration", price: "+€49", included: false, features: ["Interior decor (birthday, proposal)", "Custom LED lettering", "Bouquet & polaroid"] },
-      { icon: ShieldCheck, name: "Deductible reduction", price: "+€12", included: false, features: ["Deductible halved in case of issue", "Total peace of mind"] },
+      { icon: ShieldCheck, name: "Deductible reduction", price: "+12 €/day", included: false, features: ["Deductible halved in case of issue", "Total peace of mind"] },
     ],
   },
   ar: {
@@ -51,7 +51,7 @@ const DATA: Record<Lang, { badge: string; title: string; subtitle: string; ctaLa
       { icon: Music, name: "Night Owner", price: "+15 €", included: false, features: ["قائمة تشغيل مخصصة محمّلة مسبقًا", "اختيار لون إضاءة LED", "تمديد التسليم ساعتين"] },
       { icon: Video, name: "Content Creator", price: "+25 €", included: false, features: ["حامل + إضاءة دائرية", "موقع تصوير موصى به", "10 دقائق تصوير عند التسليم (بهاتفك)"] },
       { icon: PartyPopper, name: "Celebration", price: "+49 €", included: false, features: ["ديكور داخلي (عيد ميلاد، خطوبة)", "حروف LED مخصصة", "باقة ورد وبولارويد"] },
-      { icon: ShieldCheck, name: "تخفيض التحمّل", price: "+12 €", included: false, features: ["تقسيم مبلغ التحمّل إلى النصف", "راحة بال تامة"] },
+      { icon: ShieldCheck, name: "تخفيض التحمّل", price: "+12 €/يوم", included: false, features: ["تقسيم مبلغ التحمّل إلى النصف", "راحة بال تامة"] },
     ],
   },
   es: {
@@ -64,7 +64,7 @@ const DATA: Record<Lang, { badge: string; title: string; subtitle: string; ctaLa
       { icon: Music, name: "Night Owner", price: "+15 €", included: false, features: ["Playlist personalizada precargada", "Color de ambiente LED a elegir", "Late check-out 2h"] },
       { icon: Video, name: "Content Creator", price: "+25 €", included: false, features: ["Trípode + ring light", "Punto fotográfico geolocalizado recomendado", "10 min de sesión en la entrega (con tu teléfono)"] },
       { icon: PartyPopper, name: "Celebration", price: "+49 €", included: false, features: ["Decoración interior (cumpleaños, pedida)", "Letras LED personalizadas", "Ramo y polaroid"] },
-      { icon: ShieldCheck, name: "Reducción de franquicia", price: "+12 €", included: false, features: ["Franquicia dividida a la mitad", "Tranquilidad total"] },
+      { icon: ShieldCheck, name: "Reducción de franquicia", price: "+12 €/día", included: false, features: ["Franquicia dividida a la mitad", "Tranquilidad total"] },
     ],
   },
   it: {
@@ -77,7 +77,7 @@ const DATA: Record<Lang, { badge: string; title: string; subtitle: string; ctaLa
       { icon: Music, name: "Night Owner", price: "+15 €", included: false, features: ["Playlist personalizzata precaricata", "Colore LED a scelta", "Late check-out 2h"] },
       { icon: Video, name: "Content Creator", price: "+25 €", included: false, features: ["Treppiede + ring light", "Spot fotografico geolocalizzato", "10 min di shooting alla consegna (con il tuo telefono)"] },
       { icon: PartyPopper, name: "Celebration", price: "+49 €", included: false, features: ["Decoro interno (compleanno, proposta)", "Scritte LED personalizzate", "Bouquet e polaroid"] },
-      { icon: ShieldCheck, name: "Riduzione franchigia", price: "+12 €", included: false, features: ["Franchigia dimezzata in caso di problemi", "Tranquillità totale"] },
+      { icon: ShieldCheck, name: "Riduzione franchigia", price: "+12 €/giorno", included: false, features: ["Franchigia dimezzata in caso di problemi", "Tranquillità totale"] },
     ],
   },
   de: {
@@ -90,7 +90,7 @@ const DATA: Record<Lang, { badge: string; title: string; subtitle: string; ctaLa
       { icon: Music, name: "Night Owner", price: "+15 €", included: false, features: ["Vorgeladene persönliche Playlist", "LED-Ambientefarbe nach Wahl", "Late Check-out 2h"] },
       { icon: Video, name: "Content Creator", price: "+25 €", included: false, features: ["Stativ + Ringlicht", "Empfohlener Foto-Spot", "10 Min Shooting bei Lieferung (mit Ihrem Handy)"] },
       { icon: PartyPopper, name: "Celebration", price: "+49 €", included: false, features: ["Innendeko (Geburtstag, Antrag)", "Personalisierte LED-Schrift", "Strauß & Polaroid"] },
-      { icon: ShieldCheck, name: "Selbstbeteiligung senken", price: "+12 €", included: false, features: ["Selbstbeteiligung halbiert", "Völlige Sorglosigkeit"] },
+      { icon: ShieldCheck, name: "Selbstbeteiligung senken", price: "+12 €/Tag", included: false, features: ["Selbstbeteiligung halbiert", "Völlige Sorglosigkeit"] },
     ],
   },
   nl: {
@@ -103,7 +103,7 @@ const DATA: Record<Lang, { badge: string; title: string; subtitle: string; ctaLa
       { icon: Music, name: "Night Owner", price: "+€15", included: false, features: ["Vooraf geladen persoonlijke playlist", "LED-sfeerkleur naar keuze", "Late check-out 2u"] },
       { icon: Video, name: "Content Creator", price: "+€25", included: false, features: ["Statief + ringlicht", "Aanbevolen foto-spot", "10 min shooting bij levering (met uw telefoon)"] },
       { icon: PartyPopper, name: "Celebration", price: "+€49", included: false, features: ["Interieurdecoratie (verjaardag, aanzoek)", "Gepersonaliseerde LED-letters", "Boeket & polaroid"] },
-      { icon: ShieldCheck, name: "Eigen risico verlagen", price: "+€12", included: false, features: ["Eigen risico gehalveerd", "Totale gemoedsrust"] },
+      { icon: ShieldCheck, name: "Eigen risico verlagen", price: "+€12 /dag", included: false, features: ["Eigen risico gehalveerd", "Totale gemoedsrust"] },
     ],
   },
 };
