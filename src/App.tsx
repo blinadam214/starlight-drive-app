@@ -25,6 +25,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
+           <StickyWhatsApp />
           <BrowserRouter>
             <Routes>
               <Route path="/admin" element={<AdminLogin />} />
