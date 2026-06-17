@@ -10,6 +10,7 @@ import {
 import Header from "@/components/Header";
 import FooterSection from "@/components/FooterSection";
 import BookingModal from "@/components/BookingModal";
+import RentalConditions from "@/components/RentalConditions";
 import { getVehicleBySlug } from "@/data/vehicles";
 
 const VehicleDetail = () => {
@@ -166,8 +167,10 @@ const VehicleDetail = () => {
                   </a>
                 </p>
               </div>
-            </motion.div>
+             </motion.div>
           </div>
+
+          <RentalConditions />
         </div>
       </main>
       <FooterSection />
