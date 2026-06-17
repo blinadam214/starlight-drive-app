@@ -1,3 +1,4 @@
+import PacksSection from "@/components/PacksSection";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import InnovationSection from "@/components/InnovationSection";
